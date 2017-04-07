@@ -28,6 +28,7 @@ var BeerSchema = {
 	type: String,
 	brewery: String,
 	alcoholPer: Number,
+	imageUrl: String,
 	reviews: [ReviewSchema]
 };
 
