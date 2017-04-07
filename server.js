@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 
 
 
-var appController = require('./controllers/appController.js');
+var authController = require('./controllers/authController.js');
 
 
 
@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './server/public')));
 
-app.use('/', appController);
+app.use('/', authController);
 
 
 // catch 404 and forward to error handler

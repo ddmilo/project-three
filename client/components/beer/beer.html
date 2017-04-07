@@ -1,0 +1,8 @@
+<div class = "beer">
+<h3><a ui-sref="beerNew">Add Beer</h3>
+<ul>
+<li ng-repeat="beer in $ctrl.all"><a ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
+</ul>
+
+
+</div>
