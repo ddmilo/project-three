@@ -1,0 +1,11 @@
+const controller = require('./edit.beer.controller.js');
+const template = require('./edit.beer.html');
+
+const component = {
+  controller: controller,
+  template: template
+};
+
+angular
+  .module('DevHops')
+  .component('editBeer', component);

@@ -1,0 +1,9 @@
+EditBeerController.$inject = ['$stateParams', 'EditBeerService'];
+
+function EditBeerController() {
+  const vm = this;
+
+
+}
+
+module.exports = EditBeerController;
