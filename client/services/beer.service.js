@@ -6,5 +6,5 @@ angular
 BeerService.$inject = ['$http']
 
 function BeerService($http){
-	
+
 }
