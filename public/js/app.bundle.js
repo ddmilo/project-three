@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 26);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -110,10 +110,22 @@ module.exports = BeerController;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+NewUserController.$inject = ['$stateParams', 'NewUserService'];
+
+function NewUserController() {
+  const vm = this;
+}
+
+module.exports = NewUserController;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const angular = __webpack_require__(19);
-__webpack_require__(17);
+const angular = __webpack_require__(22);
+__webpack_require__(20);
 
 angular.module('DevHops', ['ui.router']).config(uiRouterSetup);
 
@@ -123,6 +135,9 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
   $stateProvider.state('auth', {
     url: '/',
     template: '<auth></auth>'
+  }).state('newUser', {
+    url: '/newUser',
+    template: '<new-user></new-user>'
   }).state('beer', {
     url: '/beer',
     template: '<beer></beer>'
@@ -144,11 +159,11 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 };
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
-const template = __webpack_require__(20);
+const template = __webpack_require__(23);
 
 const AuthComponent = {
   controller: controller,
@@ -156,12 +171,6 @@ const AuthComponent = {
 };
 
 angular.module('DevHops').component('auth', AuthComponent);
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 /* 5 */
@@ -183,10 +192,16 @@ angular.module('DevHops').component('auth', AuthComponent);
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
-const template = __webpack_require__(21);
+const template = __webpack_require__(24);
 
 const component = {
   controller: controller,
@@ -196,16 +211,18 @@ const component = {
 angular.module('DevHops').component('beer', component);
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
 /* 10 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+const controller = __webpack_require__(2);
+const template = __webpack_require__(25);
 
+const NewUserComponent = {
+  controller: controller,
+  template: template
+};
+
+angular.module('DevHops').component('newUser', NewUserComponent);
 
 /***/ }),
 /* 11 */
@@ -223,6 +240,18 @@ angular.module('DevHops').component('beer', component);
 /* 13 */
 /***/ (function(module, exports) {
 
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
 angular.module('DevHops').service('AuthService', AuthService);
 
 AuthService.$inject = ['$http'];
@@ -230,7 +259,7 @@ AuthService.$inject = ['$http'];
 function AuthService($http) {}
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('BeerService', BeerService);
@@ -240,7 +269,17 @@ BeerService.$inject = ['$http'];
 function BeerService($http) {}
 
 /***/ }),
-/* 15 */
+/* 17 */
+/***/ (function(module, exports) {
+
+angular.module('DevHops').service('NewUserService', NewUserService);
+
+NewUserService.$inject = ['$http'];
+
+function NewUserService($http) {}
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('ReviewService', ReviewService);
@@ -250,7 +289,7 @@ ReviewService.$inject = ['$http'];
 function ReviewService($http) {}
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('UserService', UserService);
@@ -260,7 +299,7 @@ UserService.$inject = ['$http'];
 function UserService($http) {}
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /**
@@ -4949,7 +4988,7 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /**
@@ -38326,46 +38365,55 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(18);
+__webpack_require__(21);
 module.exports = angular;
 
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"auth\">\n<form ng-submit = \" \">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model=\"\" value=\"\">\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" ng-model=\"\" value=\"\">\n</form>\n\n\n</div>\n";
+module.exports = "<div class = \"auth\">\n<form ng-submit = \" \">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n</form>\n\n\n</div>\n";
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class = \"beer\">\n<h3><a ui-sref=\"beerNew\">Add Beer</h3>\n<ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n\n\n</div>\n";
 
 /***/ }),
-/* 22 */
+/* 25 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"newUser\">\n<form ng-submit = \" \">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(0);
 __webpack_require__(4);
+__webpack_require__(0);
 __webpack_require__(5);
 __webpack_require__(6);
 __webpack_require__(7);
 __webpack_require__(8);
-__webpack_require__(1);
 __webpack_require__(9);
+__webpack_require__(1);
 __webpack_require__(10);
+__webpack_require__(2);
 __webpack_require__(11);
 __webpack_require__(12);
 __webpack_require__(13);
 __webpack_require__(14);
 __webpack_require__(15);
-module.exports = __webpack_require__(16);
+__webpack_require__(16);
+__webpack_require__(17);
+__webpack_require__(18);
+module.exports = __webpack_require__(19);
 
 
 /***/ })

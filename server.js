@@ -33,7 +33,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, './server/public')));
+app.use(express.static(path.join(__dirname, './public')));
 
 app.use('/api/DevHops', authController);
 

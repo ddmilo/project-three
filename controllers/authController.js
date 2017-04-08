@@ -5,7 +5,7 @@ var bodyParser = require('body-parser') //parses information from POST
 var Auth = require('../models/user.model.js');
 
 // GET
-router.get('/', function indexAction(request, response) {
+router.get('/', function indexAction(req, res) {
   auth.find(function(error, auth) {
     if(error) response.json({message:''});
 
@@ -13,6 +13,15 @@ router.get('/', function indexAction(request, response) {
   }).select('-__v');
 });
 
+router.get('/signUp', function(req, res){
+  response.json({auth: auth});
+})
+
+//POST
+router.post('/', function createAccountAction(req, res){
+  console.log('user created');
+
+})
 
 
 
