@@ -8,6 +8,6 @@ const AuthComponent = {
 
 angular
   .module('DevHops')
-  .component('DevHops', AuthComponent);
+  .component('auth', AuthComponent);
 
-  
+

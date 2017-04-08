@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './server/public')));
 
-app.use('/', authController);
+app.use('/api/DevHops', authController);
 
 
 // catch 404 and forward to error handler
@@ -56,6 +56,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
- // app.listen(3000);
+ app.listen(3000);
 
 module.exports = app;

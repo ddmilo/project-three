@@ -1,4 +1,4 @@
-var Schema = require(../db/schema.js);
+var Schema = require('../db/schema.js');
 var mongoose = require('mongoose');
 
 var Review = Schema.Review;
