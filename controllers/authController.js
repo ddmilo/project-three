@@ -18,10 +18,22 @@ router.get('/signUp', function(req, res){
 })
 
 //POST
-router.post('/', function createAccountAction(req, res){
-  console.log('user created');
+router.post('/', function createAction(request, response) {
+  console.log('in POST');
+  console.log('body:',request.body);
 
-})
+var newUser = {
+  email: req.body.email,
+  userId:req.body.userId,
+  password:req.body.password
+}
+
+  User.save(function(error) {
+    if(error) response.json({messsage: 'Could not create  b/c:' + error});
+
+    response.json({auth: auth});
+  });
+});
 
 
 

@@ -114,8 +114,16 @@ module.exports = BeerController;
 
 NewUserController.$inject = ['$stateParams', 'NewUserService'];
 
-function NewUserController() {
+function NewUserController($stateParams, NewUserService) {
   const vm = this;
+  vm.newUser = {};
+  vm.addNewUser = addNewUser;
+
+  function addNewUser() {
+    NewUserService.addNewUser(vm.newUser);
+    vm.newUser = {};
+    $state.go('DevHops');
+  }
 }
 
 module.exports = NewUserController;
@@ -174,15 +182,29 @@ angular.module('DevHops').component('auth', AuthComponent);
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+const controller = __webpack_require__(6);
+const template = __webpack_require__(27);
 
+const component = {
+  controller: controller,
+  template: template
+};
+
+angular.module('DevHops').component('beer-new', component);
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
+BeerNewController.$inject = ['beer.new.Service'];
 
+function BeerNewController(beerService) {
+    var vm = this;
+}
+
+module.exports = BeerNewController;
 
 /***/ }),
 /* 7 */
@@ -276,7 +298,13 @@ angular.module('DevHops').service('NewUserService', NewUserService);
 
 NewUserService.$inject = ['$http'];
 
-function NewUserService($http) {}
+function NewUserService($http) {
+  const self = this;
+  self.addNewUser = addNewUser;
+  function addNewUser(newUser) {
+    return $http.post('api/DevHops', newUser);
+  }
+}
 
 /***/ }),
 /* 18 */
@@ -38388,7 +38416,7 @@ module.exports = "<div class = \"beer\">\n<h3><a ui-sref=\"beerNew\">Add Beer</h
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<form ng-submit = \" \">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newUser\">\n<form ng-submit = \"$ctrl.addNewUser()\" method=\"post\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model = \"$ctrl.newUser.userId\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" ng-model = \"$ctrl.newUser.password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model =\"$ctrl.newUser.email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
 
 /***/ }),
 /* 26 */
@@ -38415,6 +38443,12 @@ __webpack_require__(17);
 __webpack_require__(18);
 module.exports = __webpack_require__(19);
 
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+module.exports = "";
 
 /***/ })
 /******/ ]);

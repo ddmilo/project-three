@@ -1,14 +1,14 @@
 <div class="newUser">
-<form ng-submit = " ">
+<form ng-submit = "$ctrl.addNewUser()" method="post">
 <div>
   <label>UserName</label>
-  <input type = "text" name= "username" >
+  <input type = "text" name= "username" ng-model = "$ctrl.newUser.userId" >
   <br>
   <label>Password</label>
-  <input type="Password" name="Password" >
+  <input type="Password" name="Password" ng-model = "$ctrl.newUser.password" >
   <br>
   <label>Email</label>
-  <input type="text" name="email">
+  <input type="text" name="email" ng-model ="$ctrl.newUser.email">
   <br>
   <input type="submit" name="create account">
 </form>
