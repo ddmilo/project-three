@@ -16,7 +16,7 @@ var authController = require('./controllers/authController.js');
 
 
 
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 
 db.on('error', function(err){
@@ -56,6 +56,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
- app.listen(3000);
+app.listen(3000 | console.log('mic check'));
 
 module.exports = app;

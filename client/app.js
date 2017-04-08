@@ -12,7 +12,7 @@ uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
 function uiRouterSetup($stateProvider, $urlRouterProvider){
 	$stateProvider
 		.state('auth', {
-			url: '/',
+			url: '/login',
 			template: '<auth></auth>'
 		})
     .state('newUser', {
@@ -43,4 +43,3 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
 
 };
-

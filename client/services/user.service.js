@@ -6,5 +6,5 @@ angular
 UserService.$inject = ['$http']
 
 function UserService($http){
-	
+
 }
