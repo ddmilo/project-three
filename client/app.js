@@ -16,7 +16,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
 			template: '<auth></auth>'
 		})
     .state('newUser', {
-      url: '/newUser',
+      url: '/signup',
       template:'<new-user></new-user>'
     })
     .state('beer', {
@@ -24,7 +24,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
       template:'<beer></beer>'
     })
     .state('beerNew', {
-      url:'/beer-new',
+      url:'/beer/new',
       template:'<beer-new></beer-new>'
     })
     .state('editBeer', {

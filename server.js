@@ -17,8 +17,9 @@ var authController = require('./controllers/authController.js');
 var reviewController = require('./controllers/reviewController.js');
 
 
-// mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
+// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost/DevHops');
 
 db.on('error', function(err){
  console.log(err);
@@ -36,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
 
-app.use('/api/DevHops', authController);
+app.use('/api/signup', authController);
 app.use('/api/DevHops', reviewController);
 
 
