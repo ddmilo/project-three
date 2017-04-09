@@ -313,59 +313,31 @@ function BeerService($http) {}
 /* 17 */
 /***/ (function(module, exports) {
 
-angular.module('DevHops').service('EditBeerService', EditBeerService);
-
-EditBeerService.$inject = ['$http'];
-
-function EditBeerService($http) {}
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/editBeer.service.js'");
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports) {
 
-angular.module('DevHops').service('NewBeerService', NewBeerService);
-
-NewBeerService.$inject = ['$http'];
-
-function NewBeerService($http) {}
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/newBeer.service.js'");
 
 /***/ }),
 /* 19 */
 /***/ (function(module, exports) {
 
-angular.module('DevHops').service('NewReviewService', NewReviewService);
-
-NewReviewService.$inject = ['$http'];
-
-function NewReviewService($http) {
-  const self = this;
-
-  self.addReview = addReview;
-
-  function addReview(newReview) {
-    return $http.post('api/DevHops');
-  }
-}
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/newReview.service.js'");
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports) {
 
-angular.module('DevHops').service('NewUserService', NewUserService);
-
-NewUserService.$inject = ['$http'];
-
-function NewUserService($http) {}
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/newUser.service.js'");
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
-angular.module('DevHops').service('ReviewService', ReviewService);
-
-ReviewService.$inject = ['$http'];
-
-function ReviewService($http) {}
+throw new Error("Module build failed: SyntaxError: Unexpected token (20:1)\n\n\u001b[0m \u001b[90m 18 | \u001b[39m\u001b[90m// function addReview(newReview) {\u001b[39m\n \u001b[90m 19 | \u001b[39m\u001b[90m//   return $http.post('api/DevHops')\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 | \u001b[39m }\n \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 | \u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 22 */
