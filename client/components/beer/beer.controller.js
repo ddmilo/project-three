@@ -1,6 +1,6 @@
-BeerController.$inject = ['beerService'];
+BeerController.$inject = ['BeerService'];
 
-function BeerController(beerService) {
+function BeerController(BeerService) {
     var vm = this;
 }
 

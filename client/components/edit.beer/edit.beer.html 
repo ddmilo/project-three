@@ -1,0 +1,26 @@
+
+<div class="editBeer">
+<!-- <form ng-submit = "$ctrl.updateBeer($ctrl.current)"> -->
+<form ng-submit = "">
+  <div>
+    <label>Name</label>
+    <input type = "text" name= "name" >
+    <br>
+    <label>Type</label>
+    <input type="text" name="type" >
+    <br>
+    <label>Brewery</label>
+    <input type="text" name="brewery">
+    <br>
+    <label>Alcohol % </label>
+    <input type="number" name="alcohol">
+    <br>
+    <label>Image</label>
+    <input img="text" name="image">
+    <br>
+    <input type="submit" name="edit beer">
+         <!-- <input type="button" ng-click="beer.isEdit = false" value="Cancel"> -->
+  </div>
+</form>
+
+</div>

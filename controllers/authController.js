@@ -6,7 +6,7 @@ var Auth = require('../models/user.model.js');
 
 // GET
 router.get('/', function indexAction(req, res) {
-  auth.find(function(error, auth) {
+  Auth.find(function(error, auth){
     if(error) response.json({message:''});
 
     response.json({auth: auth});
