@@ -6,5 +6,12 @@ angular
 AuthService.$inject = ['$http']
 
 function AuthService($http){
+  const self = this;
+
+  self.addNew = add New;
+
+  function addNew(newUser){
+    return $http.post('/api/criminals', newUser);
+  }
 
 }
