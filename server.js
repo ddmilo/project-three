@@ -12,12 +12,12 @@ var mongoose = require('mongoose');
 
 
 
-var authController = require('./controllers/authController.js');
-var reviewController = require('./controllers/reviewController.js');
 
 
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
+
+mongoose.connect('mongodb://localhost/devHops')
 
 db.on('error', function(err){
  console.log(err);
@@ -35,9 +35,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
 
-app.use('/api/DevHops', authController);
-app.use('/api/DevHops', reviewController);
 
+var authController = require('./controllers/authController.js');
+var reviewController = require('./controllers/reviewController.js');
+var userController = require('./controllers/userController.js');
+
+app.use('/api/auth', authController);
+app.use('/api/review/new', reviewController);
+app.use('/api/user', userController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

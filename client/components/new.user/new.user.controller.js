@@ -1,4 +1,4 @@
-NewUserController.$inject = ['$stateParams', 'NewUserService'];
+NewUserController.$inject = ['$stateParams', 'UserService'];
 
 function NewUserController() {
   const vm = this;

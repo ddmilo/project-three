@@ -1,4 +1,4 @@
-NewBeerController.$inject = ['$stateParams', 'NewBeerService'];
+NewBeerController.$inject = ['$stateParams', 'BeerService'];
 
 function NewBeerController() {
   const vm = this;

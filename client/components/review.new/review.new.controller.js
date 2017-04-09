@@ -1,6 +1,6 @@
-NewReviewController.$inject = ['$state', 'NewReviewService'];
+NewReviewController.$inject = ['$state','ReviewService'];
 
-function NewReviewController($state, NewReviewService) {
+function NewReviewController($state, ReviewService) {
    const vm = this;
 
    vm.newReview = {};
@@ -8,7 +8,8 @@ function NewReviewController($state, NewReviewService) {
 
    // activate();
    function addReview() {
-    NewReviewService
+    console.log(vm.newReview);
+    ReviewService
       .addReview(vm.newReview);
         vm.newReview = {};
         $state

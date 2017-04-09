@@ -2,18 +2,19 @@
 <form ng-submit = "$ctrl.addReview()">
 <div>
   <label>Content</label>
-  <input type = "text" name= "conent" >
+  <input type = "text" name= "conent" ng-model="$ctrl.newReview.content">
   <br>
-<!--   <label>Rating</label>
-  <input type="number" name="rating" >
-  <br>
- -->  <label>Paring</label>
-  <input type="text" name="paring">
+<label>Paring</label>
+  <input type="text" name="paring" ng-model="$ctrl.newReview.paring">
   <br>
   <div class="rating"> Rating
     <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
   </div>
-  <input type="submit" name="create account">
+  <input type="submit" name="create review">
 </form>
 </div>
 </div>
+<!--   <label>Rating</label>
+  <input type="number" name="rating" >
+  <br>
+ -->
