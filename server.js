@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 
 
 var authController = require('./controllers/authController.js');
-
+var reviewController = require('./controllers/reviewController.js');
 
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -36,6 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
 
 app.use('/api/DevHops', authController);
+app.use('/api/DevHops', reviewController);
 
 
 // catch 404 and forward to error handler

@@ -28,7 +28,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
       template:'<beer-new></beer-new>'
     })
     .state('editBeer', {
-      url:'/edit-beer',
+      url:'/beer/:beerId/edit-beer',
       template:'<edit-beer></edit-beer>'
     })
     .state('beerShow', {
