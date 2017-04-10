@@ -100,10 +100,19 @@ module.exports = AuthController;
 /* 1 */
 /***/ (function(module, exports) {
 
-NewBeerController.$inject = ['$stateParams', 'BeerService'];
+NewBeerController.$inject = ['$state', 'BeerService'];
 
-function NewBeerController() {
+function NewBeerController($state, BeerService) {
   const vm = this;
+
+  vm.newBeer = {};
+  vm.addBeer = addBeer;
+
+  function addBeer() {
+    BeerService.addBeer(vm.newBeer);
+    vm.newBeer = {};
+    $state.go('beer');
+  }
 }
 
 module.exports = NewBeerController;
@@ -308,7 +317,30 @@ angular.module('DevHops').service('BeerService', BeerService);
 
 BeerService.$inject = ['$http'];
 
-function BeerService($http) {}
+function BeerService($http) {
+  const self = this;
+
+  self.loadAll = loadAll;
+  self.loadCurrent = loadCurrent;
+  self.addBeer = addBeer;
+  // self.deleteBeer= deleteBeer;
+
+
+  function loadAll() {
+    return $http.get('/api/beer');
+    //we know all our backend routes will be api
+  }
+  function loadCurrent(id) {
+    return $http.get('api/beer/' + id);
+  }
+  function addBeer(newBeer) {
+    return $http.post('api/beer', newBeer);
+    console.log(newBeer);
+  }
+  // function delete(id) {
+  //   return $http.delete('/api/beer/' + id);
+  // }
+}
 
 /***/ }),
 /* 17 */
@@ -327,7 +359,7 @@ function ReviewService($http) {
   function addReview(newReview) {
     console.log(newReview);
 
-    return $http.post('api/review/new', newReview);
+    return $http.post('api/review', newReview);
   }
 }
 
@@ -38425,7 +38457,7 @@ module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newBeer\">\n<form ng-submit = \" \">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\">\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\">\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\">\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcohol\" >\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.image\">\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
 
 /***/ }),
 /* 24 */

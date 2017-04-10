@@ -6,5 +6,28 @@ angular
 BeerService.$inject = ['$http']
 
 function BeerService($http){
-	
+  const self = this;
+
+  self.loadAll = loadAll;
+  self.loadCurrent = loadCurrent;
+  self.addBeer = addBeer;
+  // self.deleteBeer= deleteBeer;
+
+
+  function loadAll() {
+    return $http.get('/api/beer');
+    //we know all our backend routes will be api
+  }
+  function loadCurrent(id) {
+    return $http.get('api/beer/' + id);
+
+  }
+  function addBeer(newBeer){
+    return $http.post('api/beer', newBeer);
+    console.log(newBeer);
+  }
+  // function delete(id) {
+  //   return $http.delete('/api/beer/' + id);
+  // }
+
 }
