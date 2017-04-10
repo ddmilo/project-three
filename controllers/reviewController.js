@@ -21,7 +21,8 @@ router.post('/:beerId', function createReviewAction(req, res){
   var review = new Review({
     content: req.body.content,
     pairing: req.body.pairing,
-    rating: req.body.rating
+    rating: req.body.rating,
+    username: req.session.currentUser
   });
 
   review.save(function(error, review){

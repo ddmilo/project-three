@@ -13,7 +13,7 @@ var UserSchema = {
 
 
 var ReviewSchema = {
-	userId: String,
+	username: String,
 	content: String,
 	rating: Number,
 	dateCreated: Date,
