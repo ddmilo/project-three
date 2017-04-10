@@ -131,16 +131,17 @@ function RegisterController($state, UserService) {
   const vm = this;
 
   vm.newUser = {};
-  vm.addNewUser = AddNewUser;
+  vm.addNewUser = addNewUser;
 
   activate();
 
-  function activate() {};
+  function activate() {}
 
-  function AddNewUser(newUser) {
-    UserService.addNewUser(vm.newUser);
-    vm.newUser = {};
-    $state.go('auth');
+  function addNewUser(newUser) {
+    UserService.addNewUser(vm.newUser).then(function resolve() {
+      vm.newUser = {};
+      $state.go('auth');
+    });
   }
 }
 
@@ -380,9 +381,10 @@ function UserService($http) {
   const self = this;
 
   self.addNewUser = addNewUser;
+  self.newUser = {};
 
   function addNewUser(newUser) {
-    return $http.post('api/user', newUser);
+    return $http.post('/api/user', newUser);
     console.log(newUser);
   }
 }

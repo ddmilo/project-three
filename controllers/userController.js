@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var bodyParser = require('body-parser') //parses information from POST
+var bodyParser = require('body-parser')
 var User = require('../models/user.model.js');
 var methodOverride = require('method-override')
 
@@ -17,14 +17,14 @@ router.get('/', function indexAction(req, res) {
 //POST create user
 router.post('/', function createAction(req, res){
   console.log('User created');
-  console.log(req.body);
+  console.log('body:', req.body);
 
   var user = new User(req.body)
-    
+
 
 
   user.save(function(error){
-  		res.json({users:user});
+  		res.json({user:user});
   });
 
 });

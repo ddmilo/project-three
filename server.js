@@ -1,26 +1,18 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 require('dotenv').config();
 var path = require('path');
-// var favicon = require('serve-favicon');
+var favicon = require('serve-favicon');
 var logger = require('morgan');
-// var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var sessions = require('express-session');
-var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 
 
-
-var userController = require('./controllers/userController.js');
-app.use('/api/user', userController);
-
-var reviewController = require('./controllers/reviewController.js');
-app.use('/api/review', reviewController);
-
-
-
+//Mongo stuff
+var mongoose = require('mongoose');
 var db = mongoose.connection;
 // mongoose.connect(process.env.MONGODB_URI);
 mongoose.connect('mongodb://localhost/devhops');
@@ -33,13 +25,30 @@ db.once('open', function() {
 });
 
 
+
+
+
+
+
+
+
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
+
+
+//CONTROLLERS
+var userController = require('./controllers/userController.js');
+app.use('/api/user', userController);
+
+var reviewController = require('./controllers/reviewController.js');
+app.use('/api/review', reviewController);
+
 
 
 
