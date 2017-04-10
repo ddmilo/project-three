@@ -46,6 +46,10 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
     .state('userEdit', {
       url:'/user/:userId',
       template:'<user-edit></user-edit>'
+    })
+    .state("reviewEdit", {
+      url:"/review/edit/:reviewId",
+      template: "<review-edit></review-edit>"
     });
 
 	$urlRouterProvider.otherwise('/');
