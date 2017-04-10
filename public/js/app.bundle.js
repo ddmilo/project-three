@@ -38526,7 +38526,7 @@ module.exports = angular;
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form ng-submit =\"$ctrl.current.user\" class=\"form-signin\">\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <label class=\"checkbox\">\n        <input type=\"checkbox\" value=\"remember-me\" id=\"rememberMe\" name=\"rememberMe\"> Remember me\n      </label>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
+module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form ng-submit =\"$ctrl.current.user\" class=\"form-signin\">\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
 
 /***/ }),
 /* 23 */
@@ -38538,7 +38538,7 @@ module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\"
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <hr>\n    <div>{{review.content}}</div>\n  </div>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
+module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
 
 /***/ }),
 /* 25 */
@@ -38556,7 +38556,7 @@ module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-sub
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Paring</label>\n  <input type=\"text\" name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n  <br>\n  <label for=\"rating\">Rating</label>\n  <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n  <option value=\"1\">1</option>\n  <option value=\"2\">2</option>\n  <option value=\"3\">3</option>\n  <option value=\"4\">4</option>\n  <option value=\"5\">5</option>\n  </select>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
+module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Pairing</label>\n  <select name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n    <option value =\"Javascript\">Javascript</option>\n    <option value =\"HTML\">HTML</option>\n    <option value =\"CSS\">CSS</option>\n    <option value =\"Ruby\">Ruby</option>\n    <option value =\"Python\">Python</option>\n    <option value =\"Java\">Java</option>\n    <option value =\"C\">C</option>\n    <option value =\"PHP\">PHP</option>\n  </select>\n  <br>\n  <label for=\"rating\">Rating</label>\n  <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n  <option value=\"1\">1</option>\n  <option value=\"2\">2</option>\n  <option value=\"3\">3</option>\n  <option value=\"4\">4</option>\n  <option value=\"5\">5</option>\n  </select>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
 
 /***/ }),
 /* 28 */
