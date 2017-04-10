@@ -228,13 +228,17 @@ UserShowController.$inject = ['$state', 'UserService'];
 function UserShowController($state, UserService) {
 	const vm = this;
 	vm.currentUser = null;
+	vm.currentUserReviews = null;
 
 	activate();
 
 	function activate() {
 		UserService.sessionUser().then(function (data) {
-			console.log(data.data);
 			vm.currentUser = data.data;
+			UserService.currentUserReviews(data.data.username).then(function (reviews) {
+				console.log(reviews);
+				vm.currentUserReviews = reviews.data.reviews;
+			});
 		});
 	}
 }
@@ -479,6 +483,7 @@ function UserService($http) {
   self.addNewUser = addNewUser;
   self.newUser = {};
   self.sessionUser = sessionUser;
+  self.currentUserReviews = currentUserReviews;
 
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
@@ -489,6 +494,9 @@ function UserService($http) {
   }
   function sessionUser() {
     return $http.get("/api/sessions/current");
+  }
+  function currentUserReviews(username) {
+    return $http.get(`/api/review/${username}`);
   }
 }
 
@@ -38606,7 +38614,7 @@ module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n\n";
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n\n<ul>\n\t<li ng-repeat=\"review in $ctrl.currentUserReviews\">{{review.content}}</li>\n</ul>\n";
 
 /***/ }),
 /* 31 */
