@@ -20,4 +20,9 @@ router.delete('/', function(req, res){
   });
 });
 
+router.get("/current", function(req, res) {
+	console.log(req.session.currentUser);
+	res.json(req.session.currentUser);
+})
+
 module.exports = router;
