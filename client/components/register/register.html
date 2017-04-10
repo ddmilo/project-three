@@ -1,6 +1,6 @@
 <div class="newUser">
 <h1>Create Account</h1>
-<form ng-submit = "$ctrl.addNew()" id = 'newUser' method="post">
+<form ng-submit = "$ctrl.addNewUser()" method="POST">
 <div>
   <label>UserName</label>
   <input type = "text" name= "username" ng-model='$ctrl.newUser.username'>
@@ -11,7 +11,7 @@
   <label>Email</label>
   <input type="text" name="email" ng-model='$ctrl.newUser.email'>
   <br>
-  <input type="submit" name="create account">
+  <input type="submit" value='create account'>
 </form>
 </div>
 </div>

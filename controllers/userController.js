@@ -6,7 +6,7 @@ var methodOverride = require('method-override')
 
 // GET
 router.get('/', function indexAction(req, res) {
-  User.find(function(error, auth){
+  User.find(function(error, user){
     if(error) res.json({message:''});
 
     res.json({Users: User});
@@ -16,16 +16,15 @@ router.get('/', function indexAction(req, res) {
 
 //POST create user
 router.post('/', function createAction(req, res){
-  console.log('user created');
-  console.log('body:', request.body)
+  console.log('User created');
+  console.log(req.body);
 
-  var User = new User(req.body); 
+  var user = new User(req.body)
+    
 
 
   user.save(function(error){
-  	if(error) res.json({message: 'could not create because of:' + error})
-
-  		res.redirect('/api/auth/login');
+  		res.json({users:user});
   });
 
 });

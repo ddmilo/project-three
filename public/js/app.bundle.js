@@ -125,30 +125,26 @@ module.exports = BeerController;
 /***/ (function(module, exports) {
 
 
-NewUserController.$inject = ['UserService', '$state'];
+RegisterController.$inject = ['$state', 'UserService'];
 
-function NewUserController(UserService, $state) {
+function RegisterController($state, UserService) {
   const vm = this;
 
   vm.newUser = {};
-  vm.addNew = AddNewUser;
-  vm.created = true;
+  vm.addNewUser = AddNewUser;
 
   activate();
-  function activate() {}
+
+  function activate() {};
 
   function AddNewUser(newUser) {
-    UserService.addNew(vm.newUser).then(function toLogin(response) {
-      console.log(response);
-      if (response.data.success) {
-
-        $state.go('login');
-      } // Name of the state might change, come back to match up state names
-    });
+    UserService.addNewUser(vm.newUser);
+    vm.newUser = {};
+    $state.go('auth');
   }
 }
 
-module.exports = NewUserController;
+module.exports = RegisterController;
 
 /***/ }),
 /* 4 */
@@ -192,7 +188,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
     template: '<auth></auth>'
   }).state('register', {
     url: '/register',
-    template: '<register</register>'
+    template: '<register></register>'
   }).state('beer', {
     url: '/beer',
     template: '<beer></beer>'
@@ -277,12 +273,12 @@ angular.module('DevHops').component('beer', component);
 const controller = __webpack_require__(3);
 const template = __webpack_require__(25);
 
-const NewUserComponent = {
+const RegisterComponent = {
   controller: controller,
   template: template
 };
 
-angular.module('DevHops').component('newUser', NewUserComponent);
+angular.module('DevHops').component('register', RegisterComponent);
 
 /***/ }),
 /* 12 */
@@ -383,13 +379,11 @@ UserService.$inject = ['$http'];
 function UserService($http) {
   const self = this;
 
-  self.newUser = {};
-  self.addNew = addNew;
+  self.addNewUser = addNewUser;
 
-  function addNew(newUser) {
+  function addNewUser(newUser) {
+    return $http.post('api/user', newUser);
     console.log(newUser);
-
-    return $http.post('/api/user', newUser);
   }
 }
 
@@ -38489,7 +38483,7 @@ module.exports = "<div class = \"beer\">\n<h3><a ui-sref=\"beerNew\">Add Beer</h
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNew()\" id = 'newUser' method=\"post\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" value='create account'>\n</form>\n</div>\n</div>\n";
 
 /***/ }),
 /* 26 */

@@ -8,13 +8,11 @@ UserService.$inject = ['$http']
 function UserService($http){
   const self = this;
 
-  self.newUser = {};
-  self.addNew = addNew;
+  self.addNewUser = addNewUser;
 
-  function addNew(newUser){
-  	console.log(newUser)
-
-    return $http.post('/api/user', newUser);
+  function addNewUser(newUser){
+  	return $http.post('api/user', newUser);
+  	console.log(newUser);
   }
 
 }
