@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser') //parses information from POST
 var User = require('../models/user.model.js');
 var methodOverride = require('method-override')
 

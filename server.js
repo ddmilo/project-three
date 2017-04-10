@@ -49,9 +49,9 @@ app.use('/api/user', userController);
 var reviewController = require('./controllers/reviewController.js');
 app.use('/api/review', reviewController);
 
-var  sessionsController =
-require('./controllers/sessions.js');
-app.use('/api/auth', sessionsController)
+// var  sessionsController =
+// require('./controllers/sessions.js');
+// app.use('/api/auth', sessionsController)
 
 
 
