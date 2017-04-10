@@ -64,6 +64,9 @@
 /******/
 /******/ 	// Load entry module and return exports
 <<<<<<< HEAD
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 /******/ 	return __webpack_require__(__webpack_require__.s = 31);
 =======
@@ -72,6 +75,7 @@
 =======
 /******/ 	return __webpack_require__(__webpack_require__.s = 27);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -108,10 +112,19 @@ module.exports = AuthController;
 /* 1 */
 /***/ (function(module, exports) {
 
-NewBeerController.$inject = ['$stateParams', 'NewBeerService'];
+NewBeerController.$inject = ['$state', 'BeerService'];
 
-function NewBeerController() {
+function NewBeerController($state, BeerService) {
   const vm = this;
+
+  vm.newBeer = {};
+  vm.addBeer = addBeer;
+
+  function addBeer() {
+    BeerService.addBeer(vm.newBeer);
+    vm.newBeer = {};
+    $state.go('beer');
+  }
 }
 
 module.exports = NewBeerController;
@@ -120,33 +133,83 @@ module.exports = NewBeerController;
 /* 2 */
 /***/ (function(module, exports) {
 
-BeerController.$inject = ['BeerService'];
+BeerShowController.$inject = ['$stateParams', 'BeerService'];
 
-function BeerController(BeerService) {
-    var vm = this;
+function BeerShowController($stateParams, BeerService) {
+  const vm = this;
+  vm.current = {};
+  activate();
+
+  function activate() {
+    loadCurrentBeer();
+  }
+
+  // HOW IT DOES STUFF
+  function loadCurrentBeer() {
+    console.log($stateParams);
+    BeerService.loadCurrent($stateParams.beerId).then(function resolve(response) {
+      vm.current = response.data.beer;
+    });
+  }
 }
 
-module.exports = BeerController;
+module.exports = BeerShowController;
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-NewUserController.$inject = ['$stateParams', 'NewUserService'];
+BeerController.$inject = ['BeerService'];
 
-function NewUserController() {
+function BeerController(BeerService) {
   const vm = this;
+  vm.beer = [];
+  vm.loading = true;
+  activate();
+
+  function activate() {
+    loadAllBeer();
+  }
+
+  // HOW IT DOES STUFF
+  function loadAllBeer() {
+    BeerService.loadAll().then(function resolve(response) {
+      vm.beer = response.data.beer;
+      vm.loading = false;
+    });
+  }
 }
 
-module.exports = NewUserController;
+module.exports = BeerController;
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-NewReviewController.$inject = ['$state', 'NewReviewService'];
+NewUserController.$inject = ['$stateParams', 'UserService'];
 
-function NewReviewController($state, NewReviewService) {
+function NewUserController() {
+  const vm = this;
+
+  vm.newUser = {};
+  vm.addUser = addUser;
+
+  function addUser() {
+    UserService.addUser(vm.newUser);
+    vm.newUser = {};
+    $state.go('auth');
+  }
+}
+
+module.exports = NewUserController;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+NewReviewController.$inject = ['$state', '$stateParams', 'ReviewService'];
+
+function NewReviewController($state, $stateParams, ReviewService) {
    const vm = this;
 
    vm.newReview = {};
@@ -154,7 +217,8 @@ function NewReviewController($state, NewReviewService) {
 
    // activate();
    function addReview() {
-      NewReviewService.addReview(vm.newReview);
+      console.log($stateParams);
+      ReviewService.addReview(vm.newReview, $stateParams.beerId);
       vm.newReview = {};
       $state.go('beer');
    }
@@ -163,9 +227,13 @@ function NewReviewController($state, NewReviewService) {
 module.exports = NewReviewController;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+const angular = __webpack_require__(21);
+__webpack_require__(19);
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 const angular = __webpack_require__(25);
@@ -178,6 +246,7 @@ __webpack_require__(19);
 const angular = __webpack_require__(21);
 __webpack_require__(19);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 
 angular.module('DevHops', ['ui.router']).config(uiRouterSetup);
 
@@ -214,10 +283,13 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
+<<<<<<< HEAD
+const template = __webpack_require__(22);
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 const template = __webpack_require__(26);
@@ -227,6 +299,7 @@ const template = __webpack_require__(22);
 =======
 const template = __webpack_require__(22);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 
 const AuthComponent = {
   controller: controller,
@@ -236,10 +309,13 @@ const AuthComponent = {
 angular.module('DevHops').component('auth', AuthComponent);
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
+<<<<<<< HEAD
+const template = __webpack_require__(23);
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 const template = __webpack_require__(27);
@@ -249,6 +325,7 @@ const template = __webpack_require__(23);
 =======
 const template = __webpack_require__(23);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 
 const component = {
   controller: controller,
@@ -258,21 +335,27 @@ const component = {
 angular.module('DevHops').component('beerNew', component);
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+const controller = __webpack_require__(2);
+const template = __webpack_require__(24);
 
+const component = {
+  controller: controller,
+  template: template
+};
+
+angular.module('DevHops').component('beerShow', component);
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+const controller = __webpack_require__(3);
+const template = __webpack_require__(25);
+=======
 const controller = __webpack_require__(2);
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -283,6 +366,7 @@ const template = __webpack_require__(24);
 =======
 const template = __webpack_require__(24);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 
 const component = {
   controller: controller,
@@ -295,6 +379,10 @@ angular.module('DevHops').component('beer', component);
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+const controller = __webpack_require__(4);
+const template = __webpack_require__(26);
+=======
 const controller = __webpack_require__(3);
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -305,6 +393,7 @@ const template = __webpack_require__(25);
 =======
 const template = __webpack_require__(25);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 
 const NewUserComponent = {
   controller: controller,
@@ -317,6 +406,10 @@ angular.module('DevHops').component('newUser', NewUserComponent);
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+const controller = __webpack_require__(5);
+const template = __webpack_require__(27);
+=======
 const controller = __webpack_require__(4);
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -327,6 +420,7 @@ const template = __webpack_require__(26);
 =======
 const template = __webpack_require__(26);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 
 const component = {
   controller: controller,
@@ -365,46 +459,76 @@ angular.module('DevHops').service('BeerService', BeerService);
 
 BeerService.$inject = ['$http'];
 
-function BeerService($http) {}
+function BeerService($http) {
+  const self = this;
+
+  self.loadAll = loadAll;
+  self.updateBeer = updateBeer;
+  self.loadCurrent = loadCurrent;
+  self.addBeer = addBeer;
+  // self.deleteBeer= deleteBeer;
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/editBeer.service.js'");
+>>>>>>> master
+
+  function loadAll() {
+    return $http.get('/api/beer');
+    //we know all our backend routes will be api
+  }
+  function loadCurrent(id) {
+    return $http.get('api/beer/' + id);
+  }
+  function addBeer(newBeer) {
+    return $http.post('api/beer', newBeer);
+    console.log(newBeer);
+  }
+  function updateBeer(beer) {
+    return $http.patch('api/beer/' + beer._id, beer);
+  }
+
+  // function delete(id) {
+  //   return $http.delete('/api/beer/' + id);
+  // }
+}
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
+angular.module('DevHops').service('ReviewService', ReviewService);
+
+ReviewService.$inject = ['$http'];
+
 <<<<<<< HEAD
-<<<<<<< HEAD
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/editBeer.service.js'");
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/newBeer.service.js'");
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/newReview.service.js'");
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
+function ReviewService($http) {
+=======
 throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/alssandy/Desktop/project-three/client/services/newUser.service.js'");
 =======
 =======
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
 angular.module('DevHops').service('ReviewService', ReviewService);
 >>>>>>> master
+>>>>>>> master
+
+  const self = this;
+
+  self.addReview = addReview;
+
+  function addReview(newReview, beerId) {
+    console.log(newReview);
+
+    return $http.post(`api/review/${beerId}`, newReview);
+  }
+}
 
 /***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: SyntaxError: Unexpected token (20:1)\n\n\u001b[0m \u001b[90m 18 | \u001b[39m\u001b[90m// function addReview(newReview) {\u001b[39m\n \u001b[90m 19 | \u001b[39m\u001b[90m//   return $http.post('api/DevHops')\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 | \u001b[39m }\n \u001b[90m    | \u001b[39m \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 | \u001b[39m\u001b[0m\n");
-
-/***/ }),
+<<<<<<< HEAD
+/* 18 */
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 /* 22 */
@@ -414,15 +538,31 @@ throw new Error("Module build failed: SyntaxError: Unexpected token (20:1)\n\n\u
 =======
 /* 18 */
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('UserService', UserService);
 
 UserService.$inject = ['$http'];
 
-function UserService($http) {}
+function UserService($http) {
+  const self = this;
+
+  self.loadCurrent = loadCurrent;
+  self.addUser = addUser;
+
+  function loadCurrent(id) {
+    return $http.get('api/user/' + id);
+  }
+  function addUser(newUser) {
+    return $http.post('api/user', newUser);
+  }
+}
 
 /***/ }),
+<<<<<<< HEAD
+/* 19 */
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 /* 23 */
@@ -432,6 +572,7 @@ function UserService($http) {}
 =======
 /* 19 */
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 /***/ (function(module, exports) {
 
 /**
@@ -5121,6 +5262,9 @@ angular.module('ui.router.state')
 
 /***/ }),
 <<<<<<< HEAD
+/* 20 */
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* 24 */
 =======
@@ -5129,6 +5273,7 @@ angular.module('ui.router.state')
 =======
 /* 20 */
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 /***/ (function(module, exports) {
 
 /**
@@ -38506,6 +38651,12 @@ $provide.value("$locale", {
 
 /***/ }),
 <<<<<<< HEAD
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(20);
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -38523,10 +38674,14 @@ __webpack_require__(20);
 
 __webpack_require__(20);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 module.exports = angular;
 
 
 /***/ }),
+<<<<<<< HEAD
+/* 22 */
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 /* 26 */
@@ -38544,37 +38699,58 @@ module.exports = "<div class = \"auth\">\n<form ng-submit = \" \">\n<div>\n  <la
 >>>>>>> master
 =======
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form class=\"form-signin\">\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <label class=\"checkbox\">\n        <input type=\"checkbox\" value=\"remember-me\" id=\"rememberMe\" name=\"rememberMe\"> Remember me\n      </label>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
+module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form ng-submit =\"$ctrl.current.user\" class=\"form-signin\">\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <label class=\"checkbox\">\n        <input type=\"checkbox\" value=\"remember-me\" id=\"rememberMe\" name=\"rememberMe\"> Remember me\n      </label>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
 
 /***/ }),
+<<<<<<< HEAD
+/* 23 */
+=======
+/* 24 */
+>>>>>>> master
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n  <input type=\"submit\" name=\"create account\">\n</div>\n</form>\n\n</div>\n";
+
+/***/ }),
+<<<<<<< HEAD
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newBeer\">\n<form ng-submit = \" \">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\">\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\">\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\">\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <ul>\n    <li ng-repeat=\"review in $ctrl.current.reviews\">{{review.content}}</li>\n  </ul>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
 
 /***/ }),
+=======
+>>>>>>> master
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"beer\">\n<h3><a ui-sref=\"beerNew\">Add Beer</h3>\n<h3><a ui-sref=\"editBeer\">Edit Beer</h3>\n<ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n\n\n</div>\n";
+module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \" \">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addUse()\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model=\"$ctrl.newUser.username\">\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" ng-model=\"$ctrl.newUser.Password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model=\"$ctrl.newUser.email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
 
 /***/ }),
+<<<<<<< HEAD
+/* 27 */
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 /* 30 */
+>>>>>>> master
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" >\n  <br>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->  <label>Paring</label>\n  <input type=\"text\" name=\"paring\">\n  <br>\n  <div class=\"rating\"> Rating\n    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>\n  </div>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Paring</label>\n  <input type=\"text\" name=\"paring\" ng-model=\"$ctrl.newReview.paring\">\n  <br>\n  <label for=\"rating\">Rating</label>\n  <select form=\"newReviewForm\" name=\"rating\" ng-model=\"rating\">\n  <option>1</option>\n  <option>2</option>\n  <option>3</option>\n  <option>4</option>\n  <option>5</option>\n  </select>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
 
 /***/ }),
+<<<<<<< HEAD
+/* 28 */
+=======
 /* 31 */
 =======
 /* 27 */
@@ -38582,26 +38758,30 @@ module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview
 =======
 /* 27 */
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(5);
 __webpack_require__(6);
-__webpack_require__(0);
 __webpack_require__(7);
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(8);
+__webpack_require__(1);
 __webpack_require__(9);
-__webpack_require__(10);
 __webpack_require__(2);
-__webpack_require__(11);
+__webpack_require__(10);
 __webpack_require__(3);
-__webpack_require__(12);
+__webpack_require__(11);
 __webpack_require__(4);
+__webpack_require__(12);
+__webpack_require__(5);
 __webpack_require__(13);
 __webpack_require__(14);
 __webpack_require__(15);
 __webpack_require__(16);
 __webpack_require__(17);
+<<<<<<< HEAD
+module.exports = __webpack_require__(18);
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
 __webpack_require__(18);
@@ -38615,6 +38795,7 @@ module.exports = __webpack_require__(18);
 =======
 module.exports = __webpack_require__(18);
 >>>>>>> 940feb9fbf8b4c1059cf2afcd730ce723730ae08
+>>>>>>> master
 
 
 /***/ })

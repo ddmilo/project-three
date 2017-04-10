@@ -1,0 +1,14 @@
+
+<div class="beerShow">
+    <img ng-src="{{$ctrl.current.imageUrl}}"><br>
+    Name: {{$ctrl.current.name}} <br>
+    Type: {{$ctrl.current.type}} <br>
+    Brewery:{{$ctrl.current.brewery}}<br>
+    Alcohol:{{$ctrl.current.alcoholPer}}<br>
+  <h1>Reviews</h1>
+  <ul>
+    <li ng-repeat="review in $ctrl.current.reviews">{{review.content}}</li>
+  </ul>
+    </div>
+    <h1>New Review</h1>
+<review-new></review-new>

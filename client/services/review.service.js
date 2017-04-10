@@ -7,14 +7,13 @@ ReviewService.$inject = ['$http']
 
 function ReviewService($http){
 
-}
-// NewReviewService.$inject = ['$http']
+  const self = this
 
-// function NewReviewService($http){
-//   const self = this
+  self.addReview = addReview;
 
-//   self.addReview = addReview;
+ function addReview(newReview, beerId) {
+console.log(newReview);
 
-// function addReview(newReview) {
-//   return $http.post('api/DevHops')
+  return $http.post(`api/review/${beerId}` , newReview)
+  }
  }
