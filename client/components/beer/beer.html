@@ -3,12 +3,11 @@
   <strong>Loading...</strong>
 </li>
 <ul>
-<li ng-hide="$ctrl.loading" ng-repeat="beer in $ctrl.beer"><a ui-sref ="beer({beerId: beer._id})">{{beer.name}}</a></li>
+<li ng-hide="$ctrl.loading" ng-repeat="beer in $ctrl.beer"><a ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
 </ul>
 <!-- <ul>
 <li ng-repeat="beer in $ctrl.all"><a ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
 </ul> -->
 
-<h3><a ui-sref="beerNew">Add Beer</h3>
-<h3><a ui-sref="editBeer">Edit Beer</h3>
+<button><a ui-sref="beerNew">Add Beer</button>
 </div>

@@ -9,6 +9,7 @@ function BeerService($http){
   const self = this;
 
   self.loadAll = loadAll;
+  self.updateBeer = updateBeer;
   self.loadCurrent = loadCurrent;
   self.addBeer = addBeer;
   // self.deleteBeer= deleteBeer;
@@ -26,6 +27,10 @@ function BeerService($http){
     return $http.post('api/beer', newBeer);
     console.log(newBeer);
   }
+    function updateBeer(beer) {
+        return $http.patch('api/beer/' +beer._id,beer);
+    }
+
   // function delete(id) {
   //   return $http.delete('/api/beer/' + id);
   // }

@@ -26,4 +26,36 @@ router.post('/', function createAction(req, res) {
   });
 });
 
+// SHOW
+router.get('/:id', function showAction(req, res) {
+  var id = req.params.id;
+
+  Criminal.findById({_id: id}, function(error, beer) {
+    if(error) response.json({message: 'Could not find beer b/c:' + error});
+
+    res.json({beer: beer});
+  }).select('-__v');
+});
+
+
+//UPDATE
+router.patch('/:id', function updateAction(req, res) {
+  var id = req.params.id;
+
+  Beer.findById({_id: id}, function(error, beer) {
+    if(error) res.json({message: 'Could not find beer b/c:' + error});
+
+    if(req.body.name) beer.name = req.body.name;
+    if(req.body.type) beer.type = req.body.crime;
+    if(req.body.brewery) beer.brewery = req.body.location;
+    if(req.body.alcohol) beer.alcohol = req.body.alcohol;
+    if(req.body.image) beer.image = req.body.image;
+    beer.save(function(error) {
+      if(error) res.json({messsage: 'Could not update beer b/c:' + error});
+
+      res.json({message: 'Criminal successfully updated', beer: beer});
+    });
+  }).select('-__v');
+});
+
 module.exports = router;

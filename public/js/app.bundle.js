@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -121,6 +121,32 @@ module.exports = NewBeerController;
 /* 2 */
 /***/ (function(module, exports) {
 
+BeerShowController.$inject = ['$stateParams', 'BeerService'];
+
+function BeerShowController($stateParams, BeerService) {
+  const vm = this;
+  vm.current = {};
+  activate();
+
+  function activate() {
+    loadCurrentBeer();
+  }
+
+  // HOW IT DOES STUFF
+  function loadCurrentBeer() {
+    console.log($stateParams);
+    BeerService.loadCurrent($stateParams).then(function resolve(response) {
+      vm.current = response.data.beer;
+    });
+  }
+}
+
+module.exports = BeerShowController;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
 BeerController.$inject = ['BeerService'];
 
 function BeerController(BeerService) {
@@ -145,19 +171,28 @@ function BeerController(BeerService) {
 module.exports = BeerController;
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 NewUserController.$inject = ['$stateParams', 'UserService'];
 
 function NewUserController() {
   const vm = this;
+
+  vm.newUser = {};
+  vm.addUser = addUser;
+
+  function addUser() {
+    UserService.addUser(vm.newUser);
+    vm.newUser = {};
+    $state.go('auth');
+  }
 }
 
 module.exports = NewUserController;
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 NewReviewController.$inject = ['$state', 'ReviewService'];
@@ -180,7 +215,7 @@ function NewReviewController($state, ReviewService) {
 module.exports = NewReviewController;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const angular = __webpack_require__(21);
@@ -221,7 +256,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
@@ -235,7 +270,7 @@ const AuthComponent = {
 angular.module('DevHops').component('auth', AuthComponent);
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
@@ -249,23 +284,25 @@ const component = {
 angular.module('DevHops').component('beerNew', component);
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
 /* 9 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+const controller = __webpack_require__(2);
+const template = __webpack_require__(24);
 
+const component = {
+  controller: controller,
+  template: template
+};
+
+angular.module('DevHops').component('beerShow', component);
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(2);
-const template = __webpack_require__(24);
+const controller = __webpack_require__(3);
+const template = __webpack_require__(25);
 
 const component = {
   controller: controller,
@@ -278,8 +315,8 @@ angular.module('DevHops').component('beer', component);
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(3);
-const template = __webpack_require__(25);
+const controller = __webpack_require__(4);
+const template = __webpack_require__(26);
 
 const NewUserComponent = {
   controller: controller,
@@ -292,8 +329,8 @@ angular.module('DevHops').component('newUser', NewUserComponent);
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(4);
-const template = __webpack_require__(26);
+const controller = __webpack_require__(5);
+const template = __webpack_require__(27);
 
 const component = {
   controller: controller,
@@ -336,6 +373,7 @@ function BeerService($http) {
   const self = this;
 
   self.loadAll = loadAll;
+  self.updateBeer = updateBeer;
   self.loadCurrent = loadCurrent;
   self.addBeer = addBeer;
   // self.deleteBeer= deleteBeer;
@@ -352,6 +390,10 @@ function BeerService($http) {
     return $http.post('api/beer', newBeer);
     console.log(newBeer);
   }
+  function updateBeer(beer) {
+    return $http.patch('api/beer/' + beer._id, beer);
+  }
+
   // function delete(id) {
   //   return $http.delete('/api/beer/' + id);
   // }
@@ -386,7 +428,19 @@ angular.module('DevHops').service('UserService', UserService);
 
 UserService.$inject = ['$http'];
 
-function UserService($http) {}
+function UserService($http) {
+  const self = this;
+
+  self.loadCurrent = loadCurrent;
+  self.addUser = addUser;
+
+  function loadCurrent(id) {
+    return $http.get('api/user/' + id);
+  }
+  function addUser(newUser) {
+    return $http.post('api/user', newUser);
+  }
+}
 
 /***/ }),
 /* 19 */
@@ -38472,43 +38526,49 @@ module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit
 /* 23 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcohol\" >\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.image\">\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcohol\" >\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.image\">\n  <input type=\"submit\" name=\"create account\">\n</div>\n</form>\n\n</div>\n";
 
 /***/ }),
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beer({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<h3><a ui-sref=\"beerNew\">Add Beer</h3>\n<h3><a ui-sref=\"editBeer\">Edit Beer</h3>\n</div>\n";
+module.exports = "\n<div class=\"beerShow\">\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br><br>\n <button><a ui-sref=\"editBeer\">Edit Beer</button>\n\n</div>\n";
 
 /***/ }),
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \" \">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Paring</label>\n  <input type=\"text\" name=\"paring\" ng-model=\"$ctrl.newReview.paring\">\n  <br>\n  <div class=\"rating\"> Rating\n    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>\n  </div>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
+module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addUse()\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model=\"$ctrl.newUser.username\">\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" ng-model=\"$ctrl.newUser.Password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model=\"$ctrl.newUser.email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Paring</label>\n  <input type=\"text\" name=\"paring\" ng-model=\"$ctrl.newReview.paring\">\n  <br>\n  <div class=\"rating\"> Rating\n    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>\n  </div>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(5);
 __webpack_require__(6);
-__webpack_require__(0);
 __webpack_require__(7);
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(8);
+__webpack_require__(1);
 __webpack_require__(9);
-__webpack_require__(10);
 __webpack_require__(2);
-__webpack_require__(11);
+__webpack_require__(10);
 __webpack_require__(3);
-__webpack_require__(12);
+__webpack_require__(11);
 __webpack_require__(4);
+__webpack_require__(12);
+__webpack_require__(5);
 __webpack_require__(13);
 __webpack_require__(14);
 __webpack_require__(15);
