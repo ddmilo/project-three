@@ -1,5 +1,4 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 var app = express();
 
 require('dotenv').config();
@@ -7,15 +6,18 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var sessions = require('express-session');
-var methodOverride = require('method-override');
-
-
-//Mongo stuff
+var bodyParser = require('body-parser');
+// var session = require('express-session');
 var mongoose = require('mongoose');
-var db = mongoose.connection;
+
+
+
+var authController = require('./controllers/authController.js');
+var reviewController = require('./controllers/reviewController.js');
+
+
 // mongoose.connect(process.env.MONGODB_URI);
-mongoose.connect('mongodb://localhost/devhops');
+var db = mongoose.connection;
 
 db.on('error', function(err){
  console.log(err);
@@ -25,31 +27,16 @@ db.once('open', function() {
 });
 
 
-
-
-
-
-
-
-
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
 
-
-//CONTROLLERS
-var userController = require('./controllers/userController.js');
-app.use('/api/user', userController);
-
-var reviewController = require('./controllers/reviewController.js');
-app.use('/api/review', reviewController);
-
-
+app.use('/api/DevHops', authController);
+app.use('/api/DevHops', reviewController);
 
 
 // catch 404 and forward to error handler
@@ -67,7 +54,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.json('error');
+  res.render('error');
 });
 
 app.listen(3000 | console.log('mic check'));
