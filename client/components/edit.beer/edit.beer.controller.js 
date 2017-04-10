@@ -1,9 +1,32 @@
-\EditBeerController.$inject = ['$stateParams', 'EditBeerService'];
 
-function EditBeerController() {
-  const vm = this;
+CriminalsEditController.$inject = ['$state', '$stateParams', 'BeerService'];
+
+function EditBeerController($state, $stateParams, BeerService) {
+    const vm = this;
 
 
+    function loadBeer() {
+
+    }
+
+    // activate();
+    loadCurrentBeer();
+    // activate
+
+    function loadCurrentBeer() {
+        BeerService
+            .loadCurrent($stateParams.beerId)
+            .then(function resolve(response) {
+                vm.current = response.data.beer;
+            });
+    }
+
+    vm.updateBeer = updateBeer;
+
+    function updateBeer(beer) {
+        console.log(beer);
+        CriminalsService
+            .updateBeer(beer);
+            $state.go('beer');
+    }
 }
-
-module.exports = EditBeerController;

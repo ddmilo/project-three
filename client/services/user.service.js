@@ -1,6 +1,6 @@
 angular
-  .module('DevHops')
-  .service('UserService', UserService);
+	.module('DevHops')
+	.service('UserService', UserService);
 
 
 UserService.$inject = ['$http']
@@ -8,12 +8,16 @@ UserService.$inject = ['$http']
 function UserService($http){
   const self = this;
 
-  self.addNewUser = addNewUser;
-  self.newUser = {};
+  self.loadCurrent = loadCurrent;
+  self.addUser= addUser;
 
-  function addNewUser(newUser){
-  	return $http.post('/api/user', newUser);
-  	console.log(newUser);
+  function loadCurrent(id){
+    return $http.get('api/user/' + id);
   }
+function addUser(newUser){
+  return $http.post('api/user', newUser);
+  }
+
+
 
 }

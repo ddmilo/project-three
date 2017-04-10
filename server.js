@@ -7,15 +7,21 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var sessions = require('express-session');
-var methodOverride = require('method-override');
 
-
-//Mongo stuff
+// var session = require('express-session');
 var mongoose = require('mongoose');
-var db = mongoose.connection;
+
+
+
+
+var authController = require('./controllers/authController.js');
+var reviewController = require('./controllers/reviewController.js');
+
+
 // mongoose.connect(process.env.MONGODB_URI);
-mongoose.connect('mongodb://localhost/devhops');
+var db = mongoose.connection;
+
+mongoose.connect('mongodb://localhost/devhops')
 
 db.on('error', function(err){
  console.log(err);
@@ -24,17 +30,6 @@ db.once('open', function() {
  console.log("database has been connected!");
 });
 
-
-
-
-
-
-
-
-
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,12 +37,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
 
 
-//CONTROLLERS
-var userController = require('./controllers/userController.js');
-app.use('/api/user', userController);
-
+var authController = require('./controllers/authController.js');
 var reviewController = require('./controllers/reviewController.js');
+var userController = require('./controllers/userController.js');
+var beerController = require('./controllers/beerController.js');
+
+app.use('/api/auth', authController);
 app.use('/api/review', reviewController);
+app.use('/api/user', userController);
+app.use('/api/beer', beerController);
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 
 
 

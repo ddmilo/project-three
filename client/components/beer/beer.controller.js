@@ -1,7 +1,25 @@
 BeerController.$inject = ['BeerService'];
 
 function BeerController(BeerService) {
-    var vm = this;
+    const vm = this;
+      vm.beer = [];
+      vm.loading = true;
+        activate();
+
+  function activate() {
+    loadAllBeer();
+  }
+
+
+  // HOW IT DOES STUFF
+  function loadAllBeer() {
+    BeerService
+      .loadAll()
+      .then(function resolve(response) {
+        vm.beer = response.data.beer;
+        vm.loading = false;
+      })
+  }
 }
 
 
