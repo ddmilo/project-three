@@ -246,9 +246,9 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
   }).state('beerNew', {
     url: '/beer/new',
     template: '<beer-new></beer-new>'
-  }).state('editBeer', {
-    url: '/beer/:beerId/edit-beer',
-    template: '<edit-beer></edit-beer>'
+  }).state('userShow', {
+    url: '/userShow',
+    template: '<user-show></user-show>'
   }).state('beerShow', {
     url: '/beer/:beerId',
     template: '<beer-show></beer-show>'
@@ -361,31 +361,39 @@ angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// const controller = require('./user.show.controller.js')
-// const template = require('./user.show.html');
-//
-// const UserShowComponent = {
-//   controller: controller,
-//   template: template
-// };
-//
-// angular
-//   .module('DevHops')
-//   .component('auth', UserComponent);
+const controller = __webpack_require__(16);
+const template = __webpack_require__(31);
+
+const UserShowComponent = {
+  controller: controller,
+  template: template
+};
+
+angular.module('DevHops').component('userShow', UserShowComponent);
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
-// UserShowController.$inject=['$state', 'UserService'];
-//
-// function UserShowController($state, UserService){
-// }
-//
-//
-// module.exports = UserShowController;
+UserShowController.$inject = ['$state', 'UserService'];
+
+function UserShowController($state, UserService) {
+	const vm = this;
+	vm.currentUser = null;
+
+	activate();
+
+	function activate() {
+		UserService.sessionUser().then(function (data) {
+			console.log(data.data);
+			vm.currentUser = data.data;
+		});
+	}
+}
+
+module.exports = UserShowController;
 
 /***/ }),
 /* 17 */
@@ -470,6 +478,7 @@ function UserService($http) {
   self.loadCurrent = loadCurrent;
   self.addNewUser = addNewUser;
   self.newUser = {};
+  self.sessionUser = sessionUser;
 
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
@@ -477,6 +486,9 @@ function UserService($http) {
   }
   function loadCurrent(id) {
     return $http.get(`/api/users/` + _id);
+  }
+  function sessionUser() {
+    return $http.get("/api/sessions/current");
   }
 }
 
@@ -38616,6 +38628,12 @@ __webpack_require__(18);
 __webpack_require__(19);
 module.exports = __webpack_require__(20);
 
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n\n";
 
 /***/ })
 /******/ ]);
