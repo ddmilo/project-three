@@ -5,11 +5,11 @@ var authHelpers = require('../helpers/auth.js');
 
 //LOGIN
 router.get('/login', function(req, res) {
-  res.render('users/login.hbs');
+  res.json('api/sessions/login.');
 });
 
 router.post('/login', authHelpers.loginUser, function(req, res){
-  res.redirect(`/users/${req.session.currentUser._id}`);
+  res.json(`api/user/${req.session.currentUser._id}`);
 });
 
 router.delete('/', function(req, res){

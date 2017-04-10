@@ -16,7 +16,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
       template: '<auth></auth>'
     })
 		.state('auth', {
-			url: '/auth/login',
+			url: '/sessions/login',
 			template: '<auth></auth>'
 		})
     .state('register', {

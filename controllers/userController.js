@@ -25,7 +25,7 @@ router.post('/', authHelper.createSecure, function createAction(req, res){
     password_digest: res.hashedPassword,
     username: req.body.username
 
-  })
+  });
 
 
 
