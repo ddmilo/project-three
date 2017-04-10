@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 
 var UserSchema = {
 	email: { type: String, required: true, unique: true},
-	password: { type: String, required: true },
+	password_digest: { type: String, required: true },
 	username: { type: String, required: true, unique: true}
 };
 

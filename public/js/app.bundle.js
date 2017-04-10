@@ -235,7 +235,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
     url: '/',
     template: '<auth></auth>'
   }).state('auth', {
-    url: '/auth/login',
+    url: '/sessions/login',
     template: '<auth></auth>'
   }).state('register', {
     url: '/register',
@@ -439,12 +439,16 @@ UserService.$inject = ['$http'];
 function UserService($http) {
   const self = this;
 
+  self.loadCurrent = loadCurrent;
   self.addNewUser = addNewUser;
   self.newUser = {};
 
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
     console.log(newUser);
+  }
+  function loadCurrent(id) {
+    return $http.get(`/api/users/` + _id);
   }
 }
 
@@ -38526,7 +38530,7 @@ module.exports = angular;
 /* 22 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form ng-submit =\"$ctrl.current.user\" class=\"form-signin\">\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
+module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form action='/api/sessions/login' ng-submit =\"$ctrl.current.user\" class=\"form-signin\" method = 'POST'>\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
 
 /***/ }),
 /* 23 */
