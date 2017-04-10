@@ -4,8 +4,17 @@
   <label>Content</label>
   <input type = "text" name= "conent" ng-model="$ctrl.newReview.content">
   <br>
-<label>Paring</label>
-  <input type="text" name="pairing" ng-model="$ctrl.newReview.pairing">
+<label>Pairing</label>
+  <select name="pairing" ng-model="$ctrl.newReview.pairing">
+    <option value ="Javascript">Javascript</option>
+    <option value ="HTML">HTML</option>
+    <option value ="CSS">CSS</option>
+    <option value ="Ruby">Ruby</option>
+    <option value ="Python">Python</option>
+    <option value ="Java">Java</option>
+    <option value ="C">C</option>
+    <option value ="PHP">PHP</option>
+  </select>
   <br>
   <label for="rating">Rating</label>
   <select name="rating" ng-model="$ctrl.newReview.rating">

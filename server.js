@@ -27,7 +27,12 @@ db.once('open', function() {
 
 
 
-
+//auth stuff
+app.use(session({
+  secret: "beerbeerbeer",
+  resave: false,
+  saveUninitialized: false
+}));
 
 
 
@@ -42,14 +47,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './public')));
 
 
-var authController = require('./controllers/authController.js');
+var sessionsController = require('./controllers/sessions.js');
 var userController = require('./controllers/userController.js');
 // app.use('/api/user', userController);
 var reviewController = require('./controllers/reviewController.js');
 // app.use('/api/review', reviewController);
 var beerController = require('./controllers/beerController.js');
 
-app.use('/api/auth', authController);
+app.use('/api/sessions/', sessionsController);
 app.use('/api/review', reviewController);
 app.use('/api/users', userController);
 app.use('/api/beer', beerController);
