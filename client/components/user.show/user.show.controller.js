@@ -4,15 +4,20 @@ function UserShowController($state, UserService){
 
 	const vm = this;
 	vm.currentUser = null;
+	vm.currentUserReviews = null;
 
 	activate();
 
 	function activate() {
 		UserService.sessionUser()
 		.then(function(data) {
-			console.log(data.data);
 			vm.currentUser =  data.data;
-		});
+			UserService.currentUserReviews(data.data.username)
+				.then(function(reviews) {
+					console.log(reviews);
+					vm.currentUserReviews = reviews.data.reviews;
+				});
+		});		
 	}
 
 }

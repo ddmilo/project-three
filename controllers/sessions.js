@@ -8,21 +8,24 @@ router.get('/login', function(req, res) {
   res.json('api/sessions/login.');
 });
 
+router.get("/current", function(req, res) {
+	console.log(req.session.currentUser);
+	res.json(req.session.currentUser);
+});
+
+
 router.post('/login', authHelpers.loginUser, function(req, res){
   // console.log('sessions check');
   console.log(req.session.currentUser);
   res.redirect('/#!/beer');
 });
 
-router.delete('/', function(req, res){
+router.get('/logout', function(req, res){
+  console.log('session destroyed')
   req.session.destroy(function(){
-    res.redirect('/');
+    res.redirect('/#!/home');
   });
 });
 
-router.get("/current", function(req, res) {
-	console.log(req.session.currentUser);
-	res.json(req.session.currentUser);
-})
 
 module.exports = router;

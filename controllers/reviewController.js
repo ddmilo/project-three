@@ -13,19 +13,31 @@ router.get('/', function indexAction(req, res) {
   }).select('-__v');
 });
 
+//REVIEWS FOR SINGLE USER
+router.get("/:username", function(req, res) {
+  Review.find({ username: req.params.username})
+    .exec(function(err, reviews) {
+      console.log(reviews + "reviews for single user");
+      res.json({reviews: reviews});
+    });
+});
+
 //POST
 router.post('/:beerId', function createReviewAction(req, res){
-  console.log('Created POST');
-  console.log(req.body);
 
   var review = new Review({
     content: req.body.content,
     pairing: req.body.pairing,
-    rating: req.body.rating
+    rating: req.body.rating,
+<<<<<<< HEAD
+    username: req.session.currentUser
+=======
+    username: req.session.currentUser.username
+>>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b
   });
 
   review.save(function(error, review){
-
+    console.log(review);
     res.json({review:review});
   })
 
@@ -33,7 +45,6 @@ router.post('/:beerId', function createReviewAction(req, res){
     .exec(function(err, beer){
       beer.reviews.push(review);
       beer.save();
-      console.log(beer);
     })
   });
 module.exports = router;

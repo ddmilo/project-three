@@ -15,6 +15,10 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
       url: '/',
       template: '<auth></auth>'
     })
+		.state('log-out', {
+			url: '/sessions',
+			template: '<auth></auth>'
+		})
 		.state('auth', {
 			url: '/sessions/login',
 			template: '<auth></auth>'
@@ -46,6 +50,10 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
     .state('userEdit', {
       url:'/user/:userId',
       template:'<user-edit></user-edit>'
+    })
+    .state("reviewEdit", {
+      url:"/review/edit/:reviewId",
+      template: "<review-edit></review-edit>"
     });
 
 	$urlRouterProvider.otherwise('/');

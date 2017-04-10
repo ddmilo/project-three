@@ -234,6 +234,9 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
   $stateProvider.state('home', {
     url: '/',
     template: '<auth></auth>'
+  }).state('log-out', {
+    url: '/sessions',
+    template: '<auth></auth>'
   }).state('auth', {
     url: '/sessions/login',
     template: '<auth></auth>'
@@ -258,6 +261,9 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
   }).state('userEdit', {
     url: '/user/:userId',
     template: '<user-edit></user-edit>'
+  }).state("reviewEdit", {
+    url: "/review/edit/:reviewId",
+    template: "<review-edit></review-edit>"
   });
 
   $urlRouterProvider.otherwise('/');
@@ -383,13 +389,17 @@ function UserShowController($state, UserService) {
 
 	const vm = this;
 	vm.currentUser = null;
+	vm.currentUserReviews = null;
 
 	activate();
 
 	function activate() {
 		UserService.sessionUser().then(function (data) {
-			console.log(data.data);
 			vm.currentUser = data.data;
+			UserService.currentUserReviews(data.data.username).then(function (reviews) {
+				console.log(reviews);
+				vm.currentUserReviews = reviews.data.reviews;
+			});
 		});
 	}
 }
@@ -457,12 +467,15 @@ function ReviewService($http) {
   const self = this;
 
   self.addReview = addReview;
+  self.loadCurrent = loadCurrent;
 
   function addReview(newReview, beerId) {
     console.log(newReview);
 
     return $http.post(`api/review/${beerId}`, newReview);
   }
+
+  function loadCurrent() {}
 }
 
 /***/ }),
@@ -480,6 +493,7 @@ function UserService($http) {
   self.addNewUser = addNewUser;
   self.newUser = {};
   self.sessionUser = sessionUser;
+  self.currentUserReviews = currentUserReviews;
 
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
@@ -490,6 +504,9 @@ function UserService($http) {
   }
   function sessionUser() {
     return $http.get("/api/sessions/current");
+  }
+  function currentUserReviews(username) {
+    return $http.get(`/api/review/${username}`);
   }
 }
 
@@ -38634,7 +38651,7 @@ module.exports = __webpack_require__(20);
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"userInfo\">\n<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>{{$ctrl.currentUser.email}}</h3>\n</div>\n\n<h1>{{$ctrl.currentUser.username}}</h1>\n\n\n";
+module.exports = "\n<div class=\"userInfo\">\n<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>{{$ctrl.currentUser.email}}</h3>\n</div>\n\n<h1>{{$ctrl.currentUser.username}}</h1>\n<<<<<<< HEAD\n\n\n=======\n<<<<<<< HEAD\n<h1>{{$ctrl.currentUser.email}}</h1>\n=======\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n>>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b\n>>>>>>> 8124e42b57e2d9da9715f2b577a81e6d58ce1c70\n";
 
 /***/ })
 /******/ ]);
