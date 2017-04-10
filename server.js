@@ -54,7 +54,7 @@ var reviewController = require('./controllers/reviewController.js');
 // app.use('/api/review', reviewController);
 var beerController = require('./controllers/beerController.js');
 
-app.use('/api/sessions/login', sessionsController);
+app.use('/api/sessions/', sessionsController);
 app.use('/api/review', reviewController);
 app.use('/api/users', userController);
 app.use('/api/beer', beerController);

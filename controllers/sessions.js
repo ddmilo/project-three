@@ -9,7 +9,9 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', authHelpers.loginUser, function(req, res){
-  res.json(`api/user/${req.session.currentUser._id}`);
+  // console.log('sessions check');
+  console.log(req.session.currentUser);
+  res.redirect('/#!/beer');
 });
 
 router.delete('/', function(req, res){
