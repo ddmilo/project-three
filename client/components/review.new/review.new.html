@@ -1,5 +1,5 @@
 <div class="reviewNew">
-<form ng-submit = "$ctrl.addReview()">
+<form ng-submit = "$ctrl.addReview()" id="newReviewForm">
 <div>
   <label>Content</label>
   <input type = "text" name= "conent" ng-model="$ctrl.newReview.content">
@@ -7,9 +7,14 @@
 <label>Paring</label>
   <input type="text" name="paring" ng-model="$ctrl.newReview.paring">
   <br>
-  <div class="rating"> Rating
-    <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-  </div>
+  <label for="rating">Rating</label>
+  <select form="newReviewForm" name="rating" ng-model="rating">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  </select>
   <input type="submit" name="create review">
 </form>
 </div>

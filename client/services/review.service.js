@@ -11,9 +11,9 @@ function ReviewService($http){
 
   self.addReview = addReview;
 
- function addReview(newReview) {
+ function addReview(newReview, beerId) {
 console.log(newReview);
 
-  return $http.post('api/review' , newReview)
+  return $http.post(`api/review/${beerId}` , newReview)
   }
  }

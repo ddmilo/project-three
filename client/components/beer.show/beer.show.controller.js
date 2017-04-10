@@ -14,7 +14,7 @@ function BeerShowController($stateParams, BeerService) {
   function loadCurrentBeer() {
   console.log($stateParams);
     BeerService
-      .loadCurrent($stateParams)
+      .loadCurrent($stateParams.beerId)
       .then(function resolve(response) {
         vm.current = response.data.beer;
       });

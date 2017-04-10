@@ -1,7 +1,8 @@
 var express = require('express')
 var router = express.Router()
 var bodyParser = require('body-parser');
-var review = require('../models/review.model.js');
+var Review = require('../models/review.model.js');
+var Beer = require('../models/beer.model.js');
 
 
 //GET
@@ -13,16 +14,25 @@ router.get('/', function indexAction(req, res) {
 });
 
 //POST
-router.post('/', function createReviewAction(req, res){
+router.post('/:beerId', function createReviewAction(req, res){
   console.log('Created POST');
   console.log(req.body);
 
-  var review = new Review(req.body);
+  var review = new Review({
+    content: req.body.content,
+    pairing: req.body.pairing
+  });
 
-  review.save(function(error){
-        // if(error) res.json({messsage: 'Could not create review b/c:' + error});
+  review.save(function(error, review){
 
     res.json({review:review});
+  })
+
+    Beer.findById(req.params.beerId)
+    .exec(function(err, beer){
+      beer.reviews.push(review);
+      beer.save();
+      console.log(beer);
+    })
   });
-});
 module.exports = router;

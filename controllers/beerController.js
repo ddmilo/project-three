@@ -30,8 +30,8 @@ router.post('/', function createAction(req, res) {
 router.get('/:id', function showAction(req, res) {
   var id = req.params.id;
 
-  Criminal.findById({_id: id}, function(error, beer) {
-    if(error) response.json({message: 'Could not find beer b/c:' + error});
+  Beer.findById(id, function(error, beer) {
+    // if(error) response.json({message: 'Could not find beer b/c:' + error});
 
     res.json({beer: beer});
   }).select('-__v');
