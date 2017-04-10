@@ -1,20 +1,36 @@
 var express = require('express')
 var router = express.Router()
-var bodyParser = require('body-parser')
-var review = require('../models/user.model.js');
+var bodyParser = require('body-parser') //parses information from POST
+var User = require('../models/user.model.js');
+var methodOverride = require('method-override')
 
+// GET
+router.get('/', function indexAction(req, res) {
+  User.find(function(error, user){
+    if(error) res.json({message:''});
 
-// POST
-router.post('/', function createAction(req, res) {
-  console.log('Created New User ');
-  console.log(req.body);
-
-  var user = new User(req.body);
-
-  userNew.save(function(error) {
-    // if(error) res.json({messsage: 'Could not ceate new beer b/c:' + error});
-
-    res.json({user:user});
-  });
+    res.json({Users: user});
+  }).select('-__v');
 });
+
+
+//POST create user
+router.post('/', function createAction(req, res){
+  console.log('User created');
+  console.log('body:', req.body);
+
+  var user = new User(req.body)
+
+
+
+  user.save(function(error){
+  		res.json({user:user});
+  });
+
+});
+
+
+
+
+
 module.exports = router;

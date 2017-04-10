@@ -174,7 +174,27 @@ module.exports = BeerController;
 /* 4 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/danmilo/project-three/client/components/new.user/new.user.controller.js'");
+RegisterController.$inject = ['$state', 'UserService'];
+
+function RegisterController($state, UserService) {
+  const vm = this;
+
+  vm.newUser = {};
+  vm.addNewUser = addNewUser;
+
+  activate();
+
+  function activate() {}
+
+  function addNewUser(newUser) {
+    UserService.addNewUser(vm.newUser).then(function resolve() {
+      vm.newUser = {};
+      $state.go('auth');
+    });
+  }
+}
+
+module.exports = RegisterController;
 
 /***/ }),
 /* 5 */
@@ -211,17 +231,20 @@ angular.module('DevHops', ['ui.router']).config(uiRouterSetup);
 uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function uiRouterSetup($stateProvider, $urlRouterProvider) {
-  $stateProvider.state('auth', {
-    url: '/login',
+  $stateProvider.state('home', {
+    url: '/',
     template: '<auth></auth>'
-  }).state('newUser', {
-    url: '/newUser',
-    template: '<new-user></new-user>'
+  }).state('auth', {
+    url: '/auth/login',
+    template: '<auth></auth>'
+  }).state('register', {
+    url: '/register',
+    template: '<register></register>'
   }).state('beer', {
     url: '/beer',
     template: '<beer></beer>'
   }).state('beerNew', {
-    url: '/beer-new',
+    url: '/beer/new',
     template: '<beer-new></beer-new>'
   }).state('editBeer', {
     url: '/beer/:beerId/edit-beer',
@@ -298,9 +321,17 @@ angular.module('DevHops').component('beer', component);
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/danmilo/project-three/client/components/new.user/new.user.component.js'");
+const controller = __webpack_require__(4);
+const template = __webpack_require__(26);
+
+const RegisterComponent = {
+  controller: controller,
+  template: template
+};
+
+angular.module('DevHops').component('register', RegisterComponent);
 
 /***/ }),
 /* 12 */
@@ -408,14 +439,12 @@ UserService.$inject = ['$http'];
 function UserService($http) {
   const self = this;
 
-  self.loadCurrent = loadCurrent;
-  self.addUser = addUser;
+  self.addNewUser = addNewUser;
+  self.newUser = {};
 
-  function loadCurrent(id) {
-    return $http.get('api/user/' + id);
-  }
-  function addUser(newUser) {
-    return $http.post('api/user', newUser);
+  function addNewUser(newUser) {
+    return $http.post('/api/users', newUser);
+    console.log(newUser);
   }
 }
 
@@ -38518,7 +38547,12 @@ module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.
 module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
 
 /***/ }),
-/* 26 */,
+/* 26 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" value='create account'>\n</form>\n</div>\n</div>\n";
+
+/***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
