@@ -223,15 +223,7 @@ module.exports = NewReviewController;
 /* 6 */
 /***/ (function(module, exports) {
 
-UserShowController.$inject = ['$state', 'UserService'];
-
-function UserShowController($state, UserService) {
-
-  const vm = this;
-  vm.currentUser = req.sessions.currentUser;
-}
-
-module.exports = UserShowController;
+throw new Error("Module build failed: SyntaxError: Unexpected token (4:0)\n\n\u001b[0m \u001b[90m 2 | \u001b[39m\n \u001b[90m 3 | \u001b[39m\u001b[36mfunction\u001b[39m \u001b[33mUserShowController\u001b[39m($state\u001b[33m,\u001b[39m \u001b[33mUserService\u001b[39m){\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 4 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\n \u001b[90m   | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 5 | \u001b[39m\n \u001b[90m 6 | \u001b[39m\u001b[36mconst\u001b[39m vm \u001b[33m=\u001b[39m \u001b[36mthis\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 7 | \u001b[39mvm\u001b[33m.\u001b[39mcurrentUser \u001b[33m=\u001b[39m req\u001b[33m.\u001b[39msessions\u001b[33m.\u001b[39mcurrentUser\u001b[33m;\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 7 */
@@ -375,17 +367,9 @@ angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-const controller = __webpack_require__(6);
-const template = __webpack_require__(30);
-
-const component = {
-  controller: controller,
-  template: template
-};
-
-angular.module('DevHops').component('userShow', component);
+throw new Error("Module build failed: SyntaxError: Unexpected token, expected , (7:6)\n\n\u001b[0m \u001b[90m  5 | \u001b[39m\u001b[36mconst\u001b[39m component \u001b[33m=\u001b[39m {\n \u001b[90m  6 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 | \u001b[39m\u001b[36mconst\u001b[39m \u001b[33mUserShowComponent\u001b[39m \u001b[33m=\u001b[39m {\n \u001b[90m    | \u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 | \u001b[39m  controller\u001b[33m:\u001b[39m controller\u001b[33m,\u001b[39m\n \u001b[90m  9 | \u001b[39m  template\u001b[33m:\u001b[39m template\n \u001b[90m 10 | \u001b[39m}\u001b[33m;\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 17 */
@@ -470,6 +454,7 @@ function UserService($http) {
   self.loadCurrent = loadCurrent;
   self.addNewUser = addNewUser;
   self.newUser = {};
+  self.sessionUser = sessionUser;
 
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
@@ -477,6 +462,9 @@ function UserService($http) {
   }
   function loadCurrent(id) {
     return $http.get(`/api/users/` + _id);
+  }
+  function sessionUser() {
+    return $http.get("/api/sessions/current");
   }
 }
 
@@ -38591,12 +38579,7 @@ module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-sub
 module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Pairing</label>\n  <select name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n    <option value =\"Javascript\">Javascript</option>\n    <option value =\"HTML\">HTML</option>\n    <option value =\"CSS\">CSS</option>\n    <option value =\"Ruby\">Ruby</option>\n    <option value =\"Python\">Python</option>\n    <option value =\"Java\">Java</option>\n    <option value =\"C\">C</option>\n    <option value =\"PHP\">PHP</option>\n  </select>\n  <br>\n  <label for=\"rating\">Rating</label>\n  <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n  <option value=\"1\">1</option>\n  <option value=\"2\">2</option>\n  <option value=\"3\">3</option>\n  <option value=\"4\">4</option>\n  <option value=\"5\">5</option>\n  </select>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"userInfo\">\n<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>{{$ctrl.currentUser.email}}</h3>\n</div>\n";
-
-/***/ }),
+/* 30 */,
 /* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 

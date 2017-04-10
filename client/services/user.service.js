@@ -11,6 +11,7 @@ function UserService($http){
   self.loadCurrent = loadCurrent;
   self.addNewUser = addNewUser;
   self.newUser = {};
+  self.sessionUser = sessionUser;
 
   function addNewUser(newUser){
   	return $http.post('/api/users', newUser);
@@ -19,5 +20,7 @@ function UserService($http){
   function loadCurrent(id) {
 		return $http.get(`/api/users/` + _id);
 	}
-
+  function sessionUser() {
+    return $http.get("/api/sessions/current");
+  }
 }
