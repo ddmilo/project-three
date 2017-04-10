@@ -8,6 +8,7 @@ UserService.$inject = ['$http']
 function UserService($http){
   const self = this;
 
+  self.newUser = {};
   self.addNew = addNew;
 
   function addNew(newUser){

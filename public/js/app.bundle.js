@@ -124,21 +124,26 @@ module.exports = BeerController;
 /* 3 */
 /***/ (function(module, exports) {
 
-NewUserController.$inject = ['$state', 'UserService'];
 
-function NewUserController($state, UserService) {
+NewUserController.$inject = ['UserService', '$state'];
+
+function NewUserController(UserService, $state) {
   const vm = this;
-  vm.addNew = addNew;
+
   vm.newUser = {};
+  vm.addNew = AddNewUser;
+  vm.created = true;
 
   activate();
-
   function activate() {}
 
-  function addNew() {
-    UserService.addNew(vm.newUser).then(function resolve(reponse) {
-      console.log(reponse);
-      $state.go('beer');
+  function AddNewUser(newUser) {
+    UserService.addNew(vm.newUser).then(function toLogin(response) {
+      console.log(response);
+      if (response.data.success) {
+
+        $state.go('login');
+      } // Name of the state might change, come back to match up state names
     });
   }
 }
@@ -185,9 +190,9 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
   }).state('auth', {
     url: '/auth/login',
     template: '<auth></auth>'
-  }).state('newUser', {
-    url: '/user/signup',
-    template: '<new-user></new-user>'
+  }).state('register', {
+    url: '/register',
+    template: '<register</register>'
   }).state('beer', {
     url: '/beer',
     template: '<beer></beer>'
@@ -309,25 +314,32 @@ angular.module('DevHops').component('reviewNew', component);
 /* 15 */
 /***/ (function(module, exports) {
 
-angular.module('DevHops').service('AuthService', AuthService);
+// angular
+//   .module('DevHops')
+//   .service('AuthService', AuthService);
 
-AuthService.$inject = ['$http', '$state', 'Notification'];
-function AuthService($http, $state, Notification) {
-	const self = this;
 
-	self.logUserIn = logUserIn;
+// AuthService.$inject = ['$http', '$state', 'Notification'];
+// function AuthService($http, $state, Notification) {
+// 	const self = this;
 
-	function logUserIn(credentials) {
-		return $http.post('/api/user', credentials).then(function onSuccessDoThis(res) {
-			$state.go('beer');
-		}, function onErrorDoThis(res) {
-			Notification.errorMessage(res.message);
-		});
-	}
-}
+// 	self.logUserIn = logUserIn;
 
-// Syntax for Promises
-PromiseThing.then(howToHandleSuccessFn, howToHandleErrorFn);
+// 	function logUserIn(credentials) {
+// 		return $http
+// 			.post('/api/user', credentials)
+// 			.then(function onSuccessDoThis(res) {
+// 				$state.go('beer');
+// 			}, function onErrorDoThis(res) {
+// 				Notification.errorMessage(res.message);
+// 			});
+// 	}
+// }
+
+
+// // Syntax for Promises
+// PromiseThing
+// 	.then(howToHandleSuccessFn, howToHandleErrorFn)
 
 /***/ }),
 /* 16 */
@@ -371,6 +383,7 @@ UserService.$inject = ['$http'];
 function UserService($http) {
   const self = this;
 
+  self.newUser = {};
   self.addNew = addNew;
 
   function addNew(newUser) {
@@ -38476,7 +38489,7 @@ module.exports = "<div class = \"beer\">\n<h3><a ui-sref=\"beerNew\">Add Beer</h
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNew()\" id = 'newUser' method=\"post\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"userId\" ng-model='$ctrl.newUser.userId'>\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNew()\" id = 'newUser' method=\"post\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
 
 /***/ }),
 /* 26 */
