@@ -6,6 +6,7 @@ angular
 UserService.$inject = ['$http']
 
 function UserService($http){
+<<<<<<< HEAD
   const self = this;
 
   self.loadCurrent = loadCurrent;
@@ -17,4 +18,7 @@ function UserService($http){
 function addUser(newUser){
   return $http.post('api/user', newUser);
   }
+=======
+
+>>>>>>> master
 }

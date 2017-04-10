@@ -6,6 +6,7 @@ angular
 BeerService.$inject = ['$http']
 
 function BeerService($http){
+<<<<<<< HEAD
   const self = this;
 
   self.loadAll = loadAll;
@@ -34,5 +35,7 @@ function BeerService($http){
   // function delete(id) {
   //   return $http.delete('/api/beer/' + id);
   // }
+=======
+>>>>>>> master
 
 }
