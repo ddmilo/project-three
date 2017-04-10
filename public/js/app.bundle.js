@@ -174,22 +174,7 @@ module.exports = BeerController;
 /* 4 */
 /***/ (function(module, exports) {
 
-NewUserController.$inject = ['$stateParams', 'UserService'];
-
-function NewUserController() {
-  const vm = this;
-
-  vm.newUser = {};
-  vm.addUser = addUser;
-
-  function addUser() {
-    UserService.addUser(vm.newUser);
-    vm.newUser = {};
-    $state.go('auth');
-  }
-}
-
-module.exports = NewUserController;
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/danmilo/project-three/client/components/new.user/new.user.controller.js'");
 
 /***/ }),
 /* 5 */
@@ -313,17 +298,9 @@ angular.module('DevHops').component('beer', component);
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-const controller = __webpack_require__(4);
-const template = __webpack_require__(26);
-
-const NewUserComponent = {
-  controller: controller,
-  template: template
-};
-
-angular.module('DevHops').component('newUser', NewUserComponent);
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/danmilo/project-three/client/components/new.user/new.user.component.js'");
 
 /***/ }),
 /* 12 */
@@ -38541,12 +38518,7 @@ module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.
 module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
 
 /***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addUse()\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model=\"$ctrl.newUser.username\">\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" ng-model=\"$ctrl.newUser.Password\" >\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model=\"$ctrl.newUser.email\">\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
-
-/***/ }),
+/* 26 */,
 /* 27 */
 /***/ (function(module, exports) {
 

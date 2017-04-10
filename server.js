@@ -12,14 +12,12 @@ var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 
 
-// <<<<<<< HEAD
-// =======
+
 
 var authController = require('./controllers/authController.js');
 var reviewController = require('./controllers/reviewController.js');
 
 
-// >>>>>>> master
 // mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 
