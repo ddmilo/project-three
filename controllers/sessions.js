@@ -1,29 +1,19 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.model.js');
-var authHelpers = require('');
+var authHelpers = require('../helpers/auth.js');
 
-router.get('/', (req, res) {
-  console.log('sessions on');
-  res.json({message: 'Invalid Username or Password'});
+router.get('/login', function(req, res){
+  res.json('/api/auth');
 });
 
-
-router.post('/login', authHelpers.loginUser, (req, res){
-  if(req.error) {
-    console.log('sessions error');
-    res.json({message: 'Invalid Username or Password'});
-  }
-  else {
-    console.log('Sessions greenlit');
-    res.redirect('/api/beer/')
-  }
+router.post('/login', authHelpers.loginUser, function(req, res){
+  res.json('/api/beer');
 });
 
-  router.delete('/', (req, res){
-    req.session.destroy((){
-      //insert redirect after session destroyed
-
+router.delete('/', function(req, res){
+  req.session.destroy(function(){
+    res.json('/api/')
   });
 });
 

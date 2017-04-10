@@ -7,7 +7,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var sessions = require('express-session');
+var session = require('express-session');
 var methodOverride = require('method-override');
 
 
@@ -48,6 +48,10 @@ app.use('/api/user', userController);
 
 var reviewController = require('./controllers/reviewController.js');
 app.use('/api/review', reviewController);
+
+var  sessionsController =
+require('./controllers/sessions.js');
+app.use('/api/auth', sessionsController)
 
 
 
