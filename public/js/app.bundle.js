@@ -124,7 +124,22 @@ module.exports = NewBeerController;
 BeerController.$inject = ['BeerService'];
 
 function BeerController(BeerService) {
-    var vm = this;
+  const vm = this;
+  vm.beer = [];
+  vm.loading = true;
+  activate();
+
+  function activate() {
+    loadAllBeer();
+  }
+
+  // HOW IT DOES STUFF
+  function loadAllBeer() {
+    BeerService.loadAll().then(function resolve(response) {
+      vm.beer = response.data.beer;
+      vm.loading = false;
+    });
+  }
 }
 
 module.exports = BeerController;
@@ -38463,7 +38478,7 @@ module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\"
 /* 24 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"beer\">\n<h3><a ui-sref=\"beerNew\">Add Beer</h3>\n<h3><a ui-sref=\"editBeer\">Edit Beer</h3>\n<ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n\n\n</div>\n";
+module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beer({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<h3><a ui-sref=\"beerNew\">Add Beer</h3>\n<h3><a ui-sref=\"editBeer\">Edit Beer</h3>\n</div>\n";
 
 /***/ }),
 /* 25 */

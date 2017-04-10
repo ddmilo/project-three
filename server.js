@@ -15,7 +15,7 @@ var mongoose = require('mongoose');
 // mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 
-mongoose.connect('mongodb://localhost/devHops')
+mongoose.connect('mongodb://localhost/devhops')
 
 db.on('error', function(err){
  console.log(err);
