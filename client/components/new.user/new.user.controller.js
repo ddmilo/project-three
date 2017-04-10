@@ -1,6 +1,6 @@
-NewUserController.$inject = ['$state', 'AuthService'];
+NewUserController.$inject = ['$state', 'UserService'];
 
-function NewUserController($state, AuthService) {
+function NewUserController($state, UserService) {
   const vm = this;
   vm.addNew = addNew;
   vm.newUser = {};
@@ -12,7 +12,7 @@ function NewUserController($state, AuthService) {
   }
 
   function addNew(){
-    AuthService
+    UserService
       .addNew(vm.newUser)
       .then(function resolve(reponse){
         console.log(reponse);

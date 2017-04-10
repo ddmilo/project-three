@@ -124,9 +124,9 @@ module.exports = BeerController;
 /* 3 */
 /***/ (function(module, exports) {
 
-NewUserController.$inject = ['$state', 'AuthService'];
+NewUserController.$inject = ['$state', 'UserService'];
 
-function NewUserController($state, AuthService) {
+function NewUserController($state, UserService) {
   const vm = this;
   vm.addNew = addNew;
   vm.newUser = {};
@@ -136,7 +136,7 @@ function NewUserController($state, AuthService) {
   function activate() {}
 
   function addNew() {
-    AuthService.addNew(vm.newUser).then(function resolve(reponse) {
+    UserService.addNew(vm.newUser).then(function resolve(reponse) {
       console.log(reponse);
       $state.go('beer');
     });
@@ -179,11 +179,14 @@ angular.module('DevHops', ['ui.router']).config(uiRouterSetup);
 uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function uiRouterSetup($stateProvider, $urlRouterProvider) {
-  $stateProvider.state('auth', {
-    url: '/login',
+  $stateProvider.state('home', {
+    url: '/',
+    template: '<auth></auth>'
+  }).state('auth', {
+    url: '/auth/login',
     template: '<auth></auth>'
   }).state('newUser', {
-    url: '/signup',
+    url: '/user/signup',
     template: '<new-user></new-user>'
   }).state('beer', {
     url: '/beer',
@@ -308,19 +311,23 @@ angular.module('DevHops').component('reviewNew', component);
 
 angular.module('DevHops').service('AuthService', AuthService);
 
-AuthService.$inject = ['$http'];
+AuthService.$inject = ['$http', '$state', 'Notification'];
+function AuthService($http, $state, Notification) {
+	const self = this;
 
-function AuthService($http) {
-  const self = this;
+	self.logUserIn = logUserIn;
 
-  self.addNew = addNew;
-
-  function addNew(newUser) {
-    console.log(newUser);
-
-    return $http.post('api/signup', newUser);
-  }
+	function logUserIn(credentials) {
+		return $http.post('/api/user', credentials).then(function onSuccessDoThis(res) {
+			$state.go('beer');
+		}, function onErrorDoThis(res) {
+			Notification.errorMessage(res.message);
+		});
+	}
 }
+
+// Syntax for Promises
+PromiseThing.then(howToHandleSuccessFn, howToHandleErrorFn);
 
 /***/ }),
 /* 16 */
@@ -361,7 +368,17 @@ angular.module('DevHops').service('UserService', UserService);
 
 UserService.$inject = ['$http'];
 
-function UserService($http) {}
+function UserService($http) {
+  const self = this;
+
+  self.addNew = addNew;
+
+  function addNew(newUser) {
+    console.log(newUser);
+
+    return $http.post('/api/user', newUser);
+  }
+}
 
 /***/ }),
 /* 19 */
@@ -38459,7 +38476,7 @@ module.exports = "<div class = \"beer\">\n<h3><a ui-sref=\"beerNew\">Add Beer</h
 /* 25 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNew()\" id = 'newUser' method=\"post\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.userId'>\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNew()\" id = 'newUser' method=\"post\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"userId\" ng-model='$ctrl.newUser.userId'>\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" name=\"create account\">\n</form>\n</div>\n</div>\n";
 
 /***/ }),
 /* 26 */

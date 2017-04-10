@@ -11,12 +11,16 @@ uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
 
 function uiRouterSetup($stateProvider, $urlRouterProvider){
 	$stateProvider
+    .state('home', {
+      url: '/',
+      template: '<auth></auth>'
+    })
 		.state('auth', {
-			url: '/login',
+			url: '/auth/login',
 			template: '<auth></auth>'
 		})
     .state('newUser', {
-      url: '/signup',
+      url: '/user/signup',
       template:'<new-user></new-user>'
     })
     .state('beer', {
