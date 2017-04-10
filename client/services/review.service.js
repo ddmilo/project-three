@@ -7,7 +7,7 @@ ReviewService.$inject = ['$http']
 
 function ReviewService($http){
 
-
+}
 // NewReviewService.$inject = ['$http']
 
 // function NewReviewService($http){
