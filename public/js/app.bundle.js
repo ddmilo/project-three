@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 31);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -221,6 +221,28 @@ module.exports = NewReviewController;
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+UserShowController.$inject = ['$state', 'UserService'];
+
+function UserShowController($state, UserService) {
+	const vm = this;
+	vm.currentUser = null;
+
+	activate();
+
+	function activate() {
+		UserService.sessionUser().then(function (data) {
+			console.log(data.data);
+			vm.currentUser = data.data;
+		});
+	}
+}
+
+module.exports = UserShowController;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const angular = __webpack_require__(23);
@@ -233,6 +255,9 @@ uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
 function uiRouterSetup($stateProvider, $urlRouterProvider) {
   $stateProvider.state('home', {
     url: '/',
+    template: '<auth></auth>'
+  }).state('log-out', {
+    url: '/sessions',
     template: '<auth></auth>'
   }).state('auth', {
     url: '/sessions/login',
@@ -264,7 +289,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
@@ -278,7 +303,7 @@ const AuthComponent = {
 angular.module('DevHops').component('auth', AuthComponent);
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
@@ -292,7 +317,7 @@ const component = {
 angular.module('DevHops').component('beerNew', component);
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(2);
@@ -306,7 +331,7 @@ const component = {
 angular.module('DevHops').component('beerShow', component);
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(3);
@@ -320,7 +345,7 @@ const component = {
 angular.module('DevHops').component('beer', component);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(4);
@@ -334,7 +359,7 @@ const RegisterComponent = {
 angular.module('DevHops').component('register', RegisterComponent);
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(5);
@@ -348,12 +373,6 @@ const component = {
 angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
 /* 14 */
 /***/ (function(module, exports) {
 
@@ -361,10 +380,16 @@ angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(16);
-const template = __webpack_require__(31);
+const controller = __webpack_require__(6);
+const template = __webpack_require__(30);
 
 const UserShowComponent = {
   controller: controller,
@@ -372,28 +397,6 @@ const UserShowComponent = {
 };
 
 angular.module('DevHops').component('userShow', UserShowComponent);
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-UserShowController.$inject = ['$state', 'UserService'];
-
-function UserShowController($state, UserService) {
-	const vm = this;
-	vm.currentUser = null;
-
-	activate();
-
-	function activate() {
-		UserService.sessionUser().then(function (data) {
-			console.log(data.data);
-			vm.currentUser = data.data;
-		});
-	}
-}
-
-module.exports = UserShowController;
 
 /***/ }),
 /* 17 */
@@ -38604,36 +38607,36 @@ module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview
 
 /***/ }),
 /* 30 */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h1>{{$ctrl.currentUser.email}}</h1>\n";
+
+/***/ }),
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(6);
 __webpack_require__(7);
-__webpack_require__(0);
 __webpack_require__(8);
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(9);
-__webpack_require__(2);
+__webpack_require__(1);
 __webpack_require__(10);
-__webpack_require__(3);
+__webpack_require__(2);
 __webpack_require__(11);
-__webpack_require__(4);
+__webpack_require__(3);
 __webpack_require__(12);
-__webpack_require__(5);
+__webpack_require__(4);
 __webpack_require__(13);
+__webpack_require__(5);
 __webpack_require__(14);
 __webpack_require__(15);
 __webpack_require__(16);
+__webpack_require__(6);
 __webpack_require__(17);
 __webpack_require__(18);
 __webpack_require__(19);
 module.exports = __webpack_require__(20);
 
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n\n";
 
 /***/ })
 /******/ ]);
