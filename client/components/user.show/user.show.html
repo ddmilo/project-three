@@ -1,5 +1,17 @@
 <h1>{{$ctrl.currentUser.username}}</h1>
-
-<ul>
-	<li ng-repeat="review in $ctrl.currentUserReviews">{{review.content}}</li>
-</ul>
+<h3>Email: {{$ctrl.currentUser.email}}</h3>
+<div ng-repeat="review in $ctrl.currentUserReviews">
+	<div>
+		{{review.rating}}/5
+	</div>
+	<div>
+		{{review.pairing}}
+	</div>
+	<div>
+		{{review.content}}
+	</div>
+	<div>
+		<a ui-sref="">Edit Review</a>
+	</div>
+</div>
+	

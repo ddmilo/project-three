@@ -38614,7 +38614,7 @@ module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n\n<ul>\n\t<li ng-repeat=\"review in $ctrl.currentUserReviews\">{{review.content}}</li>\n</ul>\n";
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"\">Edit Review</a>\n\t</div>\n</div>\n\t";
 
 /***/ }),
 /* 31 */
