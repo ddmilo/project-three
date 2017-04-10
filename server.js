@@ -58,6 +58,10 @@ app.use('/api/beer', beerController);
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 
+// var  sessionsController =
+// require('./controllers/sessions.js');
+// app.use('/api/auth', sessionsController)
+
 
 
 
