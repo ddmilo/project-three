@@ -1,0 +1,16 @@
+<div class="userEdit">
+	<form ng-submit="$ctrl.saveUser()">
+		<div>
+			<label for="username">User Name:</label>
+			<input type="text" name="username" ng-model="$ctrl.current.username">
+		</div>
+		<div>
+			<label for="email">Email:</label>
+			<input type="text" name="email" ng-model="$ctrl.current.email">
+		</div>
+		<div>
+			<input type="submit" value="Save Account">
+		</div>
+	</form>
+	<button ng-click="$ctrl.deleteUser()">Delete Account</button>
+</div>
