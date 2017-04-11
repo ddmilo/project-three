@@ -63,3 +63,10 @@ body {
     border-top-right-radius: 0;
   }
 }
+
+.newBeer {
+  display: block;
+  text-align: center;
+  margin: auto;
+  position: relative;
+}
