@@ -430,15 +430,39 @@ angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+const controller = __webpack_require__(17);
+const template = __webpack_require__(35);
 
+const component = {
+	controller: controller,
+	template: template
+};
+
+angular.module("DevHops").component("userEdit", component);
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
+UserEditController.$inject = ["UserService"];
 
+function UserEditController(UserService) {
+	const vm = this;
+
+	vm.current = {};
+
+	activate();
+
+	function activate() {
+		UserService.sessionUser().then(function (data) {
+			vm.current = data.data;
+		});
+	}
+}
+
+module.exports = UserEditController;
 
 /***/ }),
 /* 18 */
@@ -38685,7 +38709,7 @@ module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n";
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n";
 
 /***/ }),
 /* 34 */
@@ -38715,6 +38739,12 @@ __webpack_require__(20);
 __webpack_require__(21);
 module.exports = __webpack_require__(22);
 
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"\">\n\t\t<div>\n\t\t\t<label for=\"username\">User Name:</label>\n\t\t\t<input type=\"text\" name=\"username\" ng-model=\"$ctrl.current.username\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"email\">Email:</label>\n\t\t\t<input type=\"text\" name=\"email\" ng-model=\"$ctrl.current.email\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"password\">Password:</label>\n\t\t\t<input type=\"text\" name=\"password\" ng-model=\"$ctrl.current.password\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Account\">\n\t\t</div>\n\t</form>\n</div>";
 
 /***/ })
 /******/ ]);
