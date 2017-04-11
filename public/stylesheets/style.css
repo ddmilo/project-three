@@ -1,22 +1,10 @@
-/*body {
-/*  padding: 50px;*/
-/*  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}*/
-/*nav{
-  padding-bottom: 20px;
-}*/
+
 a {
   color: #00B7FF;
 }
-/*.rating > span:hover:before {
-   content: "\2605";
-   position: absolute;
-}*/
+
 @import "bourbon";
 
-/*body {
-  background: #eee !important;
-}*/
 
 .wrapper {
   margin-top: 80px;
@@ -84,22 +72,18 @@ a {
   background-size: 100% 100%;*/
 
 }
-.navbar-nav{
-  position: relative;
-  left: 65%;
 
-}
 #account{
 font-family: 'Libre Baskerville', serif;
 font-style: italic;
 
 }
-nav{
-    background-image: url('../image/footer.jpg');
+/*nav{
+  background-image: url('../image/footer.jpg');
   background-repeat: no-repeat;
   background-size: contain;
-   background-color: black !important;
-}
+  background-color: black !important;
+}*/
 footer{
   background-color: black;
   margin-top: 10%;
@@ -141,12 +125,15 @@ main{
   z-index: 1;
   opacity: 0.6;
 }
-.container{
+/*.container{
   position: absolute;
   bottom:80%;
   color: #914827;
-}
+}*/
 
 .beerColor{
   color: #914827;
+}
+nav{
+  background-color: black !important;
 }
