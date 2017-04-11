@@ -240,6 +240,9 @@ module.exports = RegisterController;
 /***/ (function(module, exports) {
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 ReviewEditController.$inject = ["$state", "$stateParams", "ReviewService"];
 
 function ReviewEditController($state, $stateParams, ReviewService) {
@@ -252,6 +255,8 @@ function ReviewEditController($state, $stateParams, ReviewService) {
 	}
 
 	function loadCurrentReview() {}
+<<<<<<< HEAD
+=======
 =======
 //IONJECTIONS
 ReviewEditController.$inject = ["$state", "$stateParams", "ReviewService"];
@@ -282,6 +287,7 @@ function ReviewEditController($state, $stateParams, ReviewService) {
 		});
 	}
 >>>>>>> 288e2cc613973259edbea073abf4a95b8e22a67c
+>>>>>>> master
 }
 
 module.exports = ReviewEditController;
@@ -292,8 +298,11 @@ module.exports = ReviewEditController;
 
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 //INJECTIONS
 >>>>>>> 288e2cc613973259edbea073abf4a95b8e22a67c
+>>>>>>> master
 NewReviewController.$inject = ['$state', '$stateParams', 'ReviewService'];
 
 //CONTROLLER
@@ -350,6 +359,9 @@ module.exports = UserShowController;
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 const angular = __webpack_require__(25);
 __webpack_require__(23);
 
@@ -431,8 +443,11 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 
 <<<<<<< HEAD
 const controller = __webpack_require__(0);
+<<<<<<< HEAD
+=======
 =======
 >>>>>>> 288e2cc613973259edbea073abf4a95b8e22a67c
+>>>>>>> master
 const template = __webpack_require__(26);
 
 const AuthComponent = {
@@ -528,6 +543,9 @@ angular.module('DevHops').component('reviewNew', component);
 /***/ }),
 /* 16 */
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> master
 /***/ (function(module, exports) {
 =======
 /***/ (function(module, exports, __webpack_require__) {
@@ -38855,6 +38873,23 @@ module.exports = "<div class=\"reviewEdit\">\n\t<form ng-submit=\"\">\n\t\t<div>
 /***/ }),
 /* 32 */
 =======
+<<<<<<< HEAD
+>>>>>>> master
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"reviewEdit\">\n\t<form ng-submit=\"\">\n\t\t<div>\n\t\t\t<label for=\"rating\">Rating:</label>\n\t\t\t<select name=\"rating\" ng-model=\"\">\n\t\t\t  <option value=\"1\">1</option>\n\t\t\t  <option value=\"2\">2</option>\n\t\t\t  <option value=\"3\">3</option>\n\t\t\t  <option value=\"4\">4</option>\n\t\t\t  <option value=\"5\">5</option>\n\t\t\t</select>\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"pairing\">Pairing</label>\n\t\t\t  <select name=\"pairing\" ng-model=\"\">\n\t\t\t    <option value =\"Javascript\">Javascript</option>\n\t\t\t    <option value =\"HTML\">HTML</option>\n\t\t\t    <option value =\"CSS\">CSS</option>\n\t\t\t    <option value =\"Ruby\">Ruby</option>\n\t\t\t    <option value =\"Python\">Python</option>\n\t\t\t    <option value =\"Java\">Java</option>\n\t\t\t    <option value =\"C\">C</option>\n\t\t\t    <option value =\"PHP\">PHP</option>\n\t\t\t </select>\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"content\">Review:</label>\n\t\t\t<input type=\"text\" name=\"content\" ng-model=\"\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Review\">\n\t\t</div>\n\t</form>\n</div>";
+
+/***/ }),
+<<<<<<< HEAD
+/* 33 */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n\n<h1>{{$ctrl.currentUser.email}}</h1>\n\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n";
+
+/***/ }),
+=======
+/* 32 */
+=======
 >>>>>>> 288e2cc613973259edbea073abf4a95b8e22a67c
 /***/ (function(module, exports) {
 
@@ -38880,6 +38915,7 @@ module.exports = "\n<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.
 
 /***/ }),
 >>>>>>> 288e2cc613973259edbea073abf4a95b8e22a67c
+>>>>>>> master
 /* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -38908,12 +38944,15 @@ __webpack_require__(21);
 module.exports = __webpack_require__(22);
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 
 
 /***/ }),
 /* 35 */
 /***/ (function(module, exports) {
 >>>>>>> 288e2cc613973259edbea073abf4a95b8e22a67c
+>>>>>>> master
 
 module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"$ctrl.saveUser()\">\n\t\t<div>\n\t\t\t<label for=\"username\">User Name:</label>\n\t\t\t<input type=\"text\" name=\"username\" ng-model=\"$ctrl.current.username\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"email\">Email:</label>\n\t\t\t<input type=\"text\" name=\"email\" ng-model=\"$ctrl.current.email\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Account\">\n\t\t</div>\n\t</form>\n\t<button ng-click=\"$ctrl.deleteUser()\">Delete Account</button>\n</div>";
 

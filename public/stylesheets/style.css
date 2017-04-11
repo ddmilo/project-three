@@ -29,6 +29,7 @@ a {
   margin: 0 auto;
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.1);
+}
 
   .form-signin-heading,
   .checkbox {
@@ -62,6 +63,13 @@ a {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+}
+
+.newBeer {
+  display: block;
+  text-align: center;
+  margin: auto;
+  position: relative;
 }
 
 .jumbotron{
@@ -141,5 +149,4 @@ main{
 
 .beerColor{
   color: #914827;
-
 }
