@@ -116,3 +116,30 @@ footer{
   color: rgba(0,0,0,0);
   z-index: -1;
 }
+main{
+  background-color: rgba(39, 25, 19, 1.0);
+  background-size: 100%;
+  margin-top:-2%;
+}
+#beer{
+  background-image: url('http://7345-presscdn-0-16.pagely.netdna-cdn.com/wp-content/blogs.dir/1/files/2012/06/varieties-of-beer-400x532.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  left: 58%;
+ margin-top: 25px;
+  margin-bottom: -23%;
+  color: rgba(0,0,0,0);
+  z-index: 1;
+  opacity: 0.6;
+}
+.container{
+  position: absolute;
+  bottom:80%;
+  color: #914827;
+}
+
+.beerColor{
+  color: #914827;
+
+}

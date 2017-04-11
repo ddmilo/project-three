@@ -38640,7 +38640,7 @@ module.exports = "\n<div class=\"beerShow\" >\n    <img ng-src=\"{{$ctrl.current
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
+module.exports = "<main>\n<div id = \"beer\" style=\"height: 800px; width: 500px;\">...</div>\n<div class =\"beer\">\n<div class=\"container\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul class=\"beerColor\">\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button class=\"beerColor\"><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n</div>\n<main>\n";
 
 /***/ }),
 /* 30 */
