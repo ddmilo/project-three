@@ -10,6 +10,9 @@
   <br>
   Alcohol:{{$ctrl.current.alcoholPer}}
   <br>
+  <div ng-repeat="average in $ctrl.currentAverages">
+    {{average.type}}: {{average.average}}
+  </div>
   <h1>Reviews</h1>
   <div ng-repeat="review in $ctrl.current.reviews">
     <div>{{review.username}}</div>

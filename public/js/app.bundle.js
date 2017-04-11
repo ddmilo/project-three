@@ -120,6 +120,7 @@ function BeerShowController($stateParams, BeerService) {
 
   //WHAT IT DOES
   vm.current = {};
+  vm.currentAverages = [];
 
   //ACTIVATION
   activate();
@@ -130,6 +131,28 @@ function BeerShowController($stateParams, BeerService) {
     console.log($stateParams);
     BeerService.loadCurrent($stateParams.beerId).then(function resolve(response) {
       vm.current = response.data.beer;
+      averages();
+    });
+  }
+  function averages() {
+    var types = ["Javascript", "HTML", "CSS", "Ruby", "Python", "C", "Java", "PHP"];
+    types.forEach(function (type) {
+      var total = 0;
+      var count = null;
+      var average = null;
+      for (var i = 0; i < vm.current.reviews.length; i++) {
+        if (vm.current.reviews[i].pairing === type) {
+          var rating = parseInt(vm.current.reviews[i].rating);
+          total += rating;
+          count += 1;
+        }
+      }
+      if (count > 0) {
+        average = total / count;
+      } else {
+        average = "N/A";
+      }
+      vm.currentAverages.push({ type: type, average: average });
     });
   }
 }
@@ -160,7 +183,33 @@ function BeerController(BeerService) {
   function loadAllBeer() {
     BeerService.loadAll().then(function resolve(response) {
       vm.beer = response.data.beer;
+      averages();
       vm.loading = false;
+      console.log(vm.beer);
+    });
+  }
+  function averages() {
+    var types = ["Javascript", "HTML", "CSS", "Ruby", "Python", "C", "Java", "PHP"];
+    vm.beer.forEach(function (beer) {
+      beer.averages = [];
+      types.forEach(function (type) {
+        var total = 0;
+        var count = null;
+        var average = null;
+        for (var i = 0; i < beer.reviews.length; i++) {
+          if (beer.reviews[i].pairing === type) {
+            var rating = parseInt(beer.reviews[i].rating);
+            total += rating;
+            count += 1;
+          }
+        }
+        if (count > 0) {
+          average = total / count;
+        } else {
+          average = "N/A";
+        }
+        beer.averages.push({ type: type, average: average });
+      });
     });
   }
 }
@@ -38759,7 +38808,7 @@ module.exports = "<div class=\"newBeer\">\n  <form ng-submit = \"$ctrl.addBeer()
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imageUrl}}\">\n  <br>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Type: {{$ctrl.current.type}}\n  <br>\n  Brewery:{{$ctrl.current.brewery}}\n  <br>\n  Alcohol:{{$ctrl.current.alcoholPer}}\n  <br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n</div>\n<h1>New Review</h1>\n<review-new></review-new>\n";
+module.exports = "\n<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imageUrl}}\">\n  <br>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Type: {{$ctrl.current.type}}\n  <br>\n  Brewery:{{$ctrl.current.brewery}}\n  <br>\n  Alcohol:{{$ctrl.current.alcoholPer}}\n  <br>\n  <div ng-repeat=\"average in $ctrl.currentAverages\">\n    {{average.type}}: {{average.average}}\n  </div>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n</div>\n<h1>New Review</h1>\n<review-new></review-new>\n";
 
 /***/ }),
 /* 29 */
