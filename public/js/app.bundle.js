@@ -38799,21 +38799,13 @@ module.exports = "<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imag
 /* 28 */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
-module.exports = "\n<main>\n  <div id =\"beer\" style=\"height: 800px; width: 500px;\">...</div>\n    <div class =\"beer\">\n      <div class=\"container\">\n      \t<li ng-show=\"$ctrl.loading\">\n        \t\t<strong>Loading...</strong>\n      \t</li>\n        <div ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest):</h3>\n\t\t    <div>\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a>\n        </div>\n\t\t    <button class=\"beerColor\"><a ui-sref=\"beerNew\">Add Beer</button>\n    \t\t<ul class=\"beerColor\">\n    \t\t\t<li ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n    \t\t</ul>\n      </div>\n    </div>\n  </div>\n<main>\n";
-=======
 module.exports = "\n<main>\n  <div id =\"beer\" style=\"height: 800px; width: 500px;\">...</div>\n      <div class=\"container\">\n        <div class =\"beer\">\n      \t<li ng-show=\"$ctrl.loading\">\n        \t\t<strong>Loading...</strong>\n      \t</li>\n        <div ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest):</h3>\n\t\t    <div>\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a> |\n          <a ng-click=\"\"></a>\n        </div>\n\t\t    <button class=\"beerColor\"><a ui-sref=\"beerNew\">Add Beer</button>\n    \t\t<ul class=\"beerColor\">\n    \t\t\t<li ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n    \t\t</ul>\n      </div>\n    </div>\n  </div>\n<main>\n";
->>>>>>> 2d901cecc1094b8844e14ef9ea155e23f8accb57
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
-module.exports = "<div class=\"jumbotron\">\n  <div class=\"container\" style=\"height: 240px;\">...</div>\n  <div class=\"newUser\">\n    <h2 id=\"account\">Create Account</h2>\n    <form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n      <div>\n        <label>UserName</label>\n        <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n        <br>\n        <label>Password</label>\n        <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n        <br>\n        <label>Email</label>\n        <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n        <br>\n        <input type=\"submit\" value='create account'>\n      </div>\n    </form>\n  </div>\n</div>\n\n";
-=======
 module.exports = "<div class=\"jumbotron\" style=\"height: 340px;\">...</div>\n  <div class=\"container\" >\n  <div class=\"newUser\">\n    <h2 id=\"account\">Create Account</h2>\n    <form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n      <div>\n        <label>UserName</label>\n        <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n        <br>\n        <label>Password</label>\n        <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n        <br>\n        <label>Email</label>\n        <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n        <br>\n        <input type=\"submit\" value='create account'>\n      </div>\n    </form>\n  </div>\n</div>\n\n";
->>>>>>> 2d901cecc1094b8844e14ef9ea155e23f8accb57
 
 /***/ }),
 /* 30 */
