@@ -8,8 +8,8 @@ var Beer = require('../models/beer.model.js');
 //NOT SURE WHAT THIS IS DOING, MAY NEED TO DELETE
 router.get('/', function indexAction(req, res) {
   Review.find(function(error, review){
-      if(error) res.json({messsage:'could not find reviews'});
-      res.json({review:review});
+    if(error) res.json({messsage:'could not find reviews'});
+    res.json({review:review});
   }).select('-__v');
 });
 
@@ -29,16 +29,29 @@ router.get("/:reviewId/edit", function(req, res) {
     });
 });
 
-//EDIT REVIEW PATCH ROUTE, NEEDS TO EDIT REVIEWS ON BEERS AS WELL
+//EDIT REVIEW PATCH ROUTE
 router.patch("/update/:reviewId", function(req, res) {
   Review.findById(req.params.reviewId)
     .exec(function(err, review) {
       review.content = req.body.content;
       review.rating = req.body.rating;
       review.pairing = req.body.pairing;
-      review.save(function(review) {
-        res.json({review: review});
+      review.save();
+    });
+  Beer.find({})
+    .exec(function(err, beers) {
+      beers.forEach(function(beer) {
+        for (var i = 0; i < beer.reviews.length; i++) {
+          if (beer.reviews[i]._id == req.params.reviewId) {
+            console.log("INSIDE IF STATEMENT");
+            beer.reviews[i].content = req.body.content;
+            beer.reviews[i].rating =  req.body.rating;
+            beer.reviews[i].pairing = req.body.pairing;
+            beer.save();
+          }
+        }
       });
+      res.json({});
     });
 });
 
