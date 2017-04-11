@@ -15,6 +15,7 @@ function UserService($http){
   self.currentUserReviews = currentUserReviews;
   self.updateUser = updateUser;
   self.updateSession = updateSession;
+  self.deleteUser = deleteUser;
 
 
 
@@ -36,5 +37,8 @@ function UserService($http){
   }
   function updateSession(user) {
     return $http.post("/api/sessions/updateLogin", {userId: user});
+  }
+  function deleteUser(userId) {
+    return $http.delete(`api/users/delete/${userId}`)
   }
 }

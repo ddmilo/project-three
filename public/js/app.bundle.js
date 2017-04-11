@@ -266,6 +266,7 @@ function UserEditController(UserService, $state) {
 	vm.current = {};
 	vm.oldUser = null;
 	vm.saveUser = saveUser;
+	vm.deleteUser = deleteUser;
 
 	activate();
 
@@ -281,6 +282,12 @@ function UserEditController(UserService, $state) {
 			UserService.updateSession(data.data.user._id).then(function () {
 				$state.go("userShow");
 			});
+		});
+	}
+
+	function deleteUser() {
+		UserService.deleteUser(vm.current._id).then(function (user) {
+			$state.go("auth");
 		});
 	}
 }
@@ -585,6 +592,7 @@ function UserService($http) {
   self.currentUserReviews = currentUserReviews;
   self.updateUser = updateUser;
   self.updateSession = updateSession;
+  self.deleteUser = deleteUser;
 
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
@@ -604,6 +612,9 @@ function UserService($http) {
   }
   function updateSession(user) {
     return $http.post("/api/sessions/updateLogin", { userId: user });
+  }
+  function deleteUser(userId) {
+    return $http.delete(`api/users/delete/${userId}`);
   }
 }
 
@@ -38727,7 +38738,7 @@ module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"$ctrl.saveUser()\">\n\t\t<div>\n\t\t\t<label for=\"username\">User Name:</label>\n\t\t\t<input type=\"text\" name=\"username\" ng-model=\"$ctrl.current.username\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"email\">Email:</label>\n\t\t\t<input type=\"text\" name=\"email\" ng-model=\"$ctrl.current.email\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Account\">\n\t\t</div>\n\t</form>\n</div>";
+module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"$ctrl.saveUser()\">\n\t\t<div>\n\t\t\t<label for=\"username\">User Name:</label>\n\t\t\t<input type=\"text\" name=\"username\" ng-model=\"$ctrl.current.username\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"email\">Email:</label>\n\t\t\t<input type=\"text\" name=\"email\" ng-model=\"$ctrl.current.email\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Account\">\n\t\t</div>\n\t</form>\n\t<button ng-click=\"$ctrl.deleteUser()\">Delete Account</button>\n</div>";
 
 /***/ }),
 /* 34 */

@@ -66,6 +66,13 @@ router.patch("/:username", function(req, res) {
     });
 });
 
+router.delete("/delete/:userId", function(req, res) {
+  User.findByIdAndRemove(req.params.userId)
+    .exec(function (err, user) {
+      res.json({user: user});
+    });
+});
+
 
 
 module.exports = router;

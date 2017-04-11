@@ -6,6 +6,7 @@ function UserEditController(UserService, $state) {
 	vm.current = {};
 	vm.oldUser = null;
 	vm.saveUser = saveUser;
+	vm.deleteUser = deleteUser;
 
 	activate();
 
@@ -25,6 +26,14 @@ function UserEditController(UserService, $state) {
 						$state
 							.go("userShow");
 					});
+			});
+	}
+
+	function deleteUser() {
+		UserService.deleteUser(vm.current._id)
+			.then(function(user) {
+				$state
+					.go("auth");
 			});
 	}
 
