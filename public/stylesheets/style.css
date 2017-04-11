@@ -96,7 +96,7 @@ font-style: italic;
 
 }
 nav{
-  background-image: url('../image/footer.jpg');
+  /*background-image: url('../image/footer.jpg');*/
   background-repeat: no-repeat;
   background-size: contain;
   background-color: black !important;
