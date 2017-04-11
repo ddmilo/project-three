@@ -1,6 +1,7 @@
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/user.model.js');
 
+//HASH PASSWORD
 function createSecure(req, res, next) {
   var password = req.body.password;
 
@@ -8,6 +9,7 @@ function createSecure(req, res, next) {
   next();
 }
 
+//LOGIN
 function loginUser(req, res, next) {
   var email = req.body.email;
   var password = req.body.password;
@@ -27,6 +29,7 @@ function loginUser(req, res, next) {
   });
 }
 
+//NOT SURE WHAT THIS IS DOING, MAY NEED TO DELETE
 function authorized(req, res, next) {
   console.log(req.session.currentUser);
   console.log(req.params.id)
@@ -36,6 +39,7 @@ function authorized(req, res, next) {
   next();
 };
 
+//UPDATE CURRENT SESSION USER
 function update(req, res, next) {
   console.log(req.body.userId + "in auth");
   User.findById(req.body.userId)
@@ -46,8 +50,7 @@ function update(req, res, next) {
     });
 }
 
-//Export this function below:
-
+//EXPORTS
 module.exports = {
   createSecure: createSecure,
   loginUser: loginUser,

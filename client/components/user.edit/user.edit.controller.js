@@ -1,15 +1,18 @@
+//INJECTIONS
 UserEditController.$inject = ["UserService", "$state"];
 
+//CONTROLLER
 function UserEditController(UserService, $state) {
 	const vm = this;
 
+	//WHAT IT DOES
 	vm.current = {};
 	vm.oldUser = null;
 	vm.saveUser = saveUser;
 	vm.deleteUser = deleteUser;
 
+	//ACTIVATION
 	activate();
-
 	function activate() {
 		UserService.sessionUser()
 			.then(function(data) {
@@ -18,6 +21,7 @@ function UserEditController(UserService, $state) {
 			})
 	}
 
+	//HOW IT DOES IT
 	function saveUser() {
 		UserService.updateUser(vm.oldUser, vm.current)
 			.then(function(data) {
@@ -39,4 +43,5 @@ function UserEditController(UserService, $state) {
 
 }
 
+//EXPORTS
 module.exports = UserEditController;

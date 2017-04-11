@@ -1,11 +1,11 @@
+//REQUIREMENTS
 var express = require('express')
 var router = express.Router()
 var bodyParser = require('body-parser');
 var Review = require('../models/review.model.js');
 var Beer = require('../models/beer.model.js');
 
-
-//GET
+//NOT SURE WHAT THIS IS DOING, MAY NEED TO DELETE
 router.get('/', function indexAction(req, res) {
   Review.find(function(error, review){
       if(error) res.json({messsage:'could not find reviews'});
@@ -13,7 +13,7 @@ router.get('/', function indexAction(req, res) {
   }).select('-__v');
 });
 
-//REVIEWS FOR SINGLE USER
+//FIND ALL REVIEWS BY CURRENT USER
 router.get("/:username", function(req, res) {
   Review.find({ username: req.params.username})
     .exec(function(err, reviews) {
@@ -29,7 +29,7 @@ router.get("/:reviewId/edit", function(req, res) {
     });
 });
 
-//EDIT REVIEW PATCH ROUTE
+//EDIT REVIEW PATCH ROUTE, NEEDS TO EDIT REVIEWS ON BEERS AS WELL
 router.patch("/update/:reviewId", function(req, res) {
   Review.findById(req.params.reviewId)
     .exec(function(err, review) {
@@ -42,24 +42,23 @@ router.patch("/update/:reviewId", function(req, res) {
     });
 });
 
-//POST
+//NEW REVIEW POST ROUTE
 router.post('/:beerId', function createReviewAction(req, res){
-
   var review = new Review({
     content: req.body.content,
     pairing: req.body.pairing,
     rating: req.body.rating,
     username: req.session.currentUser.username
   });
-
   review.save(function(error, review){
     res.json({review:review});
   })
-
-    Beer.findById(req.params.beerId)
+  Beer.findById(req.params.beerId)
     .exec(function(err, beer){
       beer.reviews.push(review);
       beer.save();
     })
   });
+
+//EXPORTS
 module.exports = router;

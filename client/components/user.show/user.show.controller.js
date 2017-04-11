@@ -1,12 +1,16 @@
+//INJECTIONS
 UserShowController.$inject=['$state', 'UserService'];
 
+//CONTROLLER
 function UserShowController($state, UserService){
 	const vm = this;
+
+	//WHAT IT DOES
 	vm.currentUser = null;
 	vm.currentUserReviews = null;
 
+	//ACTIVATION
 	activate();
-
 	function activate() {
 		UserService.sessionUser()
 		.then(function(data) {
@@ -19,5 +23,5 @@ function UserShowController($state, UserService){
 	}
 }
 
-
+//EXPORTS
 module.exports = UserShowController;

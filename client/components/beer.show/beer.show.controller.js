@@ -1,16 +1,18 @@
+//INJECTIONS
 BeerShowController.$inject = ['$stateParams', 'BeerService'];
 
+//CONTROLLER
 function BeerShowController($stateParams, BeerService) {
-    const vm = this;
-      vm.current = {};
-        activate();
+  const vm = this;
 
+  //WHAT IT DOES
+  vm.current = {};
+
+  //ACTIVATION
+  activate();
   function activate() {
     loadCurrentBeer();
   }
-
-
-  // HOW IT DOES STUFF
   function loadCurrentBeer() {
   console.log($stateParams);
     BeerService
@@ -21,5 +23,5 @@ function BeerShowController($stateParams, BeerService) {
   }
 }
 
-
+//EXPORTS
 module.exports= BeerShowController;

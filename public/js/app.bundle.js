@@ -70,28 +70,13 @@
 /* 0 */
 /***/ (function(module, exports) {
 
+//NOT SURE IF WE NEED THIS, MAY NEED TO DELETE
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 AuthController.$inject = ['$stateParams', 'UserService'];
 
 function AuthController() {
   const vm = this;
-
-  // vm.beer = [];
-  // vm.loading = true;
-
-  // activate();
-
-  // function activate(){
-  //   loadBeer();
-
-  // }
-  // function loadBeer(){
-  //   UserService
-  //     .beer()
-  //     .then(function resolve(response) {
-  //       vm.beer = response.data.beer;
-  //       vm.loading = false;
-  //     });
-  // }
 }
 
 module.exports = AuthController;
@@ -100,14 +85,18 @@ module.exports = AuthController;
 /* 1 */
 /***/ (function(module, exports) {
 
+//INJECTIONS
 NewBeerController.$inject = ['$state', 'BeerService'];
 
+//CONTROLLER
 function NewBeerController($state, BeerService) {
   const vm = this;
 
+  //WHAT IT DOES
   vm.newBeer = {};
   vm.addBeer = addBeer;
 
+  //HOW IT DOES IT
   function addBeer() {
     BeerService.addBeer(vm.newBeer);
     vm.newBeer = {};
@@ -115,24 +104,28 @@ function NewBeerController($state, BeerService) {
   }
 }
 
+//EXPORTS
 module.exports = NewBeerController;
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
+//INJECTIONS
 BeerShowController.$inject = ['$stateParams', 'BeerService'];
 
+//CONTROLLER
 function BeerShowController($stateParams, BeerService) {
   const vm = this;
-  vm.current = {};
-  activate();
 
+  //WHAT IT DOES
+  vm.current = {};
+
+  //ACTIVATION
+  activate();
   function activate() {
     loadCurrentBeer();
   }
-
-  // HOW IT DOES STUFF
   function loadCurrentBeer() {
     console.log($stateParams);
     BeerService.loadCurrent($stateParams.beerId).then(function resolve(response) {
@@ -141,25 +134,29 @@ function BeerShowController($stateParams, BeerService) {
   }
 }
 
+//EXPORTS
 module.exports = BeerShowController;
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
+//INJECTIONS
 BeerController.$inject = ['BeerService'];
 
+//CONTROLLER
 function BeerController(BeerService) {
   const vm = this;
+
+  //WHAT IT DOES
   vm.beer = [];
   vm.loading = true;
-  activate();
 
+  //ACTIVATION
+  activate();
   function activate() {
     loadAllBeer();
   }
-
-  // HOW IT DOES STUFF
   function loadAllBeer() {
     BeerService.loadAll().then(function resolve(response) {
       vm.beer = response.data.beer;
@@ -174,18 +171,18 @@ module.exports = BeerController;
 /* 4 */
 /***/ (function(module, exports) {
 
+//INJECTIONS
 RegisterController.$inject = ['$state', 'UserService'];
 
+//CONTROLLER
 function RegisterController($state, UserService) {
   const vm = this;
 
+  //WHAT IT DOES
   vm.newUser = {};
   vm.addNewUser = addNewUser;
 
-  activate();
-
-  function activate() {}
-
+  //HOW IT DOES IT
   function addNewUser(newUser) {
     UserService.addNewUser(vm.newUser).then(function resolve() {
       vm.newUser = {};
@@ -194,36 +191,38 @@ function RegisterController($state, UserService) {
   }
 }
 
+//EXPORTS
 module.exports = RegisterController;
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
+//IONJECTIONS
 ReviewEditController.$inject = ["$state", "$stateParams", "ReviewService"];
 
+//CONTROLLER
 function ReviewEditController($state, $stateParams, ReviewService) {
 	const vm = this;
 
+	//WHAT IT DOES
 	vm.current = {};
 	vm.updateReview = updateReview;
 
+	//ACTIVATION
 	activate();
-
 	function activate() {
 		loadCurrentReview();
 	}
-
 	function loadCurrentReview() {
 		ReviewService.loadCurrent($stateParams.reviewId).then(function (response) {
 			vm.current = response.data.review;
-			console.log(vm.current.rating);
 		});
 	}
 
+	//HOW IT DOES IT
 	function updateReview() {
 		ReviewService.updateReview(vm.current).then(function (response) {
-			console.log(response);
 			$state.go("userShow");
 		});
 	}
@@ -235,17 +234,19 @@ module.exports = ReviewEditController;
 /* 6 */
 /***/ (function(module, exports) {
 
+//INJECTIONS
 NewReviewController.$inject = ['$state', '$stateParams', 'ReviewService'];
 
+//CONTROLLER
 function NewReviewController($state, $stateParams, ReviewService) {
    const vm = this;
 
+   //WHAT IT DOES
    vm.newReview = {};
    vm.addReview = addReview;
 
-   // activate();
+   //HOW IT DOES IT
    function addReview() {
-      console.log($stateParams);
       ReviewService.addReview(vm.newReview, $stateParams.beerId);
       vm.newReview = {};
       $state.go('beer');
@@ -258,18 +259,21 @@ module.exports = NewReviewController;
 /* 7 */
 /***/ (function(module, exports) {
 
+//INJECTIONS
 UserEditController.$inject = ["UserService", "$state"];
 
+//CONTROLLER
 function UserEditController(UserService, $state) {
 	const vm = this;
 
+	//WHAT IT DOES
 	vm.current = {};
 	vm.oldUser = null;
 	vm.saveUser = saveUser;
 	vm.deleteUser = deleteUser;
 
+	//ACTIVATION
 	activate();
-
 	function activate() {
 		UserService.sessionUser().then(function (data) {
 			vm.current = data.data;
@@ -277,6 +281,7 @@ function UserEditController(UserService, $state) {
 		});
 	}
 
+	//HOW IT DOES IT
 	function saveUser() {
 		UserService.updateUser(vm.oldUser, vm.current).then(function (data) {
 			UserService.updateSession(data.data.user._id).then(function () {
@@ -292,21 +297,26 @@ function UserEditController(UserService, $state) {
 	}
 }
 
+//EXPORTS
 module.exports = UserEditController;
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
+//INJECTIONS
 UserShowController.$inject = ['$state', 'UserService'];
 
+//CONTROLLER
 function UserShowController($state, UserService) {
 	const vm = this;
+
+	//WHAT IT DOES
 	vm.currentUser = null;
 	vm.currentUserReviews = null;
 
+	//ACTIVATION
 	activate();
-
 	function activate() {
 		UserService.sessionUser().then(function (data) {
 			vm.currentUser = data.data;
@@ -317,55 +327,80 @@ function UserShowController($state, UserService) {
 	}
 }
 
+//EXPORTS
 module.exports = UserShowController;
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+//ANGULAR SETUP
 const angular = __webpack_require__(25);
 __webpack_require__(23);
-
 angular.module('DevHops', ['ui.router']).config(uiRouterSetup);
 
+//INJECTIONS
 uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
 
+//STATES
 function uiRouterSetup($stateProvider, $urlRouterProvider) {
-  $stateProvider.state('home', {
+  $stateProvider
+  //NOT SURE IF WE ARE USING THIS ONE, MAY NEED TO DELETE
+  .state('home', {
     url: '/',
     template: '<auth></auth>'
-  }).state('log-out', {
+  })
+  //OR THIS ONE, MAY NEED TO DELETE
+  .state('log-out', {
     url: '/sessions',
     template: '<auth></auth>'
-  }).state('auth', {
+  })
+  //LOG IN
+  .state('auth', {
     url: '/sessions/login',
     template: '<auth></auth>'
-  }).state('register', {
+  })
+  //CREATE ACCOUNT
+  .state('register', {
     url: '/register',
     template: '<register></register>'
-  }).state('beer', {
+  })
+  //BEER INDEX
+  .state('beer', {
     url: '/beer',
     template: '<beer></beer>'
-  }).state('beerNew', {
+  })
+  //NEW BEER FORM
+  .state('beerNew', {
     url: '/beer/new',
     template: '<beer-new></beer-new>'
-  }).state('userShow', {
+  })
+  //USER INFO PAGE
+  .state('userShow', {
     url: '/userShow',
     template: '<user-show></user-show>'
-  }).state('beerShow', {
+  })
+  //SINGLE BEER PAGE
+  .state('beerShow', {
     url: '/beer/:beerId',
     template: '<beer-show></beer-show>'
-  }).state('reviewNew', {
+  })
+  //NEW REVIEW PAGE
+  .state('reviewNew', {
     url: '/review/new',
     template: '<review-new></review-new>'
-  }).state('userEdit', {
+  })
+  //EDIT USER FORM
+  .state('userEdit', {
     url: '/user/:userId',
     template: '<user-edit></user-edit>'
-  }).state("reviewEdit", {
+  })
+  //EDIT REVIEW FORM
+  .state("reviewEdit", {
     url: "/review/edit/:reviewId",
     template: "<review-edit></review-edit>"
   });
-
+  //CATCH
   $urlRouterProvider.otherwise('/');
 };
 
@@ -499,6 +534,10 @@ angular.module('DevHops').component('userShow', UserShowComponent);
 /* 19 */
 /***/ (function(module, exports) {
 
+//NOT SURE IF WE ARE USING THIS FILE, MAY NEED TO DELETE
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 angular.module('DevHops').service('AuthService', AuthService);
 
 AuthService.$inject = ['$http'];
@@ -509,63 +548,65 @@ function AuthService($http) {}
 /* 20 */
 /***/ (function(module, exports) {
 
+//ANGULAR SETUP
 angular.module('DevHops').service('BeerService', BeerService);
 
+//INJECTIONS
 BeerService.$inject = ['$http'];
 
+//SERVICE
 function BeerService($http) {
   const self = this;
 
+  //WHAT IT DOES
   self.loadAll = loadAll;
   self.updateBeer = updateBeer;
   self.loadCurrent = loadCurrent;
   self.addBeer = addBeer;
-  // self.deleteBeer= deleteBeer;
 
-
+  //HOW IT DOES IT
   function loadAll() {
     return $http.get('/api/beer');
-    //we know all our backend routes will be api
   }
+
   function loadCurrent(id) {
     return $http.get('api/beer/' + id);
   }
+
   function addBeer(newBeer) {
     return $http.post('api/beer', newBeer);
-    console.log(newBeer);
   }
+
   function updateBeer(beer) {
     return $http.patch('api/beer/' + beer._id, beer);
   }
-
-  // function delete(id) {
-  //   return $http.delete('/api/beer/' + id);
-  // }
 }
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
+//ANGULAR SETUP
 angular.module('DevHops').service('ReviewService', ReviewService);
 
+//INJECTIONS
 ReviewService.$inject = ['$http'];
 
+//SERVICE
 function ReviewService($http) {
-
   const self = this;
 
+  //WHAT IT DOES
   self.addReview = addReview;
   self.loadCurrent = loadCurrent;
   self.updateReview = updateReview;
 
+  //HOW IT DOES IT
   function updateReview(review) {
     return $http.patch(`/api/review/update/${review._id}`, review);
   }
 
   function addReview(newReview, beerId) {
-    console.log(newReview);
-
     return $http.post(`api/review/${beerId}`, newReview);
   }
 
@@ -578,13 +619,17 @@ function ReviewService($http) {
 /* 22 */
 /***/ (function(module, exports) {
 
+//ANGULAR SETUP
 angular.module('DevHops').service('UserService', UserService);
 
+//INJECTIONS
 UserService.$inject = ['$http'];
 
+//SERVICE
 function UserService($http) {
   const self = this;
 
+  //WHAT IT DOES
   self.loadCurrent = loadCurrent;
   self.addNewUser = addNewUser;
   self.newUser = {};
@@ -594,25 +639,31 @@ function UserService($http) {
   self.updateSession = updateSession;
   self.deleteUser = deleteUser;
 
+  //HOW IT DOES IT
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
-    console.log(newUser);
   }
+
   function loadCurrent(id) {
     return $http.get(`/api/users/` + _id);
   }
+
   function sessionUser() {
     return $http.get("/api/sessions/current");
   }
+
   function currentUserReviews(username) {
     return $http.get(`/api/review/${username}`);
   }
+
   function updateUser(id, user) {
     return $http.patch(`/api/users/${id}`, user);
   }
+
   function updateSession(user) {
     return $http.post("/api/sessions/updateLogin", { userId: user });
   }
+
   function deleteUser(userId) {
     return $http.delete(`api/users/delete/${userId}`);
   }
@@ -38696,31 +38747,31 @@ module.exports = angular;
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form action='/api/sessions/login' ng-submit =\"$ctrl.current.user\" class=\"form-signin\" method = 'POST'>\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
+module.exports = "<div class=\"wrapper\">\n\t<form action='/api/sessions/login' ng-submit =\"$ctrl.current.user\" class=\"form-signin\" method = 'POST'>\n\t\t<h2 class=\"form-signin-heading\">Please login</h2>\n      \t<input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      \t<input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      \t<button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n</div>\n";
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n  <input type=\"submit\" name=\"create account\">\n</div>\n</form>\n\n</div>\n";
+module.exports = "<div class=\"newBeer\">\n  <form ng-submit = \"$ctrl.addBeer()\">\n    <div>\n      <label>Name</label>\n      <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n      <br>\n      <label>Type</label>\n      <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n      <br>\n      <label>Brewery</label>\n      <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n      <br>\n      <label>Alcohol % </label>\n      <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n      <br>\n      <label>Image</label>\n      <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n      <input type=\"submit\" name=\"create account\">\n    </div>\n  </form>\n</div>\n";
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
+module.exports = "\n<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imageUrl}}\">\n  <br>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Type: {{$ctrl.current.type}}\n  <br>\n  Brewery:{{$ctrl.current.brewery}}\n  <br>\n  Alcohol:{{$ctrl.current.alcoholPer}}\n  <br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n</div>\n<h1>New Review</h1>\n<review-new></review-new>\n";
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
+module.exports = "<div class = \"beer\">\n\t<li ng-show=\"$ctrl.loading\">\n  \t\t<strong>Loading...</strong>\n\t</li>\n\t<ul>\n\t\t<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\t</ul>\n\t<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" value='create account'>\n</form>\n</div>\n</div>\n";
+module.exports = "<div class=\"newUser\">\n  <h1>Create Account</h1>\n  <form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n    <div>\n      <label>UserName</label>\n      <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n      <br>\n      <label>Password</label>\n      <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n      <br>\n      <label>Email</label>\n      <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n      <br>\n      <input type=\"submit\" value='create account'>\n    </div>\n  </form>\n</div>\n";
 
 /***/ }),
 /* 31 */
@@ -38732,7 +38783,7 @@ module.exports = "<div class=\"reviewEdit\">\n\t<form ng-submit=\"$ctrl.updateRe
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Pairing</label>\n  <select name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n    <option value =\"Javascript\">Javascript</option>\n    <option value =\"HTML\">HTML</option>\n    <option value =\"CSS\">CSS</option>\n    <option value =\"Ruby\">Ruby</option>\n    <option value =\"Python\">Python</option>\n    <option value =\"Java\">Java</option>\n    <option value =\"C\">C</option>\n    <option value =\"PHP\">PHP</option>\n  </select>\n  <br>\n  <label for=\"rating\">Rating</label>\n  <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n  <option value=\"1\">1</option>\n  <option value=\"2\">2</option>\n  <option value=\"3\">3</option>\n  <option value=\"4\">4</option>\n  <option value=\"5\">5</option>\n  </select>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
+module.exports = "<div class=\"reviewNew\">\n  <form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n    <div>\n      <label>Content</label>\n      <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n      <br>\n      <label>Pairing</label>\n      <select name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n        <option value =\"Javascript\">Javascript</option>\n        <option value =\"HTML\">HTML</option>\n        <option value =\"CSS\">CSS</option>\n        <option value =\"Ruby\">Ruby</option>\n        <option value =\"Python\">Python</option>\n        <option value =\"Java\">Java</option>\n        <option value =\"C\">C</option>\n        <option value =\"PHP\">PHP</option>\n      </select>\n      <br>\n      <label for=\"rating\">Rating</label>\n      <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n        <option value=\"1\">1</option>\n        <option value=\"2\">2</option>\n        <option value=\"3\">3</option>\n        <option value=\"4\">4</option>\n        <option value=\"5\">5</option>\n      </select>\n      <input type=\"submit\" name=\"create review\">\n    </div>\n  </form>\n</div>";
 
 /***/ }),
 /* 33 */

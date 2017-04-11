@@ -1,10 +1,15 @@
 
 <div class="beerShow">
-    <img ng-src="{{$ctrl.current.imageUrl}}"><br>
-    Name: {{$ctrl.current.name}} <br>
-    Type: {{$ctrl.current.type}} <br>
-    Brewery:{{$ctrl.current.brewery}}<br>
-    Alcohol:{{$ctrl.current.alcoholPer}}<br>
+  <img ng-src="{{$ctrl.current.imageUrl}}">
+  <br>
+  Name: {{$ctrl.current.name}}
+  <br>
+  Type: {{$ctrl.current.type}}
+  <br>
+  Brewery:{{$ctrl.current.brewery}}
+  <br>
+  Alcohol:{{$ctrl.current.alcoholPer}}
+  <br>
   <h1>Reviews</h1>
   <div ng-repeat="review in $ctrl.current.reviews">
     <div>{{review.username}}</div>
@@ -12,6 +17,6 @@
     <div>{{review.rating}}/5</div>
     <div>{{review.content}}</div>
   </div>
-    </div>
-    <h1>New Review</h1>
+</div>
+<h1>New Review</h1>
 <review-new></review-new>

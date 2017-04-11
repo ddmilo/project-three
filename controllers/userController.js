@@ -1,13 +1,14 @@
-var express = require('express')
-var router = express.Router()
-var bodyParser = require('body-parser') //parses information from POST
+//REQUIREMENTS
+var express = require('express');
+var router = express.Router();
+var bodyParser = require('body-parser');
 var User = require('../models/user.model.js');
 var methodOverride = require('method-override');
 var authHelper = require('../helpers/auth.js');
 var Review = require("../models/review.model.js");
 var Beer = require("../models/beer.model.js");
 
-// GET
+//NOT SURE WHAT THIS ROUTE IS DOING, MAY NEED TO DELETE
 router.get('/', function indexAction(req, res) {
   User.find(function(error, user){
     if(error) res.json({message:''});
@@ -16,25 +17,19 @@ router.get('/', function indexAction(req, res) {
   }).select('-__v');
 });
 
-
-//POST create user
+//CREATE NEW USER POST ROUTE
 router.post('/', authHelper.createSecure, function createAction(req, res){
-  
   var user = new User({
     email: req.body.email,
     password_digest: res.hashedPassword,
     username: req.body.username
-
   });
-
-
-
   user.save(function(error){
   		res.json({user:user});
   });
-
 });
 
+//EDIT USER AND THEIR REVIEWS, NEED TO REFACTOR IF TIME ALLOWS
 router.patch("/:username", function(req, res) {
   User.find({username: req.params.username})
     .exec(function(err, users) {
@@ -66,6 +61,7 @@ router.patch("/:username", function(req, res) {
     });
 });
 
+//DELETE USER
 router.delete("/delete/:userId", function(req, res) {
   User.findByIdAndRemove(req.params.userId)
     .exec(function (err, user) {
@@ -73,6 +69,5 @@ router.delete("/delete/:userId", function(req, res) {
     });
 });
 
-
-
+//EXPORTS
 module.exports = router;

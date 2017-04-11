@@ -1,24 +1,8 @@
-<!-- <div class = "auth">
-<h1>Sign In</h1>
-<form ng-submit = "$ctrl.current.user">
-<div>
-  <label>UserName</label>
-  <input type = "text" name= "username" >
-  <br>
-  <label>Password</label>
-  <input type="Password" name="Password" >
-  <br>
- <input type="submit" name="sign in">
-</form>
-
-
-</div>
- -->
-   <div class="wrapper">
-    <form action='/api/sessions/login' ng-submit ="$ctrl.current.user" class="form-signin" method = 'POST'>
-      <h2 class="form-signin-heading">Please login</h2>
-      <input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+<div class="wrapper">
+	<form action='/api/sessions/login' ng-submit ="$ctrl.current.user" class="form-signin" method = 'POST'>
+		<h2 class="form-signin-heading">Please login</h2>
+      	<input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+      	<input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+      	<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
-  </div>
+</div>

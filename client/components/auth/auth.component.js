@@ -9,5 +9,3 @@ const AuthComponent = {
 angular
   .module('DevHops')
   .component('auth', AuthComponent);
-
-
