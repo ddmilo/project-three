@@ -1,19 +1,21 @@
+//INJECTIONS
 NewReviewController.$inject = ['$state','$stateParams','ReviewService'];
 
+//CONTROLLER
 function NewReviewController($state, $stateParams,ReviewService) {
    const vm = this;
 
+   //WHAT IT DOES
    vm.newReview = {};
    vm.addReview= addReview;
 
-   // activate();
+   //HOW IT DOES IT
    function addReview() {
-    console.log($stateParams);
     ReviewService
       .addReview(vm.newReview , $stateParams.beerId);
-        vm.newReview = {};
-        $state
-        .go('beer');
+    vm.newReview = {};
+    $state
+      .go('beer');
    }
 }
 

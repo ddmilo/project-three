@@ -1,22 +1,22 @@
-body {
+/*body {
 /*  padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-nav{
+/*  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}*/
+/*nav{
   padding-bottom: 20px;
-}
+}*/
 a {
   color: #00B7FF;
 }
-.rating > span:hover:before {
+/*.rating > span:hover:before {
    content: "\2605";
    position: absolute;
-}
+}*/
 @import "bourbon";
 
-body {
+/*body {
   background: #eee !important;
-}
+}*/
 
 .wrapper {
   margin-top: 80px;
@@ -62,4 +62,84 @@ body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+}
+
+.jumbotron{
+  background-image: url('../image/DEvHops.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100% ;
+  margin-top:-20px;
+
+/*-webkit-background-size:100% 100% ;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;*/
+
+}
+.navbar-nav{
+  position: relative;
+  left: 65%;
+
+}
+#account{
+font-family: 'Libre Baskerville', serif;
+font-style: italic;
+
+}
+nav{
+    background-image: url('../image/footer.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+   background-color: black !important;
+}
+footer{
+  background-color: black;
+  margin-top: 10%;
+  padding-top: 20px;
+}
+.newUser{
+  position: relative;
+  left: 35%;
+  text-align:center;
+  border: 6px solid black;
+  width: 400px;
+  height: 200px;
+}
+#beerNew{
+  background-image: url('../image/beerIndex.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  left: 68%;
+  margin-top:-13%;
+  margin-bottom: -10%;
+  color: rgba(0,0,0,0);
+  z-index: -1;
+}
+main{
+  background-color: rgba(39, 25, 19, 1.0);
+  background-size: 100%;
+  margin-top:-2%;
+}
+#beer{
+  background-image: url('http://7345-presscdn-0-16.pagely.netdna-cdn.com/wp-content/blogs.dir/1/files/2012/06/varieties-of-beer-400x532.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
+  left: 58%;
+ margin-top: 25px;
+  margin-bottom: -23%;
+  color: rgba(0,0,0,0);
+  z-index: 1;
+  opacity: 0.6;
+}
+.container{
+  position: absolute;
+  bottom:80%;
+  color: #914827;
+}
+
+.beerColor{
+  color: #914827;
+
 }
