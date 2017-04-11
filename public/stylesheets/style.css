@@ -29,11 +29,11 @@ a {
   margin: 0 auto;
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.1);
+}
 
-  .form-signin-heading,
-  .checkbox {
-    margin-bottom: 30px;
-  }
+.form-signin-heading, .checkbox {
+  margin-bottom: 30px;
+}
 
   .checkbox {
     font-weight: normal;
