@@ -1,8 +1,8 @@
 <div class="reviewEdit">
-	<form ng-submit="">
+	<form ng-submit="$ctrl.updateReview()">
 		<div>
 			<label for="rating">Rating:</label>
-			<select name="rating" ng-model="">
+			<select name="rating" ng-model="$ctrl.current.rating">
 			  <option value="1">1</option>
 			  <option value="2">2</option>
 			  <option value="3">3</option>
@@ -12,7 +12,7 @@
 		</div>
 		<div>
 			<label for="pairing">Pairing</label>
-			  <select name="pairing" ng-model="">
+			  <select name="pairing" ng-model="$ctrl.current.pairing">
 			    <option value ="Javascript">Javascript</option>
 			    <option value ="HTML">HTML</option>
 			    <option value ="CSS">CSS</option>
@@ -25,7 +25,7 @@
 		</div>
 		<div>
 			<label for="content">Review:</label>
-			<input type="text" name="content" ng-model="">
+			<input type="text" name="content" ng-model="$ctrl.current.content">
 		</div>
 		<div>
 			<input type="submit" value="Save Review">

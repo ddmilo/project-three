@@ -22,6 +22,27 @@ router.get("/:username", function(req, res) {
     });
 });
 
+//EDIT REVIEW GET ROUTE
+router.get("/:reviewId/edit", function(req, res) {
+  Review.findById(req.params.reviewId)
+    .exec(function(err, review) {
+      res.json({review: review});
+    });
+});
+
+//EDIT REVIEW PATCH ROUTE
+router.patch("/update/:reviewId", function(req, res) {
+  Review.findById(req.params.reviewId)
+    .exec(function(err, review) {
+      review.content = req.body.content;
+      review.rating = req.body.rating;
+      review.pairing = req.body.pairing;
+      review.save(function(review) {
+        res.json({review: review});
+      });
+    });
+});
+
 //POST
 router.post('/:beerId', function createReviewAction(req, res){
 
@@ -29,11 +50,7 @@ router.post('/:beerId', function createReviewAction(req, res){
     content: req.body.content,
     pairing: req.body.pairing,
     rating: req.body.rating,
-<<<<<<< HEAD
-    username: req.session.currentUser
-=======
     username: req.session.currentUser.username
->>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b
   });
 
   review.save(function(error, review){

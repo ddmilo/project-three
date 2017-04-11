@@ -11,6 +11,12 @@ function ReviewService($http){
 
   self.addReview = addReview;
   self.loadCurrent = loadCurrent;
+  self.updateReview = updateReview;
+
+
+  function updateReview(review) {
+		return $http.patch(`/api/review/update/${review._id}`, review)
+	}
 
  function addReview(newReview, beerId) {
 console.log(newReview);
@@ -18,7 +24,7 @@ console.log(newReview);
   return $http.post(`api/review/${beerId}` , newReview)
   }
 
-  function loadCurrent() {
-  	
+  function loadCurrent(id) {
+  	return $http.get(`api/review/${id}/edit`);
   }
  }

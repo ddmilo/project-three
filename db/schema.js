@@ -15,7 +15,7 @@ var UserSchema = {
 var ReviewSchema = {
 	username: String,
 	content: String,
-	rating: Number,
+	rating: String,
 	dateCreated: Date,
 	beerId: String,
 	pairing: String

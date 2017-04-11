@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 31);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -200,6 +200,41 @@ module.exports = RegisterController;
 /* 5 */
 /***/ (function(module, exports) {
 
+ReviewEditController.$inject = ["$state", "$stateParams", "ReviewService"];
+
+function ReviewEditController($state, $stateParams, ReviewService) {
+	const vm = this;
+
+	vm.current = {};
+	vm.updateReview = updateReview;
+
+	activate();
+
+	function activate() {
+		loadCurrentReview();
+	}
+
+	function loadCurrentReview() {
+		ReviewService.loadCurrent($stateParams.reviewId).then(function (response) {
+			vm.current = response.data.review;
+			console.log(vm.current.rating);
+		});
+	}
+
+	function updateReview() {
+		ReviewService.updateReview(vm.current).then(function (response) {
+			console.log(response);
+			$state.go("userShow");
+		});
+	}
+}
+
+module.exports = ReviewEditController;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
 NewReviewController.$inject = ['$state', '$stateParams', 'ReviewService'];
 
 function NewReviewController($state, $stateParams, ReviewService) {
@@ -220,7 +255,7 @@ function NewReviewController($state, $stateParams, ReviewService) {
 module.exports = NewReviewController;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 UserShowController.$inject = ['$state', 'UserService'];
@@ -246,11 +281,11 @@ function UserShowController($state, UserService) {
 module.exports = UserShowController;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const angular = __webpack_require__(23);
-__webpack_require__(21);
+const angular = __webpack_require__(25);
+__webpack_require__(23);
 
 angular.module('DevHops', ['ui.router']).config(uiRouterSetup);
 
@@ -296,11 +331,11 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
-const template = __webpack_require__(24);
+const template = __webpack_require__(26);
 
 const AuthComponent = {
   controller: controller,
@@ -310,11 +345,11 @@ const AuthComponent = {
 angular.module('DevHops').component('auth', AuthComponent);
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
-const template = __webpack_require__(25);
+const template = __webpack_require__(27);
 
 const component = {
   controller: controller,
@@ -324,11 +359,11 @@ const component = {
 angular.module('DevHops').component('beerNew', component);
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(2);
-const template = __webpack_require__(26);
+const template = __webpack_require__(28);
 
 const component = {
   controller: controller,
@@ -338,11 +373,11 @@ const component = {
 angular.module('DevHops').component('beerShow', component);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(3);
-const template = __webpack_require__(27);
+const template = __webpack_require__(29);
 
 const component = {
   controller: controller,
@@ -352,11 +387,11 @@ const component = {
 angular.module('DevHops').component('beer', component);
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(4);
-const template = __webpack_require__(28);
+const template = __webpack_require__(30);
 
 const RegisterComponent = {
   controller: controller,
@@ -366,11 +401,25 @@ const RegisterComponent = {
 angular.module('DevHops').component('register', RegisterComponent);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(5);
-const template = __webpack_require__(29);
+const template = __webpack_require__(31);
+
+const component = {
+	controller: controller,
+	template: template
+};
+
+angular.module("DevHops").component("reviewEdit", component);
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const controller = __webpack_require__(6);
+const template = __webpack_require__(32);
 
 const component = {
   controller: controller,
@@ -380,23 +429,23 @@ const component = {
 angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
 /* 16 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(6);
-const template = __webpack_require__(30);
+const controller = __webpack_require__(7);
+const template = __webpack_require__(33);
 
 const UserShowComponent = {
   controller: controller,
@@ -406,7 +455,7 @@ const UserShowComponent = {
 angular.module('DevHops').component('userShow', UserShowComponent);
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('AuthService', AuthService);
@@ -416,7 +465,7 @@ AuthService.$inject = ['$http'];
 function AuthService($http) {}
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('BeerService', BeerService);
@@ -454,7 +503,7 @@ function BeerService($http) {
 }
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('ReviewService', ReviewService);
@@ -467,6 +516,11 @@ function ReviewService($http) {
 
   self.addReview = addReview;
   self.loadCurrent = loadCurrent;
+  self.updateReview = updateReview;
+
+  function updateReview(review) {
+    return $http.patch(`/api/review/update/${review._id}`, review);
+  }
 
   function addReview(newReview, beerId) {
     console.log(newReview);
@@ -474,11 +528,13 @@ function ReviewService($http) {
     return $http.post(`api/review/${beerId}`, newReview);
   }
 
-  function loadCurrent() {}
+  function loadCurrent(id) {
+    return $http.get(`api/review/${id}/edit`);
+  }
 }
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports) {
 
 angular.module('DevHops').service('UserService', UserService);
@@ -510,7 +566,7 @@ function UserService($http) {
 }
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports) {
 
 /**
@@ -5199,7 +5255,7 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /**
@@ -38576,80 +38632,88 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(22);
+__webpack_require__(24);
 module.exports = angular;
 
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports) {
-
-module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form action='/api/sessions/login' ng-submit =\"$ctrl.current.user\" class=\"form-signin\" method = 'POST'>\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n  <input type=\"submit\" name=\"create account\">\n</div>\n</form>\n\n</div>\n";
 
 /***/ }),
 /* 26 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
+module.exports = "<!-- <div class = \"auth\">\n<h1>Sign In</h1>\n<form ng-submit = \"$ctrl.current.user\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" >\n  <br>\n  <label>Password</label>\n  <input type=\"Password\" name=\"Password\" >\n  <br>\n <input type=\"submit\" name=\"sign in\">\n</form>\n\n\n</div>\n -->\n   <div class=\"wrapper\">\n    <form action='/api/sessions/login' ng-submit =\"$ctrl.current.user\" class=\"form-signin\" method = 'POST'>\n      <h2 class=\"form-signin-heading\">Please login</h2>\n      <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n  </div>\n";
 
 /***/ }),
 /* 27 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
+module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\">\n<div>\n  <label>Name</label>\n  <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n  <br>\n  <label>Type</label>\n  <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n  <br>\n  <label>Brewery</label>\n  <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n  <br>\n  <label>Alcohol % </label>\n  <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n  <br>\n  <label>Image</label>\n  <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n  <input type=\"submit\" name=\"create account\">\n</div>\n</form>\n\n</div>\n";
 
 /***/ }),
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" value='create account'>\n</form>\n</div>\n</div>\n";
+module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
 
 /***/ }),
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Pairing</label>\n  <select name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n    <option value =\"Javascript\">Javascript</option>\n    <option value =\"HTML\">HTML</option>\n    <option value =\"CSS\">CSS</option>\n    <option value =\"Ruby\">Ruby</option>\n    <option value =\"Python\">Python</option>\n    <option value =\"Java\">Java</option>\n    <option value =\"C\">C</option>\n    <option value =\"PHP\">PHP</option>\n  </select>\n  <br>\n  <label for=\"rating\">Rating</label>\n  <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n  <option value=\"1\">1</option>\n  <option value=\"2\">2</option>\n  <option value=\"3\">3</option>\n  <option value=\"4\">4</option>\n  <option value=\"5\">5</option>\n  </select>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
+module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <strong>Loading...</strong>\n</li>\n<ul>\n<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul>\n<!-- <ul>\n<li ng-repeat=\"beer in $ctrl.all\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n</ul> -->\n\n<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<<<<<<< HEAD\n<h1>{{$ctrl.currentUser.email}}</h1>\n=======\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n>>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b\n";
+module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" value='create account'>\n</form>\n</div>\n</div>\n";
 
 /***/ }),
 /* 31 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"reviewEdit\">\n\t<form ng-submit=\"$ctrl.updateReview()\">\n\t\t<div>\n\t\t\t<label for=\"rating\">Rating:</label>\n\t\t\t<select name=\"rating\" ng-model=\"$ctrl.current.rating\">\n\t\t\t  <option value=\"1\">1</option>\n\t\t\t  <option value=\"2\">2</option>\n\t\t\t  <option value=\"3\">3</option>\n\t\t\t  <option value=\"4\">4</option>\n\t\t\t  <option value=\"5\">5</option>\n\t\t\t</select>\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"pairing\">Pairing</label>\n\t\t\t  <select name=\"pairing\" ng-model=\"$ctrl.current.pairing\">\n\t\t\t    <option value =\"Javascript\">Javascript</option>\n\t\t\t    <option value =\"HTML\">HTML</option>\n\t\t\t    <option value =\"CSS\">CSS</option>\n\t\t\t    <option value =\"Ruby\">Ruby</option>\n\t\t\t    <option value =\"Python\">Python</option>\n\t\t\t    <option value =\"Java\">Java</option>\n\t\t\t    <option value =\"C\">C</option>\n\t\t\t    <option value =\"PHP\">PHP</option>\n\t\t\t </select>\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"content\">Review:</label>\n\t\t\t<input type=\"text\" name=\"content\" ng-model=\"$ctrl.current.content\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Review\">\n\t\t</div>\n\t</form>\n</div>";
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n<div>\n  <label>Content</label>\n  <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n  <br>\n<label>Pairing</label>\n  <select name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n    <option value =\"Javascript\">Javascript</option>\n    <option value =\"HTML\">HTML</option>\n    <option value =\"CSS\">CSS</option>\n    <option value =\"Ruby\">Ruby</option>\n    <option value =\"Python\">Python</option>\n    <option value =\"Java\">Java</option>\n    <option value =\"C\">C</option>\n    <option value =\"PHP\">PHP</option>\n  </select>\n  <br>\n  <label for=\"rating\">Rating</label>\n  <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n  <option value=\"1\">1</option>\n  <option value=\"2\">2</option>\n  <option value=\"3\">3</option>\n  <option value=\"4\">4</option>\n  <option value=\"5\">5</option>\n  </select>\n  <input type=\"submit\" name=\"create review\">\n</form>\n</div>\n</div>\n<!--   <label>Rating</label>\n  <input type=\"number\" name=\"rating\" >\n  <br>\n -->\n";
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n";
+
+/***/ }),
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(7);
 __webpack_require__(8);
-__webpack_require__(0);
 __webpack_require__(9);
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(10);
-__webpack_require__(2);
+__webpack_require__(1);
 __webpack_require__(11);
-__webpack_require__(3);
+__webpack_require__(2);
 __webpack_require__(12);
-__webpack_require__(4);
+__webpack_require__(3);
 __webpack_require__(13);
-__webpack_require__(5);
+__webpack_require__(4);
 __webpack_require__(14);
+__webpack_require__(5);
 __webpack_require__(15);
-__webpack_require__(16);
 __webpack_require__(6);
+__webpack_require__(16);
 __webpack_require__(17);
 __webpack_require__(18);
+__webpack_require__(7);
 __webpack_require__(19);
-module.exports = __webpack_require__(20);
+__webpack_require__(20);
+__webpack_require__(21);
+module.exports = __webpack_require__(22);
 
 
 /***/ })
