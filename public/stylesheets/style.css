@@ -1,10 +1,13 @@
-/*body {
-/*  padding: 50px;*/
-/*  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}*/
-/*nav{
-  padding-bottom: 20px;
-}*/
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Alice', serif;
+}
+body {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
 a {
   color: #00B7FF;
 }
@@ -31,9 +34,11 @@ a {
   border: 1px solid rgba(0,0,0,0.1);
 }
 
-.form-signin-heading, .checkbox {
+  .form-signin-heading,
+  .checkbox {
   margin-bottom: 30px;
-}
+  }
+
 
   .checkbox {
     font-weight: normal;
@@ -62,14 +67,6 @@ a {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
-}
-
-
-.newBeer {
-  display: block;
-  text-align: center;
-  margin: auto;
-  position: relative;
 }
 
 .jumbotron{
@@ -114,7 +111,6 @@ footer{
   height: 200px;
 }
 #beerNew{
-  background-image: url('../image/beerIndex.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -130,7 +126,6 @@ main{
   margin-top:-2%;
 }
 #beer{
-  background-image: url('http://7345-presscdn-0-16.pagely.netdna-cdn.com/wp-content/blogs.dir/1/files/2012/06/varieties-of-beer-400x532.jpg');
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
@@ -149,4 +144,33 @@ main{
 
 .beerColor{
   color: #914827;
+}
+
+label {
+  color: white;
+}
+
+.newBeer {
+    width: 45%;
+    height: 60%;
+    padding: 20px 20px;
+    margin:  auto;
+    display: block;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.newBeerForm {
+  padding-top: 110px;
+  display: block;
+  margin: auto;
+  width: 40em;
+}
+
+.ng-scope {
+  background-image: url("http://i.imgur.com/gacq4zy.jpg");
+  background-size: cover;
 }
