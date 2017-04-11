@@ -17,7 +17,6 @@ router.get('/', function indexAction(req, res) {
 router.get("/:username", function(req, res) {
   Review.find({ username: req.params.username})
     .exec(function(err, reviews) {
-      console.log(reviews + "reviews for single user");
       res.json({reviews: reviews});
     });
 });
@@ -54,7 +53,6 @@ router.post('/:beerId', function createReviewAction(req, res){
   });
 
   review.save(function(error, review){
-    console.log(review);
     res.json({review:review});
   })
 

@@ -36,10 +36,21 @@ function authorized(req, res, next) {
   next();
 };
 
+function update(req, res, next) {
+  console.log(req.body.userId + "in auth");
+  User.findById(req.body.userId)
+    .then(function(foundUser) {
+      req.session.currentUser = foundUser;
+      console.log(foundUser);
+      next();
+    });
+}
+
 //Export this function below:
 
 module.exports = {
   createSecure: createSecure,
   loginUser: loginUser,
-  authorized: authorized
+  authorized: authorized,
+  update: update
 };

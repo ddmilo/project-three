@@ -1,5 +1,5 @@
 <div class="userEdit">
-	<form ng-submit="">
+	<form ng-submit="$ctrl.saveUser()">
 		<div>
 			<label for="username">User Name:</label>
 			<input type="text" name="username" ng-model="$ctrl.current.username">
@@ -7,10 +7,6 @@
 		<div>
 			<label for="email">Email:</label>
 			<input type="text" name="email" ng-model="$ctrl.current.email">
-		</div>
-		<div>
-			<label for="password">Password:</label>
-			<input type="text" name="password" ng-model="$ctrl.current.password">
 		</div>
 		<div>
 			<input type="submit" value="Save Account">

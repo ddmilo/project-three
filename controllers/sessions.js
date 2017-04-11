@@ -27,5 +27,9 @@ router.get('/logout', function(req, res){
   });
 });
 
+router.post("/updateLogin", authHelpers.update, function(req, res) {
+  res.json("success");
+});
+
 
 module.exports = router;

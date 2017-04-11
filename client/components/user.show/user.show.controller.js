@@ -13,7 +13,6 @@ function UserShowController($state, UserService){
 			vm.currentUser =  data.data;
 			UserService.currentUserReviews(data.data.username)
 				.then(function(reviews) {
-					console.log(reviews);
 					vm.currentUserReviews = reviews.data.reviews;
 				});
 		});		

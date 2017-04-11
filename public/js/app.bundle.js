@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 34);
+/******/ 	return __webpack_require__(__webpack_require__.s = 35);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -258,6 +258,39 @@ module.exports = NewReviewController;
 /* 7 */
 /***/ (function(module, exports) {
 
+UserEditController.$inject = ["UserService", "$state"];
+
+function UserEditController(UserService, $state) {
+	const vm = this;
+
+	vm.current = {};
+	vm.oldUser = null;
+	vm.saveUser = saveUser;
+
+	activate();
+
+	function activate() {
+		UserService.sessionUser().then(function (data) {
+			vm.current = data.data;
+			vm.oldUser = data.data.username;
+		});
+	}
+
+	function saveUser() {
+		UserService.updateUser(vm.oldUser, vm.current).then(function (data) {
+			UserService.updateSession(data.data.user._id).then(function () {
+				$state.go("userShow");
+			});
+		});
+	}
+}
+
+module.exports = UserEditController;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
 UserShowController.$inject = ['$state', 'UserService'];
 
 function UserShowController($state, UserService) {
@@ -271,7 +304,6 @@ function UserShowController($state, UserService) {
 		UserService.sessionUser().then(function (data) {
 			vm.currentUser = data.data;
 			UserService.currentUserReviews(data.data.username).then(function (reviews) {
-				console.log(reviews);
 				vm.currentUserReviews = reviews.data.reviews;
 			});
 		});
@@ -281,7 +313,7 @@ function UserShowController($state, UserService) {
 module.exports = UserShowController;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const angular = __webpack_require__(25);
@@ -331,7 +363,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
@@ -345,7 +377,7 @@ const AuthComponent = {
 angular.module('DevHops').component('auth', AuthComponent);
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
@@ -359,7 +391,7 @@ const component = {
 angular.module('DevHops').component('beerNew', component);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(2);
@@ -373,7 +405,7 @@ const component = {
 angular.module('DevHops').component('beerShow', component);
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(3);
@@ -387,7 +419,7 @@ const component = {
 angular.module('DevHops').component('beer', component);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(4);
@@ -401,7 +433,7 @@ const RegisterComponent = {
 angular.module('DevHops').component('register', RegisterComponent);
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(5);
@@ -415,7 +447,7 @@ const component = {
 angular.module("DevHops").component("reviewEdit", component);
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(6);
@@ -429,11 +461,11 @@ const component = {
 angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(17);
-const template = __webpack_require__(35);
+const controller = __webpack_require__(7);
+const template = __webpack_require__(33);
 
 const component = {
 	controller: controller,
@@ -443,33 +475,11 @@ const component = {
 angular.module("DevHops").component("userEdit", component);
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports) {
-
-UserEditController.$inject = ["UserService"];
-
-function UserEditController(UserService) {
-	const vm = this;
-
-	vm.current = {};
-
-	activate();
-
-	function activate() {
-		UserService.sessionUser().then(function (data) {
-			vm.current = data.data;
-		});
-	}
-}
-
-module.exports = UserEditController;
-
-/***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(7);
-const template = __webpack_require__(33);
+const controller = __webpack_require__(8);
+const template = __webpack_require__(34);
 
 const UserShowComponent = {
   controller: controller,
@@ -573,6 +583,8 @@ function UserService($http) {
   self.newUser = {};
   self.sessionUser = sessionUser;
   self.currentUserReviews = currentUserReviews;
+  self.updateUser = updateUser;
+  self.updateSession = updateSession;
 
   function addNewUser(newUser) {
     return $http.post('/api/users', newUser);
@@ -586,6 +598,12 @@ function UserService($http) {
   }
   function currentUserReviews(username) {
     return $http.get(`/api/review/${username}`);
+  }
+  function updateUser(id, user) {
+    return $http.patch(`/api/users/${id}`, user);
+  }
+  function updateSession(user) {
+    return $http.post("/api/sessions/updateLogin", { userId: user });
   }
 }
 
@@ -38679,7 +38697,7 @@ module.exports = "<div class=\"newBeer\">\n<form ng-submit = \"$ctrl.addBeer()\"
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
+module.exports = "\n<div class=\"beerShow\">\n    <img ng-src=\"{{$ctrl.current.imageUrl}}\"><br>\n    Name: {{$ctrl.current.name}} <br>\n    Type: {{$ctrl.current.type}} <br>\n    Brewery:{{$ctrl.current.brewery}}<br>\n    Alcohol:{{$ctrl.current.alcoholPer}}<br>\n  <h1>Reviews</h1>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n    </div>\n    <h1>New Review</h1>\n<review-new></review-new>\n";
 
 /***/ }),
 /* 29 */
@@ -38709,42 +38727,42 @@ module.exports = "<div class=\"reviewNew\">\n<form ng-submit = \"$ctrl.addReview
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n";
+module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"$ctrl.saveUser()\">\n\t\t<div>\n\t\t\t<label for=\"username\">User Name:</label>\n\t\t\t<input type=\"text\" name=\"username\" ng-model=\"$ctrl.current.username\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"email\">Email:</label>\n\t\t\t<input type=\"text\" name=\"email\" ng-model=\"$ctrl.current.email\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Account\">\n\t\t</div>\n\t</form>\n</div>";
 
 /***/ }),
 /* 34 */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n";
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(8);
 __webpack_require__(9);
-__webpack_require__(0);
 __webpack_require__(10);
-__webpack_require__(1);
+__webpack_require__(0);
 __webpack_require__(11);
-__webpack_require__(2);
+__webpack_require__(1);
 __webpack_require__(12);
-__webpack_require__(3);
+__webpack_require__(2);
 __webpack_require__(13);
-__webpack_require__(4);
+__webpack_require__(3);
 __webpack_require__(14);
-__webpack_require__(5);
+__webpack_require__(4);
 __webpack_require__(15);
-__webpack_require__(6);
+__webpack_require__(5);
 __webpack_require__(16);
+__webpack_require__(6);
 __webpack_require__(17);
-__webpack_require__(18);
 __webpack_require__(7);
+__webpack_require__(18);
+__webpack_require__(8);
 __webpack_require__(19);
 __webpack_require__(20);
 __webpack_require__(21);
 module.exports = __webpack_require__(22);
 
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"\">\n\t\t<div>\n\t\t\t<label for=\"username\">User Name:</label>\n\t\t\t<input type=\"text\" name=\"username\" ng-model=\"$ctrl.current.username\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"email\">Email:</label>\n\t\t\t<input type=\"text\" name=\"email\" ng-model=\"$ctrl.current.email\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"password\">Password:</label>\n\t\t\t<input type=\"text\" name=\"password\" ng-model=\"$ctrl.current.password\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Account\">\n\t\t</div>\n\t</form>\n</div>";
 
 /***/ })
 /******/ ]);

@@ -7,6 +7,7 @@
     Alcohol:{{$ctrl.current.alcoholPer}}<br>
   <h1>Reviews</h1>
   <div ng-repeat="review in $ctrl.current.reviews">
+    <div>{{review.username}}</div>
     <div>Language: {{review.pairing}}</div>
     <div>{{review.rating}}/5</div>
     <div>{{review.content}}</div>

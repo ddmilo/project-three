@@ -13,6 +13,8 @@ function UserService($http){
   self.newUser = {};
   self.sessionUser = sessionUser;
   self.currentUserReviews = currentUserReviews;
+  self.updateUser = updateUser;
+  self.updateSession = updateSession;
 
 
 
@@ -28,5 +30,11 @@ function UserService($http){
   }
   function currentUserReviews(username) {
     return $http.get(`/api/review/${username}`);
+  }
+  function updateUser(id, user) {
+    return $http.patch(`/api/users/${id}`, user);
+  }
+  function updateSession(user) {
+    return $http.post("/api/sessions/updateLogin", {userId: user});
   }
 }
