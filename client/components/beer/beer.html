@@ -1,18 +1,28 @@
-<main>
-<div id = "beer" style="height: 800px; width: 500px;">...</div>
-<div class ="beer">
-<div class="container">
-<li ng-show="$ctrl.loading">
-  <strong>Loading...</strong>
-</li>
-<ul class="beerColor">
-<li ng-hide="$ctrl.loading" ng-repeat="beer in $ctrl.beer"><a ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
-</ul>
-<!-- <ul>
-<li ng-repeat="beer in $ctrl.all"><a ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
-</ul> -->
 
-<button class="beerColor"><a ui-sref="beerNew">Add Beer</button>
-</div>
-</div>
+<main>
+  <div id ="beer" style="height: 800px; width: 500px;">...</div>
+    <div class ="beer">
+      <div class="container">
+      	<li ng-show="$ctrl.loading">
+        		<strong>Loading...</strong>
+      	</li>
+        <div ng-hide="$ctrl.loading">
+        <h3>Sort By Pairing Rating (Highest To Lowest):</h3>
+		    <div>
+          <a ng-click=""></a> |
+          <a ng-click=""></a> |
+          <a ng-click=""></a> |
+          <a ng-click=""></a> |
+          <a ng-click=""></a> |
+          <a ng-click=""></a> |
+          <a ng-click=""></a> |
+          <a ng-click=""></a>
+        </div>
+		    <button class="beerColor"><a ui-sref="beerNew">Add Beer</button>
+    		<ul class="beerColor">
+    			<li ng-repeat="beer in $ctrl.beer"><a ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
+    		</ul>
+      </div>
+    </div>
+  </div>
 <main>
