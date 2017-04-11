@@ -1,26 +1,27 @@
 
-<main>
-  <div id ="beer" style="height: 800px; width: 500px;">...</div>
-      <div class="container">
+<main id="beerMain">
+  <div id ="beer" style="height: 500px; width: 200px;">...</div>
+      <div class="container1">
         <div class ="beer">
       	<li ng-show="$ctrl.loading">
         		<strong>Loading...</strong>
       	</li>
-        <div ng-hide="$ctrl.loading">
-        <h3>Sort By Pairing Rating (Highest To Lowest):</h3>
+        <div class ="pairing" ng-hide="$ctrl.loading">
+        <h3>Sort By Pairing Rating (Highest To Lowest)</h3>
+        <nav >
 		    <div>
-          <a ng-click=""></a> |
-          <a ng-click=""></a> |
-          <a ng-click=""></a> |
-          <a ng-click=""></a> |
-          <a ng-click=""></a> |
-          <a ng-click=""></a> |
-          <a ng-click=""></a> |
-          <a ng-click=""></a>
+          <a class="iconNav" ng-click=""><img ng-src="/image/js.png" style="height:20px; width:20px;" data-toggle="tooltip" data-placement="top" title="Javascript"></a>
+          <a class="iconNav" ng-click=""><img ng-src="/image/java.png" style="height:30px; width:30px;" data-toggle="tooltip" data-placement="top" title="Java"></a>
+          <a class="iconNav" ng-click=""><img ng-src="/image/C.png" style="height:30px; width:30px;" data-toggle="tooltip" data-placement="top" title="C"></a>
+          <a class="iconNav" ng-click=""><img ng-src="/image/python.png" style="height:30px; width:40px;" data-toggle="tooltip" data-placement="top" title="Python" "></a>
+          <a class="iconNav" ng-click=""><img ng-src="/image/ruby.png" style="height:20px; width:20px;" data-toggle="tooltip" data-placement="top" title="Ruby"></a>
+          <a class="iconNav" ng-click=""><img ng-src="/image/HTML.png" style="height:25px; width:30px;" data-toggle="tooltip" data-placement="top" title="HTML"></a>
+          <a class="iconNav" ng-click=""><img ng-src="/image/css.png" style="height:25px; width:20px;" data-toggle="tooltip" data-placement="top" title="CSS"></a>
         </div>
-		    <button class="beerColor"><a ui-sref="beerNew">Add Beer</button>
-    		<ul class="beerColor">
-    			<li ng-repeat="beer in $ctrl.beer"><a ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
+        </nav>
+    		<ul>
+    			<li ng-repeat="beer in $ctrl.beer"><a class="beerColor2" ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
+          <button class="beerColor"><a class="beerColor1" ui-sref="beerNew">Add Beer</button>
     		</ul>
       </div>
     </div>
