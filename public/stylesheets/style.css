@@ -1,10 +1,25 @@
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Alice', serif;
+}
+body {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
 
 a {
   color: #00B7FF;
 }
-
+/*.rating > span:hover:before {
+   content: "\2605";
+   position: absolute;
+}*/
 @import "bourbon";
 
+/*body {
+  background: #eee !important;
+}*/
 
 .wrapper {
   margin-top: 80px;
@@ -21,8 +36,9 @@ a {
 
   .form-signin-heading,
   .checkbox {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
   }
+
 
   .checkbox {
     font-weight: normal;
@@ -55,13 +71,6 @@ a {
   }
 }*/
 
-.newBeer {
-  display: block;
-  text-align: center;
-  margin: auto;
-  position: relative;
-}
-
 .jumbotron{
   background-image: url('../image/DEvHops.png');
   background-repeat: no-repeat;
@@ -76,18 +85,22 @@ a {
   background-size: 100% 100%;*/
 
 }
+.navbar-nav{
+  position: relative;
+  left: 65%;
 
+}
 #account{
 font-family: 'Libre Baskerville', serif;
 font-style: italic;
 
 }
-/*nav{
+nav{
   background-image: url('../image/footer.jpg');
   background-repeat: no-repeat;
   background-size: contain;
   background-color: black !important;
-}*/
+}
 footer{
   background-color: black;
   height: 100px;
@@ -105,7 +118,6 @@ footer{
   padding: 55px;
 }
 #beerNew{
-  background-image: url('../image/beerIndex.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -121,28 +133,53 @@ main{
   margin-top:-2%;
 }
 #beer{
-  background-image: url('http://7345-presscdn-0-16.pagely.netdna-cdn.com/wp-content/blogs.dir/1/files/2012/06/varieties-of-beer-400x532.jpg');
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
   left: 58%;
- margin-top: 25px;
+  margin-top: 25px;
   margin-bottom: -23%;
   color: rgba(0,0,0,0);
   z-index: 1;
   opacity: 0.6;
 }
-/*.container{
+.container{
   position: absolute;
   bottom:80%;
   color: #914827;
-}*/
+}
 
 .beerColor{
   color: #914827;
 }
-nav{
-  background-color: black !important;
+
+label {
+  color: white;
+}
+
+.newBeer {
+    width: 45%;
+    height: 60%;
+    padding: 20px 20px;
+    margin:  auto;
+    display: block;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.newBeerForm {
+  padding-top: 110px;
+  display: block;
+  margin: auto;
+  width: 40em;
+}
+
+.ng-scope {
+  background-image: url("http://i.imgur.com/gacq4zy.jpg");
+  background-size: cover;
 }
 
 .container-register {
