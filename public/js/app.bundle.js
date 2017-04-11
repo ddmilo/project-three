@@ -38612,7 +38612,7 @@ module.exports = "<div class = \"beer\">\n<li ng-show=\"$ctrl.loading\">\n  <str
 /* 28 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"newUser\">\n<h1>Create Account</h1>\n<form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n<div>\n  <label>UserName</label>\n  <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n  <br>\n  <label>Password</label>\n  <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n  <br>\n  <label>Email</label>\n  <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n  <br>\n  <input type=\"submit\" value='create account'>\n</form>\n</div>\n</div>\n";
+module.exports = "<!-- <div class=\"jumbotron\"> -->\n <div class=\"jumbotron\">\n     <div class=\"container\" style=\"height: 240px;\">...</div>\n\n</div>\n\n  <div class=\"newUser\">\n    <h2 id=\"account\">Create Account</h2>\n    <form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n      <div>\n        <label>UserName</label>\n        <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n        <br>\n        <label>Password</label>\n        <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n        <br>\n        <label>Email</label>\n        <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n        <br>\n        <input type=\"submit\" value='create account'>\n      </div>\n    </form>\n  </div>\n\n<!--    <div class=\"wrapper\">\n    <form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n      <h2 class=\"form-signin-heading\">Register</h2>\n     <input type=\"text\" class=\"form-control\" name=\"username\" placeholder=\"username\" required=\"\" autofocus=\"\" />\n      <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Create Register</button>\n    </form>\n  </div> -->\n";
 
 /***/ }),
 /* 29 */
@@ -38651,7 +38651,7 @@ module.exports = __webpack_require__(20);
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"userInfo\">\n<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>{{$ctrl.currentUser.email}}</h3>\n</div>\n\n<h1>{{$ctrl.currentUser.username}}</h1>\n<<<<<<< HEAD\n\n\n=======\n<<<<<<< HEAD\n<h1>{{$ctrl.currentUser.email}}</h1>\n=======\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n\t\n>>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b\n>>>>>>> 8124e42b57e2d9da9715f2b577a81e6d58ce1c70\n";
+module.exports = "\n<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>{{$ctrl.currentUser.email}}</h3>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n\n\n\n";
 
 /***/ })
 /******/ ]);

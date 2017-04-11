@@ -1,18 +1,6 @@
 
-<div class="userInfo">
 <h1>{{$ctrl.currentUser.username}}</h1>
 <h3>{{$ctrl.currentUser.email}}</h3>
-</div>
-
-<h1>{{$ctrl.currentUser.username}}</h1>
-<<<<<<< HEAD
-
-
-=======
-<<<<<<< HEAD
-<h1>{{$ctrl.currentUser.email}}</h1>
-=======
-<h3>Email: {{$ctrl.currentUser.email}}</h3>
 <div ng-repeat="review in $ctrl.currentUserReviews">
 	<div>
 		{{review.rating}}/5
@@ -26,7 +14,6 @@
 	<div>
 		<a ui-sref="reviewEdit({reviewId: review._id})">Edit Review</a>
 	</div>
-</div>
-	
->>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b
->>>>>>> 8124e42b57e2d9da9715f2b577a81e6d58ce1c70
+
+
+

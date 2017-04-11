@@ -29,11 +29,10 @@ router.post('/:beerId', function createReviewAction(req, res){
     content: req.body.content,
     pairing: req.body.pairing,
     rating: req.body.rating,
-<<<<<<< HEAD
-    username: req.session.currentUser
-=======
+
+
     username: req.session.currentUser.username
->>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b
+
   });
 
   review.save(function(error, review){
