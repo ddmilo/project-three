@@ -39,6 +39,7 @@ a {
   margin-bottom: 30px;
   }
 
+
   .checkbox {
     font-weight: normal;
   }
@@ -67,6 +68,7 @@ a {
     border-top-right-radius: 0;
   }
 }
+
 .jumbotron{
   background-image: url('../image/DEvHops.png');
   background-repeat: no-repeat;
