@@ -1,8 +1,6 @@
 <h1>{{$ctrl.currentUser.username}}</h1>
-
-<h1>{{$ctrl.currentUser.email}}</h1>
-
 <h3>Email: {{$ctrl.currentUser.email}}</h3>
+<p><a ui-sref="userEdit">Edit Account</a></p>
 <div ng-repeat="review in $ctrl.currentUserReviews">
 	<div>
 		{{review.rating}}/5

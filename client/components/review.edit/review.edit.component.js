@@ -9,3 +9,4 @@ const component = {
 angular
 	.module("DevHops")
 	.component("reviewEdit", component);
+	

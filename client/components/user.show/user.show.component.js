@@ -1,6 +1,7 @@
 const controller = require('./user.show.controller.js')
 const template = require('./user.show.html');
 
+
 const UserShowComponent = {
   controller: controller,
   template: template
@@ -8,4 +9,6 @@ const UserShowComponent = {
 
 angular
   .module('DevHops')
+
   .component('userShow', UserShowComponent);
+
