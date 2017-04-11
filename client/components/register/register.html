@@ -1,17 +1,21 @@
-<div class="newUser">
-  <h1>Create Account</h1>
-  <form ng-submit = "$ctrl.addNewUser()" method="POST">
-    <div>
-      <label>UserName</label>
-      <input type = "text" name= "username" ng-model='$ctrl.newUser.username'>
-      <br>
-      <label>Password</label>
-      <input type="password" name="password" ng-model='$ctrl.newUser.password'>
-      <br>
-      <label>Email</label>
-      <input type="text" name="email" ng-model='$ctrl.newUser.email'>
-      <br>
-      <input type="submit" value='create account'>
-    </div>
-  </form>
+<div class="jumbotron">
+  <div class="container" style="height: 240px;">...</div>
+  <div class="newUser">
+    <h2 id="account">Create Account</h2>
+    <form ng-submit = "$ctrl.addNewUser()" method="POST">
+      <div>
+        <label>UserName</label>
+        <input type = "text" name= "username" ng-model='$ctrl.newUser.username'>
+        <br>
+        <label>Password</label>
+        <input type="password" name="password" ng-model='$ctrl.newUser.password'>
+        <br>
+        <label>Email</label>
+        <input type="text" name="email" ng-model='$ctrl.newUser.email'>
+        <br>
+        <input type="submit" value='create account'>
+      </div>
+    </form>
+  </div>
 </div>
+
