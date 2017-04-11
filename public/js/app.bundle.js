@@ -70,16 +70,7 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-//NOT SURE IF WE NEED THIS, MAY NEED TO DELETE
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-AuthController.$inject = ['$stateParams', 'UserService'];
-
-function AuthController() {
-  const vm = this;
-}
-
-module.exports = AuthController;
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/liamtrobinson/project-three/client/components/auth/auth.controller.js'");
 
 /***/ }),
 /* 1 */
@@ -174,6 +165,7 @@ function BeerController(BeerService) {
   //WHAT IT DOES
   vm.beer = [];
   vm.loading = true;
+  vm.orderBy = null;
 
   //ACTIVATION
   activate();
@@ -457,11 +449,9 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const controller = __webpack_require__(0);
 const template = __webpack_require__(26);
 
 const AuthComponent = {
-  controller: controller,
   template: template
 };
 
@@ -38814,7 +38804,7 @@ module.exports = "\n<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.im
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class = \"beer\">\n\t<li ng-show=\"$ctrl.loading\">\n  \t\t<strong>Loading...</strong>\n\t</li>\n\t<ul>\n\t\t<li ng-hide=\"$ctrl.loading\" ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\t</ul>\n\t<button><a ui-sref=\"beerNew\">Add Beer</button>\n</div>\n";
+module.exports = "<div class = \"beer\">\n\t<li ng-show=\"$ctrl.loading\">\n  \t\t<strong>Loading...</strong>\n\t</li>\n\t<div ng-hide=\"$ctrl.loading\">\n\t\t<h3>Sort By Pairing Rating (Highest To Lowest):</h3>\n\t\t<div>\n\t\t\t<a ng-click=\"\"></a> | \n\t\t\t<a ng-click=\"\"></a> | \n\t\t\t<a ng-click=\"\"></a> | \n\t\t\t<a ng-click=\"\"></a> | \n\t\t\t<a ng-click=\"\"></a> | \n\t\t\t<a ng-click=\"\"></a> | \n\t\t\t<a ng-click=\"\"></a> | \n\t\t\t<a ng-click=\"\"></a>\n\t\t</div>\n\t\t<button><a ui-sref=\"beerNew\">Add Beer</button>\n\t\t<ul>\n\t\t\t<li ng-repeat=\"beer in $ctrl.beer\"><a ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\t\t</ul>\n\t</div>\t\n</div>\n";
 
 /***/ }),
 /* 30 */

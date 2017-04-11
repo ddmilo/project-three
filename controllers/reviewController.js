@@ -5,14 +5,6 @@ var bodyParser = require('body-parser');
 var Review = require('../models/review.model.js');
 var Beer = require('../models/beer.model.js');
 
-//NOT SURE WHAT THIS IS DOING, MAY NEED TO DELETE
-router.get('/', function indexAction(req, res) {
-  Review.find(function(error, review){
-    if(error) res.json({messsage:'could not find reviews'});
-    res.json({review:review});
-  }).select('-__v');
-});
-
 //FIND ALL REVIEWS BY CURRENT USER
 router.get("/:username", function(req, res) {
   Review.find({ username: req.params.username})

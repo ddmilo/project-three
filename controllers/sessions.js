@@ -4,7 +4,7 @@ var router = express.Router();
 var User = require('../models/user.model.js');
 var authHelpers = require('../helpers/auth.js');
 
-//NOT SURE WHAT THIS IS DOING, MAY NEED TO DELETE
+//FOR LOGIN USER
 router.get('/login', function(req, res) {
   res.json('api/sessions/login.');
 });

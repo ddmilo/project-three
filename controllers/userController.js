@@ -8,15 +8,6 @@ var authHelper = require('../helpers/auth.js');
 var Review = require("../models/review.model.js");
 var Beer = require("../models/beer.model.js");
 
-//NOT SURE WHAT THIS ROUTE IS DOING, MAY NEED TO DELETE
-router.get('/', function indexAction(req, res) {
-  User.find(function(error, user){
-    if(error) res.json({message:''});
-
-    res.json({Users: user});
-  }).select('-__v');
-});
-
 //CREATE NEW USER POST ROUTE
 router.post('/', authHelper.createSecure, function createAction(req, res){
   var user = new User({

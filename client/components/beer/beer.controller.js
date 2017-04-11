@@ -8,6 +8,7 @@ function BeerController(BeerService) {
   //WHAT IT DOES
   vm.beer = [];
   vm.loading = true;
+  vm.orderBy = null;
 
   //ACTIVATION
   activate();

@@ -29,7 +29,7 @@ function loginUser(req, res, next) {
   });
 }
 
-//NOT SURE WHAT THIS IS DOING, MAY NEED TO DELETE
+//AUTHORIZATION CHECK
 function authorized(req, res, next) {
   console.log(req.session.currentUser);
   console.log(req.params.id)
