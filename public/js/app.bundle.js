@@ -38832,7 +38832,7 @@ module.exports = "\n<main>\n  <div id =\"beer\" style=\"height: 800px; width: 50
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id = 'landing' class=\"jumbotron\">\n  <div class='empty'>\n   <input class=\"btn btn-success enter-button\" value =\"Enter\">\n  </div>\n</div>\n";
+module.exports = "<div id = 'landing' class=\"jumbotron\">\n  <div class='empty'>\n   <a ui-sref=\"beer\" class=\"btn btn-warning enter-button\">if (age >= 21) {$(this).click()}</a>\n  </div>\n</div>\n";
 
 /***/ }),
 /* 32 */
