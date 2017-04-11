@@ -38835,7 +38835,7 @@ module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"$ctrl.saveUser()
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<h1>{{$ctrl.currentUser.username}}</h1>\n<<<<<<< HEAD\n<h3>{{$ctrl.currentUser.email}}</h3>\n<<<<<<< HEAD\n=======\n</div>\n\n<h1>{{$ctrl.currentUser.username}}</h1>\n<<<<<<< HEAD\n\n\n=======\n<<<<<<< HEAD\n<h1>{{$ctrl.currentUser.email}}</h1>\n=======\n=======\n>>>>>>> e41a81799a6fc8e75fd104e2199c43c32f53551f\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n>>>>>>> master\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n<<<<<<< HEAD\n\n\n\n=======\n</div>\n\t\n<<<<<<< HEAD\n>>>>>>> dd82873f2bfce1dc3756ffbaf7ea1cc052c77a7b\n>>>>>>> 8124e42b57e2d9da9715f2b577a81e6d58ce1c70\n=======\n>>>>>>> e41a81799a6fc8e75fd104e2199c43c32f53551f\n>>>>>>> master\n";
+module.exports = "\n<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n";
 
 /***/ }),
 /* 35 */
