@@ -38805,7 +38805,7 @@ module.exports = "\n<main>\n  <div id =\"beer\" style=\"height: 800px; width: 50
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron\" style=\"height: 340px;\">...</div>\n  <div class=\"container\" >\n  <div class=\"newUser\">\n    <h2 id=\"account\">Create Account</h2>\n    <form ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n      <div>\n        <label>UserName</label>\n        <input type = \"text\" name= \"username\" ng-model='$ctrl.newUser.username'>\n        <br>\n        <label>Password</label>\n        <input type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'>\n        <br>\n        <label>Email</label>\n        <input type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email'>\n        <br>\n        <input type=\"submit\" value='create account'>\n      </div>\n    </form>\n  </div>\n</div>\n\n";
+module.exports = "<div class=\"jumbotron\" style=\"height: 340px;\">...\n\n</div>\n\n<div class=\"container-register\" >\n <div class=\"newUser form-group\">\n  <h2 id=\"account\">Create Account</h2>\n  <form class ='form-control register-form' ng-submit = \"$ctrl.addNewUser()\" method=\"POST\">\n    <div>\n      <input class=\"input-group\" type = \"text\" name= \"username\" placeholder='Username' ng-model='$ctrl.newUser.username'>\n      <br>\n      <input class=\"input-group\" type=\"password\" name=\"password\" ng-model='$ctrl.newUser.password'placeholder='Password'>\n      <br>\n      <input class=\"input-group\" type=\"text\" name=\"email\" ng-model='$ctrl.newUser.email' placeholder='Email'>\n      <br>\n      <button class= 'btn btn-success'type=\"submit\" value='create account'>Create Account</button>\n    </div>\n  </form>\n </div>\n</div>\n";
 
 /***/ }),
 /* 30 */
