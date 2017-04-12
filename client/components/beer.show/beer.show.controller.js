@@ -1,18 +1,20 @@
 //INJECTIONS
-BeerShowController.$inject = ['$stateParams', 'BeerService'];
+BeerShowController.$inject = ['$stateParams', 'BeerService', "UserService"];
 
 //CONTROLLER
-function BeerShowController($stateParams, BeerService) {
+function BeerShowController($stateParams, BeerService, UserService) {
   const vm = this;
 
   //WHAT IT DOES
   vm.current = {};
   vm.currentAverages = [];
+  vm.currentUser = null;
 
   //ACTIVATION
   activate();
   function activate() {
     loadCurrentBeer();
+    currentUser();
   }
   function loadCurrentBeer() {
   console.log($stateParams);
@@ -44,6 +46,13 @@ function BeerShowController($stateParams, BeerService) {
       }
       vm.currentAverages.push({type: type, average: average});
     });
+  }
+  function currentUser() {
+    UserService
+      .sessionUser()
+      .then(function(data) {
+        vm.currentUser = data.data;
+      });
   }
 }
 

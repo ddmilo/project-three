@@ -20,6 +20,7 @@
     <div>{{review.content}}</div>
   </div>
 </div>
-<h2>New Review</h2>
-<review-new></review-new>
-
+<div ng-if="$ctrl.currentUser">
+  <h2>New Review</h2>
+  <review-new></review-new>
+</div>

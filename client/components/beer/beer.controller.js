@@ -29,7 +29,6 @@ function BeerController(BeerService) {
   function averages() {
     var types = ["Javascript", "HTML", "CSS", "Ruby", "Python", "C", "Java", "PHP"];
     vm.beer.forEach(function(beer) {
-      beer.averages = [];
       types.forEach(function(type) {
         var total = 0;
         var count = null;
@@ -47,7 +46,6 @@ function BeerController(BeerService) {
         else {
           average = "N/A";
         }
-        beer.averages.push({type: type, average: average});
         beer[type] = average;
       });
     });
@@ -56,7 +54,6 @@ function BeerController(BeerService) {
   //HOW IT DOES IT
   function changeOrder(type) {
     vm.orderBy = type;
-    console.log(vm.orderBy);
   }
 }
 

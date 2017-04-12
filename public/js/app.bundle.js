@@ -97,20 +97,22 @@ module.exports = NewBeerController;
 /***/ (function(module, exports) {
 
 //INJECTIONS
-BeerShowController.$inject = ['$stateParams', 'BeerService'];
+BeerShowController.$inject = ['$stateParams', 'BeerService', "UserService"];
 
 //CONTROLLER
-function BeerShowController($stateParams, BeerService) {
+function BeerShowController($stateParams, BeerService, UserService) {
   const vm = this;
 
   //WHAT IT DOES
   vm.current = {};
   vm.currentAverages = [];
+  vm.currentUser = null;
 
   //ACTIVATION
   activate();
   function activate() {
     loadCurrentBeer();
+    currentUser();
   }
   function loadCurrentBeer() {
     console.log($stateParams);
@@ -138,6 +140,11 @@ function BeerShowController($stateParams, BeerService) {
         average = "N/A";
       }
       vm.currentAverages.push({ type: type, average: average });
+    });
+  }
+  function currentUser() {
+    UserService.sessionUser().then(function (data) {
+      vm.currentUser = data.data;
     });
   }
 }
@@ -178,7 +185,6 @@ function BeerController(BeerService) {
   function averages() {
     var types = ["Javascript", "HTML", "CSS", "Ruby", "Python", "C", "Java", "PHP"];
     vm.beer.forEach(function (beer) {
-      beer.averages = [];
       types.forEach(function (type) {
         var total = 0;
         var count = null;
@@ -195,7 +201,6 @@ function BeerController(BeerService) {
         } else {
           average = "N/A";
         }
-        beer.averages.push({ type: type, average: average });
         beer[type] = average;
       });
     });
@@ -204,7 +209,6 @@ function BeerController(BeerService) {
   //HOW IT DOES IT
   function changeOrder(type) {
     vm.orderBy = type;
-    console.log(vm.orderBy);
   }
 }
 
@@ -38828,7 +38832,7 @@ module.exports = "\n<main class= \"newBeerForm\" style=\"height: 800px; width: 1
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imageUrl}}\">\n  <br>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Type: {{$ctrl.current.type}}\n  <br>\n  Brewery:{{$ctrl.current.brewery}}\n  <br>\n  Alcohol:{{$ctrl.current.alcoholPer}}\n  <br>\n  <div ng-repeat=\"average in $ctrl.currentAverages\">\n    {{average.type}}: {{average.average}}\n  </div>\n  <h2>Reviews</h2>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n</div>\n<h2>New Review</h2>\n<review-new></review-new>\n\n";
+module.exports = "<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imageUrl}}\">\n  <br>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Type: {{$ctrl.current.type}}\n  <br>\n  Brewery:{{$ctrl.current.brewery}}\n  <br>\n  Alcohol:{{$ctrl.current.alcoholPer}}\n  <br>\n  <div ng-repeat=\"average in $ctrl.currentAverages\">\n    {{average.type}}: {{average.average}}\n  </div>\n  <h2>Reviews</h2>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n</div>\n<div ng-if=\"$ctrl.currentUser\">\n  <h2>New Review</h2>\n  <review-new></review-new>\n</div>\n";
 
 /***/ }),
 /* 30 */
