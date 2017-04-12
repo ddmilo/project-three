@@ -15,7 +15,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider){
   //NOT SURE IF WE ARE USING THIS ONE, MAY NEED TO DELETE
     .state('home', {
       url: '/',
-      template: '<auth></auth>'
+      template: '<home></home>'
     })
   //OR THIS ONE, MAY NEED TO DELETE
 		.state('log-out', {

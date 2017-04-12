@@ -1,26 +1,8 @@
-/*body {
-/*  padding: 50px;*/
-/*  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}*/
-/*nav{
-  padding-bottom: 20px;
-}*/
-a {
-  color: #00B7FF;
-}
-/*.rating > span:hover:before {
-   content: "\2605";
-   position: absolute;
-}*/
-@import "bourbon";
-
-/*body {
-  background: #eee !important;
-}*/
-
 .wrapper {
-  margin-top: 80px;
-  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-top: 10%;
 }
 
 .form-signin {
@@ -46,7 +28,7 @@ a {
     height: auto;
     padding: 10px;
     @include box-sizing(border-box);
-
+    background-color: inherit;
     &:focus {
       z-index: 2;
     }
@@ -77,76 +59,151 @@ a {
   background-repeat: no-repeat;
   background-size: 100% 100% ;
   margin-top:-20px;
-
-/*-webkit-background-size:100% 100% ;
+  margin-bottom: -2px;
+-webkit-background-size:100% 100% ;
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
-  background-size: 100% 100%;*/
+  background-size: 100% 100%;
 
 }
-.navbar-nav{
-  position: relative;
-  left: 65%;
 
-}
 #account{
 font-family: 'Libre Baskerville', serif;
 font-style: italic;
 
 }
-nav{
-    background-image: url('../image/footer.jpg');
-  background-repeat: no-repeat;
-  background-size: contain;
-   background-color: black !important;
-}
-footer{
-  background-color: black;
-  margin-top: 10%;
-  padding-top: 20px;
-}
+
 .newUser{
   position: relative;
   left: 35%;
   text-align:center;
-  border: 6px solid black;
+  /*border: 6px solid black;*/
   width: 400px;
-  height: 200px;
+  height: 350px;
+  padding: 55px;
 }
-#beerNew{
-  background-image: url('../image/beerIndex.jpg');
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  position: relative;
-  left: 68%;
-  margin-top:-13%;
-  margin-bottom: -10%;
-  color: rgba(0,0,0,0);
-  z-index: -1;
+.beerColor1{
+  color: white;
 }
-main{
-  background-color: rgba(39, 25, 19, 1.0);
-  background-size: 100%;
-  margin-top:-2%;
-}
-#beer{
-  background-image: url('http://7345-presscdn-0-16.pagely.netdna-cdn.com/wp-content/blogs.dir/1/files/2012/06/varieties-of-beer-400x532.jpg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  position: relative;
-  left: 58%;
- margin-top: 25px;
-  margin-bottom: -23%;
-  color: rgba(0,0,0,0);
-  z-index: 1;
-  opacity: 0.6;
-}
-.container{
-  position: absolute;
-  bottom:80%;
-  color: #914827;
+.beerColor2{
+  color:black;
 }
 
+nav{
+  background-color: black !important;
+  color:white;
+
+}
+.pairing{
+  border:5px solid black;
+  background-color: rgba(255,255,255,0.4);
+
+}
+#beer{
+ color: rgba(0,0,0,0);
+}
 .beerColor{
-  color: #914827;
+  background-color: black;
+}
+#beerMain{
+  background-image: url('../image/main.jpg');
+  background-color: rgba(0,0,0,0.3);
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ padding-right: 12%;
+font-family: 'Crimson Text', serif;
+font-style: bold;
+}
+
+li{
+  list-style: none;
+}
+.iconNav{
+padding-right: 20px;
+padding-left: 20px;
+}
+#authMain{
+  background-color: #fbf7e9;
+  height: 100vh;
+}
+footer{
+  background-color: black;
+  height: 100px;
+  /*padding-top: 20px;*/
+}
+.container-register {
+  background-color: #fbf7e9;
+  /*margin:;*/
+  /*padding: ;*/
+  height: 500px;
+}
+footer p {
+  text-align: center;
+  color: white;
+}
+.GA-logo {
+  height: 15px;
+  position: relative;
+}
+#landing{
+  background-image: url("/image/devhopslogo.jpg");
+  height: 100vh;
+  width: 100vw;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+.enter-button {
+    /*margin: 55vh 40vw 0 auto 40vw;*/
+    max-height: 30px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+}
+.empty{
+  padding-top: 175px;
+  padding-right: 45px;
+  padding-left:  45px;
+}
+@media screen and (min-width: 758px){
+  .empty {
+    padding-top: 260px;
+  }
+}
+.newBeer {
+   width: 45%;
+   height: 60%;
+   padding: 20px 20px;
+   margin:  auto;
+   display: block;
+   border: 2px solid #ccc;
+   border-radius: 7px;
+   box-sizing: border-box;
+   text-align: center;
+
+}
+.newBeer label{
+ color: white;
+}
+.newBeerForm {
+ padding-top: 110px;
+ display: block;
+ margin: auto;
+ width: 40em;
+ background-image: url('http://i.imgur.com/gacq4zy.jpg');
+ background-repeat: no-repeat;
+ background-size: 100% 100%;
+}
+
+h1 {
+ color: white;
+ text-align: center;
+ font-size: 50px;
+ font-family: ‘Alice’, serif;
 }

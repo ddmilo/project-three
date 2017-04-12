@@ -1,21 +1,20 @@
-<div class="jumbotron">
-  <div class="container" style="height: 240px;">...</div>
-  <div class="newUser">
-    <h2 id="account">Create Account</h2>
-    <form ng-submit = "$ctrl.addNewUser()" method="POST">
-      <div>
-        <label>UserName</label>
-        <input type = "text" name= "username" ng-model='$ctrl.newUser.username'>
-        <br>
-        <label>Password</label>
-        <input type="password" name="password" ng-model='$ctrl.newUser.password'>
-        <br>
-        <label>Email</label>
-        <input type="text" name="email" ng-model='$ctrl.newUser.email'>
-        <br>
-        <input type="submit" value='create account'>
-      </div>
-    </form>
-  </div>
+<div class="jumbotron" style="height: 340px;">...
+
 </div>
 
+<div class="container-register" >
+ <div class="newUser form-group">
+  <h2 id="account">Create Account</h2>
+  <form class ='form-control register-form' ng-submit = "$ctrl.addNewUser()" method="POST">
+    <div>
+      <input class="input-group" type = "text" name= "username" placeholder='Username' ng-model='$ctrl.newUser.username'>
+      <br>
+      <input class="input-group" type="password" name="password" ng-model='$ctrl.newUser.password'placeholder='Password'>
+      <br>
+      <input class="input-group" type="text" name="email" ng-model='$ctrl.newUser.email' placeholder='Email'>
+      <br>
+      <button class= 'btn btn-warning'type="submit" value='create account'>Create Account</button>
+    </div>
+  </form>
+ </div>
+</div>

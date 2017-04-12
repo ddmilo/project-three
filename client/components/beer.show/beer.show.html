@@ -12,7 +12,7 @@
   <div ng-repeat="average in $ctrl.currentAverages">
     {{average.type}}: {{average.average}}
   </div>
-  <h1>Reviews</h1>
+  <h2>Reviews</h2>
   <div ng-repeat="review in $ctrl.current.reviews">
     <div>{{review.username}}</div>
     <div>Language: {{review.pairing}}</div>
@@ -20,6 +20,6 @@
     <div>{{review.content}}</div>
   </div>
 </div>
-<h1>New Review</h1>
+<h2>New Review</h2>
 <review-new></review-new>
 
