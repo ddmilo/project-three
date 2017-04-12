@@ -157,10 +157,10 @@ module.exports = BeerShowController;
 /***/ (function(module, exports) {
 
 //INJECTIONS
-BeerController.$inject = ['BeerService'];
+BeerController.$inject = ['BeerService', "UserService"];
 
 //CONTROLLER
-function BeerController(BeerService) {
+function BeerController(BeerService, UserService) {
   const vm = this;
 
   //WHAT IT DOES
@@ -168,18 +168,19 @@ function BeerController(BeerService) {
   vm.loading = true;
   vm.orderBy = null;
   vm.changeOrder = changeOrder;
+  vm.currentUser = null;
 
   //ACTIVATION
   activate();
   function activate() {
     loadAllBeer();
+    currentUser();
   }
   function loadAllBeer() {
     BeerService.loadAll().then(function resolve(response) {
       vm.beer = response.data.beer;
       averages();
       vm.loading = false;
-      console.log(vm.beer);
     });
   }
   function averages() {
@@ -209,6 +210,12 @@ function BeerController(BeerService) {
   //HOW IT DOES IT
   function changeOrder(type) {
     vm.orderBy = type;
+  }
+
+  function currentUser() {
+    UserService.sessionUser().then(function (data) {
+      vm.currentUser = data.data;
+    });
   }
 }
 
@@ -38838,7 +38845,7 @@ module.exports = "<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imag
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<main id=\"beerMain\">\n  <div id =\"beer\" style=\"height: 500px; width: 200px;\">...</div>\n      <div class=\"container1\">\n        <div class =\"beer\">\n        <li ng-show=\"$ctrl.loading\">\n            <strong>Loading...</strong>\n        </li>\n        <div class =\"pairing\" ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest)</h3>\n        <nav >\n        <div>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Javascript')\"><img ng-src=\"/image/js.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Javascript\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Java')\"><img ng-src=\"/image/java.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Java\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('C')\"><img ng-src=\"/image/C.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"C\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Python')\"><img ng-src=\"/image/python.png\" style=\"height:30px; width:40px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Python\" \"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Ruby')\"><img ng-src=\"/image/ruby.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ruby\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('HTML')\"><img ng-src=\"/image/HTML.png\" style=\"height:25px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"HTML\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('CSS')\"><img ng-src=\"/image/css.png\" style=\"height:25px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"CSS\"></a>\n        </div>\n        </nav>\n        <ul>\n          <li ng-repeat=\"beer in $ctrl.beer\" ng-hide=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <li ng-repeat=\"beer in $ctrl.beer | orderBy : $ctrl.orderBy : reverse = true\" ng-show=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <button class=\"beerColor\"><a class=\"beerColor1\" ui-sref=\"beerNew\">Add Beer</button>\n        </ul>\n      </div>\n    </div>\n  </div>\n<main>\n\n";
+module.exports = "<main id=\"beerMain\">\n  <div id =\"beer\" style=\"height: 500px; width: 200px;\">...</div>\n      <div class=\"container1\">\n        <div class =\"beer\">\n        <li ng-show=\"$ctrl.loading\">\n            <strong>Loading...</strong>\n        </li>\n        <div class =\"pairing\" ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest)</h3>\n        <nav >\n        <div>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Javascript')\"><img ng-src=\"/image/js.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Javascript\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Java')\"><img ng-src=\"/image/java.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Java\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('C')\"><img ng-src=\"/image/C.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"C\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Python')\"><img ng-src=\"/image/python.png\" style=\"height:30px; width:40px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Python\" \"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Ruby')\"><img ng-src=\"/image/ruby.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ruby\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('HTML')\"><img ng-src=\"/image/HTML.png\" style=\"height:25px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"HTML\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('CSS')\"><img ng-src=\"/image/css.png\" style=\"height:25px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"CSS\"></a>\n        </div>\n        </nav>\n        <ul>\n          <li ng-repeat=\"beer in $ctrl.beer\" ng-hide=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <li ng-repeat=\"beer in $ctrl.beer | orderBy : $ctrl.orderBy : reverse = true\" ng-show=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <button ng-if=\"$ctrl.currentUser\" class=\"beerColor\"><a class=\"beerColor1\" ui-sref=\"beerNew\">Add Beer</button>\n        </ul>\n      </div>\n    </div>\n  </div>\n<main>\n\n";
 
 /***/ }),
 /* 31 */

@@ -23,7 +23,7 @@
 
           <li ng-repeat="beer in $ctrl.beer | orderBy : $ctrl.orderBy : reverse = true" ng-show="$ctrl.orderBy"><a class="beerColor2" ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
 
-          <button class="beerColor"><a class="beerColor1" ui-sref="beerNew">Add Beer</button>
+          <button ng-if="$ctrl.currentUser" class="beerColor"><a class="beerColor1" ui-sref="beerNew">Add Beer</button>
         </ul>
       </div>
     </div>

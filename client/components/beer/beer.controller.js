@@ -1,8 +1,8 @@
 //INJECTIONS
-BeerController.$inject = ['BeerService'];
+BeerController.$inject = ['BeerService', "UserService"];
 
 //CONTROLLER
-function BeerController(BeerService) {
+function BeerController(BeerService, UserService) {
   const vm = this;
 
   //WHAT IT DOES
@@ -10,11 +10,13 @@ function BeerController(BeerService) {
   vm.loading = true;
   vm.orderBy = null;
   vm.changeOrder = changeOrder;
+  vm.currentUser = null;
 
   //ACTIVATION
   activate();
   function activate() {
     loadAllBeer();
+    currentUser();
   }
   function loadAllBeer() {
     BeerService
@@ -23,7 +25,6 @@ function BeerController(BeerService) {
         vm.beer = response.data.beer;
         averages();
         vm.loading = false;
-        console.log(vm.beer);
       });
   }
   function averages() {
@@ -54,6 +55,14 @@ function BeerController(BeerService) {
   //HOW IT DOES IT
   function changeOrder(type) {
     vm.orderBy = type;
+  }
+
+  function currentUser() {
+    UserService
+      .sessionUser()
+      .then(function(data) {
+        vm.currentUser = data.data;
+      });
   }
 }
 
