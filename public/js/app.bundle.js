@@ -175,6 +175,7 @@ function BeerController(BeerService, UserService) {
   function activate() {
     loadAllBeer();
     currentUser();
+    $('[data-toggle="tooltip"]').tooltip();
   }
   function loadAllBeer() {
     BeerService.loadAll().then(function resolve(response) {
