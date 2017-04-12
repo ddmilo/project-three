@@ -19,6 +19,7 @@ function UserService($http){
   self.updateUser = updateUser;
   self.updateSession = updateSession;
   self.deleteUser = deleteUser;
+  self.endSession = endSession;
 
   //HOW IT DOES IT
   function addNewUser(newUser){
@@ -47,5 +48,9 @@ function UserService($http){
   
   function deleteUser(userId) {
     return $http.delete(`api/users/delete/${userId}`);
+  }
+
+  function endSession() {
+    return $http.get("/api/sessions/logout");
   }
 }

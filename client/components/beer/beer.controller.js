@@ -46,7 +46,7 @@ function BeerController(BeerService, UserService) {
           average = total / count;
         }
         else {
-          average = "N/A";
+          average = 0;
         }
         beer[type] = average;
       });
@@ -68,4 +68,4 @@ function BeerController(BeerService, UserService) {
 }
 
 
-module.exports= BeerController;
+module.exports = BeerController;

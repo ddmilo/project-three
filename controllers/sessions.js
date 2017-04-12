@@ -11,22 +11,18 @@ router.get('/login', function(req, res) {
 
 //GETS CURRENT SESSION USER
 router.get("/current", function(req, res) {
-	console.log(req.session.currentUser);
 	res.json(req.session.currentUser);
 });
 
 //LOGS A USER IN AND REDIRECTS TO BEER INDEX
 router.post('/login', authHelpers.loginUser, function(req, res){
-  console.log(req.session.currentUser);
   res.redirect('/#!/beer');
 });
 
 //LOGOUT USER
 router.get('/logout', function(req, res){
-  console.log('session destroyed')
-  req.session.destroy(function(){
-    res.redirect('/#!/home');
-  });
+  req.session.currentUser = null;
+    res.json({done: "done"});
 });
 
 //UPDATE SESSION USER

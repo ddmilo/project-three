@@ -201,7 +201,7 @@ function BeerController(BeerService, UserService) {
         if (count > 0) {
           average = total / count;
         } else {
-          average = "N/A";
+          average = 0;
         }
         beer[type] = average;
       });
@@ -240,21 +240,33 @@ module.exports = HomeController;
 /***/ (function(module, exports) {
 
 //INJECTIONS
-NavController.$inject = ["UserService"];
+NavController.$inject = ["UserService", "$state"];
 
 //CONTROLLER
-function NavController(UserService) {
+function NavController(UserService, $state) {
 	const vm = this;
 
+	vm.logout = logout;
+	vm.state = $state;
+	//WHAT IT DOES
 	vm.currentUser = null;
 	activate();
 
 	function activate() {
 		currentUser();
+		console.log(vm.state);
 	}
 	function currentUser() {
 		UserService.sessionUser().then(function (data) {
 			vm.currentUser = data.data;
+		});
+	}
+
+	//HOW IT DOES IT
+	function logout() {
+		UserService.endSession().then(function (data) {
+			vm.currentUser = null;
+			$state.go("home");
 		});
 	}
 }
@@ -759,6 +771,7 @@ function UserService($http) {
   self.updateUser = updateUser;
   self.updateSession = updateSession;
   self.deleteUser = deleteUser;
+  self.endSession = endSession;
 
   //HOW IT DOES IT
   function addNewUser(newUser) {
@@ -787,6 +800,10 @@ function UserService($http) {
 
   function deleteUser(userId) {
     return $http.delete(`api/users/delete/${userId}`);
+  }
+
+  function endSession() {
+    return $http.get("/api/sessions/logout");
   }
 }
 
@@ -38874,31 +38891,31 @@ module.exports = "\n<main id=\"authMain\">\n<div class=\"wrapper\">\n  <form act
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<main class= \"newBeerForm\" style=\"height: 800px; width: 1200px;\">\n  <h1>Create A Beer</h1>\n    <link href=\"https://fonts.googleapis.com/css?family=Alice\" rel=\"stylesheet\">\n      <br>\n  <div class=\"newBeer\">\n    <form ng-submit = \"$ctrl.addBeer()\">\n      <div>\n        <label>Name</label>\n        <br>\n        <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n        <br>\n        <label>Type</label>\n        <br>\n        <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n        <br>\n        <label>Brewery</label>\n        <br>\n        <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n        <br>\n        <label>Alcohol % </label>\n        <br>\n        <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n        <br>\n        <label>Image</label>\n        <br>\n        <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n        <input type=\"submit\" name=\"create account\">\n    </div>\n </div>\n</main>\n\n";
+module.exports = "\n<main class= \"newBeerForm\" style=\"height: 800px; width: 1200px;\">\n    <h1>Create A Beer</h1>\n    <link href=\"https://fonts.googleapis.com/css?family=Alice\" rel=\"stylesheet\">\n    <br>\n    <div class=\"newBeer\">\n        <form ng-submit = \"$ctrl.addBeer()\">\n            <div>\n                <label>Name</label>\n                <br>\n                <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n                <br>\n                <label>Type</label>\n                <br>\n                <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n                <br>\n                <label>Brewery</label>\n                <br>\n                <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n                <br>\n                <label>Alcohol % </label>\n                <br>\n                <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n                <br>\n                <label>Image</label>\n                <br>\n                <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n                <input type=\"submit\" name=\"create account\">\n            </div>\n        </form>\n    </div>\n</main>\n\n";
 
 /***/ }),
 /* 31 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imageUrl}}\">\n  <br>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Type: {{$ctrl.current.type}}\n  <br>\n  Brewery:{{$ctrl.current.brewery}}\n  <br>\n  Alcohol:{{$ctrl.current.alcoholPer}}\n  <br>\n  <div ng-repeat=\"average in $ctrl.currentAverages\">\n    {{average.type}}: {{average.average}}\n  </div>\n  <h2>Reviews</h2>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n</div>\n<div ng-if=\"$ctrl.currentUser\">\n  <h2>New Review</h2>\n  <review-new></review-new>\n</div>\n";
+module.exports = "<div class=\"beerImageWrapper\">\n <img class=\"beerShowImage\" ng-src=\"{{$ctrl.current.imageUrl}}\">\n</div>\n<div class=\"beerShow\">\n<div class=\"container\">\n <h2 style=\"text-align: center;\"><u>{{$ctrl.current.name}}</u></h2>\n <h4>Rating Averages</h4>\n   <div style=\"width: 80vw\">\n   <span class=\"average\" ng-repeat=\"average in $ctrl.currentAverages\">{{average.type}}: {{average.average}}</span>\n   </div>\n </div>\n <div class=\"table-responsive\">\n <table class=\"table\">\n   <thead>\n     <tr>\n       <th>Type</th>\n       <th>Brewery</th>\n       <th>Alcohol</th>\n     </tr>\n   </thead>\n   <tbody>\n     <tr>\n       <td>{{$ctrl.current.type}}</td>\n       <td>{{$ctrl.current.brewery}}</td>\n       <td>{{$ctrl.current.alcoholPer}}</td>\n     </tr>\n   </tbody>\n </table>\n </div>\n<h2 id=\"reviewHeader\">Reviews</h2>\n <div class=\"repeat\" ng-repeat=\"review in $ctrl.current.reviews\">\n   <div class=\"reviewHeader\">\n     <span>{{review.username}}</span>\n     <span>Language: {{review.pairing}}</span>\n     <span>{{review.rating}}/5</span>\n   </div>\n   <div class=\"reviewContent\">\n     {{review.content}}\n   </div>\n</div>\n<div id=\"reviewIsNewForm\">\n   <h4>New Review</h4>\n   <review-new></review-new>\n   </div>\n</div>\n";
 
 /***/ }),
 /* 32 */
 /***/ (function(module, exports) {
 
-module.exports = "<main id=\"beerMain\">\n  <div id =\"beer\" style=\"height: 500px; width: 200px;\">...</div>\n      <div class=\"container1\">\n        <div class =\"beer\">\n        <li ng-show=\"$ctrl.loading\">\n            <strong>Loading...</strong>\n        </li>\n        <div class =\"pairing\" ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest)</h3>\n        <nav >\n        <div>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Javascript')\"><img ng-src=\"/image/js.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Javascript\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Java')\"><img ng-src=\"/image/java.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Java\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('C')\"><img ng-src=\"/image/C.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"C\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Python')\"><img ng-src=\"/image/python.png\" style=\"height:30px; width:40px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Python\" \"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Ruby')\"><img ng-src=\"/image/ruby.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ruby\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('HTML')\"><img ng-src=\"/image/HTML.png\" style=\"height:25px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"HTML\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('CSS')\"><img ng-src=\"/image/css.png\" style=\"height:25px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"CSS\"></a>\n        </div>\n        </nav>\n        <ul>\n          <li ng-repeat=\"beer in $ctrl.beer\" ng-hide=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <li ng-repeat=\"beer in $ctrl.beer | orderBy : $ctrl.orderBy : reverse = true\" ng-show=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <button ng-if=\"$ctrl.currentUser\" class=\"beerColor\"><a class=\"beerColor1\" ui-sref=\"beerNew\">Add Beer</button>\n        </ul>\n      </div>\n    </div>\n  </div>\n<main>\n\n";
+module.exports = "<main id=\"beerMain\">\n  <div id =\"beer\" style=\"height: 500px; width: 200px;\">...</div>\n      <div class=\"container1\">\n        <div class =\"beer\">\n        <li ng-show=\"$ctrl.loading\">\n            <strong>Loading...</strong>\n        </li>\n        <div class =\"pairing\" ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest)</h3>\n        <nav >\n        <div>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Javascript')\"><img ng-src=\"/image/js.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Javascript\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Java')\"><img ng-src=\"/image/java.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Java\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('C')\"><img ng-src=\"/image/C.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"C\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Python')\"><img ng-src=\"/image/python.png\" style=\"height:30px; width:40px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Python\" \"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Ruby')\"><img ng-src=\"/image/ruby.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ruby\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('HTML')\"><img ng-src=\"/image/HTML.png\" style=\"height:25px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"HTML\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('CSS')\"><img ng-src=\"/image/css.png\" style=\"height:25px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"CSS\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('PHP')\"><img ng-src=\"/image/php.png\" style=\"height:25px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"PHP\"></a>\n        </div>\n        </nav>\n        <ul>\n          <li ng-repeat=\"beer in $ctrl.beer\" ng-hide=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <li ng-repeat=\"beer in $ctrl.beer | orderBy : $ctrl.orderBy : reverse = true\" ng-show=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <button ng-if=\"$ctrl.currentUser\" class=\"beerColor\"><a class=\"beerColor1\" ui-sref=\"beerNew\">Add Beer</button>\n        </ul>\n      </div>\n    </div>\n  </div>\n<main>\n\n";
 
 /***/ }),
 /* 33 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id = 'landing' class=\"jumbotron\">\n  <div class='empty'>\n   <a ui-sref=\"beer\" class=\"btn btn-warning enter-button\">if (age >= 21) {$(this).click()}</a>\n  </div>\n</div>\n";
+module.exports = "<div id = 'landing' class=\"jumbotron\">\n  <div class='empty'>\n  \t<a ui-sref=\"beer\" class=\"btn btn-warning enter-button\">if (age >= 21) {$(this).click()}</a>\n  </div>\n</div>\n";
 
 /***/ }),
 /* 34 */
 /***/ (function(module, exports) {
 
-module.exports = "<li class=\"nav-item\" ng-show=\"$ctrl.currentUser\">\n\t<a class=\"nav-link\" ui-sref=\"userShow\">Account Info</a>\n</li>\n<li class=\"nav-item\" ng-show=\"$ctrl.currentUser\">\n\t<a class=\"nav-link\" ui-sref=\"home\">Logout</a>\n</li>";
+module.exports = "<nav class=\"navbar navbar-toggleable-md navbar-bg-inverse navbar-fixed-top navbar-inverse\">\n  <button class=\"navbar-toggler navbar-toggler-right\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" ng-if=\"$ctrl.state.current.name !== 'home'\">\n    <span class=\"navbar-toggler-icon\"></span>\n  </button>\n  <h1 class=\"navbar-brand mb-0\" href=\"/\"><img class=\"navImg\" src=\"/image/logo.jpg\" width=\"130\" height=\"50\"></h1>\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\" ng-if=\"$ctrl.state.current.name !== 'home'\">\n    <ul class=\"navbar-nav mr-auto\">\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" ui-sref=\"register\">Register</a><span class=\"sr-only\">(current)</span>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\"  ui-sref=\"auth\">Log-In</a>\n      </li>\n      <li class=\"nav-item\">\n        <a class=\"nav-link\" ui-sref=\"beer\">Beer Index</a>\n      </li>\n      <li class=\"nav-item\" ng-show=\"$ctrl.currentUser\">\n      \t<a class=\"nav-link\" ui-sref=\"userShow\">Account Info</a>\n      </li>\n      <li class=\"nav-item\" ng-show=\"$ctrl.currentUser\">\n      \t<a class=\"nav-link\" ng-click=\"$ctrl.logout()\" href=\"\">Logout</a>\n      </li>\n    </ul>\n  </div>\n</nav>";
 
 /***/ }),
 /* 35 */
@@ -38928,7 +38945,7 @@ module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"$ctrl.saveUser()
 /* 39 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n";
+module.exports = "<div class = \"userInfo\">\n<h2>User Name: {{$ctrl.currentUser.username}}</h2>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n<h2 id=\"reviewHeader\">Reviews</h2>\n <div class=\"repeat\" ng-repeat=\"review in $ctrl.currentUserReviews\">\n   <div class=\"reviewHeader\">\n     <span>{{review.username}}</span>\n     <span>Language: {{review.pairing}}</span>\n     <span>{{review.rating}}/5</span>\n   </div>\n   <div class=\"reviewContent\">\n     {{review.content}}\n   </div>\n   <div>\n        <a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n    </div>\n</div>\n</div>\n";
 
 /***/ }),
 /* 40 */

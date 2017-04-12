@@ -4,7 +4,6 @@ var User = require('../models/user.model.js');
 //HASH PASSWORD
 function createSecure(req, res, next) {
   var password = req.body.password;
-
   res.hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
   next();
 }
@@ -41,7 +40,6 @@ function authorized(req, res, next) {
 
 //UPDATE CURRENT SESSION USER
 function update(req, res, next) {
-  console.log(req.body.userId + "in auth");
   User.findById(req.body.userId)
     .then(function(foundUser) {
       req.session.currentUser = foundUser;

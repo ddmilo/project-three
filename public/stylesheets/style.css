@@ -13,38 +13,36 @@
   border: 1px solid rgba(0,0,0,0.1);
 }
 
-  .form-signin-heading,
-  .checkbox {
-    margin-bottom: 30px;
-  }
+.form-signin-heading, .checkbox {
+  margin-bottom: 30px;
+}
 
-  .checkbox {
-    font-weight: normal;
-  }
+.checkbox {
+  font-weight: normal;
+}
 
-  .form-control {
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    @include box-sizing(border-box);
-    background-color: inherit;
-    &:focus {
-      z-index: 2;
-    }
+.form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  @include box-sizing(border-box);
+  background-color: inherit;
+  &:focus {
+    z-index: 2;
   }
+}
 
-  input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
+input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
 
-  input[type="password"] {
-    margin-bottom: 20px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+input[type="password"] {
+  margin-bottom: 20px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .newBeer {
@@ -54,58 +52,59 @@
   position: relative;
 }
 
-.jumbotron{
+.jumbotron {
   background-image: url('../image/DEvHops.png');
   background-repeat: no-repeat;
   background-size: 100% 100% ;
-  margin-top:-20px;
+  margin-top: -20px;
   margin-bottom: -2px;
--webkit-background-size:100% 100% ;
+  -webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
   background-size: 100% 100%;
-
 }
 
-#account{
-font-family: 'Libre Baskerville', serif;
-font-style: italic;
-
+#account {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
 }
 
-.newUser{
+.newUser {
   position: relative;
   left: 35%;
-  text-align:center;
-  /*border: 6px solid black;*/
+  text-align: center;
   width: 400px;
   height: 350px;
   padding: 55px;
 }
-.beerColor1{
+
+.beerColor1 {
   color: white;
 }
-.beerColor2{
-  color:black;
+
+.beerColor2 {
+  color: black;
 }
 
-nav{
+nav {
   background-color: black !important;
-  color:white;
-
+  color: white;
 }
-.pairing{
-  border:5px solid black;
+
+.pairing {
+  border: 5px solid black;
   background-color: rgba(255,255,255,0.4);
-
 }
-#beer{
+
+#beer {
  color: rgba(0,0,0,0);
 }
-.beerColor{
+
+.beerColor {
   background-color: black;
 }
-#beerMain{
+
+#beerMain {
   background-image: url('../image/main.jpg');
   background-color: rgba(0,0,0,0.3);
   background-size: cover;
@@ -113,42 +112,47 @@ nav{
   display: flex;
   justify-content: center;
   align-items: center;
- padding-right: 12%;
-font-family: 'Crimson Text', serif;
-font-style: bold;
+  padding-right: 12%;
+  font-family: 'Crimson Text', serif;
+  font-style: bold;
 }
 
-li{
+li {
   list-style: none;
 }
-.iconNav{
-padding-right: 20px;
-padding-left: 20px;
+
+.iconNav {
+  padding-right: 20px;
+  padding-left: 20px;
 }
-#authMain{
+
+#authMain, .beerShow, .userEdit, .userInfo {
   background-color: #fbf7e9;
   height: 100vh;
+  overflow: auto;
 }
-footer{
+
+footer {
   background-color: black;
   height: 100px;
-  /*padding-top: 20px;*/
 }
+
 .container-register {
   background-color: #fbf7e9;
-  /*margin:;*/
-  /*padding: ;*/
   height: 500px;
 }
+
 footer p {
   text-align: center;
   color: white;
 }
+
 .GA-logo {
   height: 15px;
   position: relative;
 }
-#landing{
+
+#landing {
   background-image: url("/image/devhopslogo.jpg");
   height: 100vh;
   width: 100vw;
@@ -159,46 +163,50 @@ footer p {
   align-items: center;
   flex-direction: column;
 }
+
 .enter-button {
-    /*margin: 55vh 40vw 0 auto 40vw;*/
-    max-height: 30px;
-    width: 250px;
-    display: flex;
-    align-items: center;
+  max-height: 30px;
+  width: 250px;
+  display: flex;
+  align-items: center;
 }
-.empty{
+
+.empty {
   padding-top: 175px;
   padding-right: 45px;
   padding-left:  45px;
 }
-@media screen and (min-width: 758px){
+
+@media screen and (min-width: 758px) {
   .empty {
     padding-top: 260px;
   }
 }
-.newBeer {
-   width: 45%;
-   height: 60%;
-   padding: 20px 20px;
-   margin:  auto;
-   display: block;
-   border: 2px solid #ccc;
-   border-radius: 7px;
-   box-sizing: border-box;
-   text-align: center;
 
+.newBeer {
+  width: 45%;
+  height: 60%;
+  padding: 20px 20px;
+  margin: auto;
+  display: block;
+  border: 2px solid #ccc;
+  border-radius: 7px;
+  box-sizing: border-box;
+  text-align: center;
 }
-.newBeer label{
- color: white;
+
+.newBeer label {
+  color: white;
 }
+
 .newBeerForm {
- padding-top: 110px;
- display: block;
- margin: auto;
- width: 40em;
- background-image: url('http://i.imgur.com/gacq4zy.jpg');
- background-repeat: no-repeat;
- background-size: 100% 100%;
+  padding-top: 110px;
+  display: block;
+  margin: auto;
+  width: 40em;
+  background-image: url('http://i.imgur.com/gacq4zy.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 h1 {
@@ -206,4 +214,65 @@ h1 {
  text-align: center;
  font-size: 50px;
  font-family: ‘Alice’, serif;
+}
+
+#reviewIsNewForm {
+  text-align: center;
+  display: inline-block;
+}
+
+#review {
+  text-align: center;
+}
+
+.wow {
+  position: absolute;
+  bottom: 2%;
+  left: 20%;
+}
+
+.userEdit {
+  background-color: #fbf7e9 ;
+  height: 100vh;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  border: 2px solid black;
+}
+
+.reviewContent {
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.repeat {
+  max-width: 50vw;
+  margin: 0 auto;
+}
+
+.beerShow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+#reviewHeader {
+  text-align: center;
+}
+
+.beerShowImage {
+  max-height: 200px;
+  max-width: 400px;
+}
+
+.average {
+border: 1px solid black;
 }

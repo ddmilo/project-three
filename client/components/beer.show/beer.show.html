@@ -1,26 +1,45 @@
-<div class="beerShow">
-  <img ng-src="{{$ctrl.current.imageUrl}}">
-  <br>
-  Name: {{$ctrl.current.name}}
-  <br>
-  Type: {{$ctrl.current.type}}
-  <br>
-  Brewery:{{$ctrl.current.brewery}}
-  <br>
-  Alcohol:{{$ctrl.current.alcoholPer}}
-  <br>
-  <div ng-repeat="average in $ctrl.currentAverages">
-    {{average.type}}: {{average.average}}
-  </div>
-  <h2>Reviews</h2>
-  <div ng-repeat="review in $ctrl.current.reviews">
-    <div>{{review.username}}</div>
-    <div>Language: {{review.pairing}}</div>
-    <div>{{review.rating}}/5</div>
-    <div>{{review.content}}</div>
-  </div>
+<div class="beerImageWrapper">
+ <img class="beerShowImage" ng-src="{{$ctrl.current.imageUrl}}">
 </div>
-<div ng-if="$ctrl.currentUser">
-  <h2>New Review</h2>
-  <review-new></review-new>
+<div class="beerShow">
+<div class="container">
+ <h2 style="text-align: center;"><u>{{$ctrl.current.name}}</u></h2>
+ <h4>Rating Averages</h4>
+   <div style="width: 80vw">
+   <span class="average" ng-repeat="average in $ctrl.currentAverages">{{average.type}}: {{average.average}}</span>
+   </div>
+ </div>
+ <div class="table-responsive">
+ <table class="table">
+   <thead>
+     <tr>
+       <th>Type</th>
+       <th>Brewery</th>
+       <th>Alcohol</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+       <td>{{$ctrl.current.type}}</td>
+       <td>{{$ctrl.current.brewery}}</td>
+       <td>{{$ctrl.current.alcoholPer}}</td>
+     </tr>
+   </tbody>
+ </table>
+ </div>
+<h2 id="reviewHeader">Reviews</h2>
+ <div class="repeat" ng-repeat="review in $ctrl.current.reviews">
+   <div class="reviewHeader">
+     <span>{{review.username}}</span>
+     <span>Language: {{review.pairing}}</span>
+     <span>{{review.rating}}/5</span>
+   </div>
+   <div class="reviewContent">
+     {{review.content}}
+   </div>
+</div>
+<div id="reviewIsNewForm">
+   <h4>New Review</h4>
+   <review-new></review-new>
+   </div>
 </div>

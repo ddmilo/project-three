@@ -1,17 +1,19 @@
-<h1>{{$ctrl.currentUser.username}}</h1>
+<div class = "userInfo">
+<h2>User Name: {{$ctrl.currentUser.username}}</h2>
 <h3>Email: {{$ctrl.currentUser.email}}</h3>
 <p><a ui-sref="userEdit">Edit Account</a></p>
-<div ng-repeat="review in $ctrl.currentUserReviews">
-	<div>
-		{{review.rating}}/5
-	</div>
-	<div>
-		{{review.pairing}}
-	</div>
-	<div>
-		{{review.content}}
-	</div>
-	<div>
-		<a ui-sref="reviewEdit({reviewId: review._id})">Edit Review</a>
-	</div>
+<h2 id="reviewHeader">Reviews</h2>
+ <div class="repeat" ng-repeat="review in $ctrl.currentUserReviews">
+   <div class="reviewHeader">
+     <span>{{review.username}}</span>
+     <span>Language: {{review.pairing}}</span>
+     <span>{{review.rating}}/5</span>
+   </div>
+   <div class="reviewContent">
+     {{review.content}}
+   </div>
+   <div>
+        <a ui-sref="reviewEdit({reviewId: review._id})">Edit Review</a>
+    </div>
+</div>
 </div>
