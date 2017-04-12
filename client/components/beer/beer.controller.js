@@ -9,6 +9,7 @@ function BeerController(BeerService) {
   vm.beer = [];
   vm.loading = true;
   vm.orderBy = null;
+  vm.changeOrder = changeOrder;
 
   //ACTIVATION
   activate();
@@ -47,8 +48,15 @@ function BeerController(BeerService) {
           average = "N/A";
         }
         beer.averages.push({type: type, average: average});
+        beer[type] = average;
       });
     });
+  }
+
+  //HOW IT DOES IT
+  function changeOrder(type) {
+    vm.orderBy = type;
+    console.log(vm.orderBy);
   }
 }
 

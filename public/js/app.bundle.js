@@ -160,6 +160,7 @@ function BeerController(BeerService) {
   vm.beer = [];
   vm.loading = true;
   vm.orderBy = null;
+  vm.changeOrder = changeOrder;
 
   //ACTIVATION
   activate();
@@ -195,8 +196,15 @@ function BeerController(BeerService) {
           average = "N/A";
         }
         beer.averages.push({ type: type, average: average });
+        beer[type] = average;
       });
     });
+  }
+
+  //HOW IT DOES IT
+  function changeOrder(type) {
+    vm.orderBy = type;
+    console.log(vm.orderBy);
   }
 }
 
@@ -204,8 +212,6 @@ module.exports = BeerController;
 
 /***/ }),
 /* 3 */
-<<<<<<< HEAD
-=======
 /***/ (function(module, exports) {
 
 //INJECTIONS
@@ -219,7 +225,6 @@ module.exports = HomeController;
 
 /***/ }),
 /* 4 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 //INJECTIONS
@@ -246,7 +251,7 @@ function RegisterController($state, UserService) {
 module.exports = RegisterController;
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 //IONJECTIONS
@@ -282,7 +287,7 @@ function ReviewEditController($state, $stateParams, ReviewService) {
 module.exports = ReviewEditController;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 //INJECTIONS
@@ -305,51 +310,6 @@ function NewReviewController($state, $stateParams, ReviewService) {
 }
 
 module.exports = NewReviewController;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-//INJECTIONS
-UserEditController.$inject = ["UserService", "$state"];
-
-//CONTROLLER
-function UserEditController(UserService, $state) {
-	const vm = this;
-
-	//WHAT IT DOES
-	vm.current = {};
-	vm.oldUser = null;
-	vm.saveUser = saveUser;
-	vm.deleteUser = deleteUser;
-
-	//ACTIVATION
-	activate();
-	function activate() {
-		UserService.sessionUser().then(function (data) {
-			vm.current = data.data;
-			vm.oldUser = data.data.username;
-		});
-	}
-
-	//HOW IT DOES IT
-	function saveUser() {
-		UserService.updateUser(vm.oldUser, vm.current).then(function (data) {
-			UserService.updateSession(data.data.user._id).then(function () {
-				$state.go("userShow");
-			});
-		});
-	}
-
-	function deleteUser() {
-		UserService.deleteUser(vm.current._id).then(function (user) {
-			$state.go("auth");
-		});
-	}
-}
-
-//EXPORTS
-module.exports = UserEditController;
 
 /***/ }),
 /* 7 */
@@ -432,13 +392,8 @@ module.exports = UserShowController;
 /***/ (function(module, exports, __webpack_require__) {
 
 //ANGULAR SETUP
-<<<<<<< HEAD
-const angular = __webpack_require__(24);
-__webpack_require__(22);
-=======
 const angular = __webpack_require__(26);
 __webpack_require__(24);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 angular.module('DevHops', ['ui.router']).config(uiRouterSetup);
 
 //INJECTIONS
@@ -510,11 +465,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-const template = __webpack_require__(25);
-=======
 const template = __webpack_require__(27);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const AuthComponent = {
   template: template
@@ -527,11 +478,7 @@ angular.module('DevHops').component('auth', AuthComponent);
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(0);
-<<<<<<< HEAD
-const template = __webpack_require__(26);
-=======
 const template = __webpack_require__(28);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const component = {
   controller: controller,
@@ -545,11 +492,7 @@ angular.module('DevHops').component('beerNew', component);
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(1);
-<<<<<<< HEAD
-const template = __webpack_require__(27);
-=======
 const template = __webpack_require__(29);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const component = {
   controller: controller,
@@ -563,11 +506,7 @@ angular.module('DevHops').component('beerShow', component);
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(2);
-<<<<<<< HEAD
-const template = __webpack_require__(28);
-=======
 const template = __webpack_require__(30);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const component = {
   controller: controller,
@@ -594,13 +533,8 @@ angular.module('DevHops').component('home', HomeComponent);
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-const controller = __webpack_require__(3);
-const template = __webpack_require__(29);
-=======
 const controller = __webpack_require__(4);
 const template = __webpack_require__(32);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const RegisterComponent = {
   controller: controller,
@@ -613,13 +547,8 @@ angular.module('DevHops').component('register', RegisterComponent);
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-const controller = __webpack_require__(4);
-const template = __webpack_require__(30);
-=======
 const controller = __webpack_require__(5);
 const template = __webpack_require__(33);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const component = {
 	controller: controller,
@@ -632,13 +561,8 @@ angular.module("DevHops").component("reviewEdit", component);
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-const controller = __webpack_require__(5);
-const template = __webpack_require__(31);
-=======
 const controller = __webpack_require__(6);
 const template = __webpack_require__(34);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const component = {
   controller: controller,
@@ -648,19 +572,11 @@ const component = {
 angular.module('DevHops').component('reviewNew', component);
 
 /***/ }),
-<<<<<<< HEAD
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const controller = __webpack_require__(6);
-const template = __webpack_require__(32);
-=======
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(7);
 const template = __webpack_require__(35);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 const component = {
 	controller: controller,
@@ -670,11 +586,7 @@ const component = {
 angular.module("DevHops").component("userEdit", component);
 
 /***/ }),
-<<<<<<< HEAD
-/* 17 */
-=======
 /* 19 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports, __webpack_require__) {
 
 const controller = __webpack_require__(8);
@@ -688,11 +600,7 @@ const UserShowComponent = {
 angular.module('DevHops').component('userShow', UserShowComponent);
 
 /***/ }),
-<<<<<<< HEAD
-/* 18 */
-=======
 /* 20 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 //NOT SURE IF WE ARE USING THIS FILE, MAY NEED TO DELETE
@@ -706,11 +614,7 @@ AuthService.$inject = ['$http'];
 function AuthService($http) {}
 
 /***/ }),
-<<<<<<< HEAD
-/* 19 */
-=======
 /* 21 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 //ANGULAR SETUP
@@ -748,11 +652,7 @@ function BeerService($http) {
 }
 
 /***/ }),
-<<<<<<< HEAD
-/* 20 */
-=======
 /* 22 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 //ANGULAR SETUP
@@ -785,11 +685,7 @@ function ReviewService($http) {
 }
 
 /***/ }),
-<<<<<<< HEAD
-/* 21 */
-=======
 /* 23 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 //ANGULAR SETUP
@@ -843,11 +739,7 @@ function UserService($http) {
 }
 
 /***/ }),
-<<<<<<< HEAD
-/* 22 */
-=======
 /* 24 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 /**
@@ -5536,11 +5428,7 @@ angular.module('ui.router.state')
 })(window, window.angular);
 
 /***/ }),
-<<<<<<< HEAD
-/* 23 */
-=======
 /* 25 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 /**
@@ -38917,58 +38805,38 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-<<<<<<< HEAD
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(23);
-=======
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(25);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 module.exports = angular;
 
 
 /***/ }),
-<<<<<<< HEAD
-/* 25 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"wrapper\">\n\t<form action='/api/sessions/login' ng-submit =\"$ctrl.current.user\" class=\"form-signin\" method = 'POST'>\n\t\t<h2 class=\"form-signin-heading\">Please login</h2>\n      \t<input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n      \t<input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n      \t<button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Login</button>\n    </form>\n</div>\n";
-
-/***/ }),
-/* 26 */
-=======
 /* 27 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 module.exports = "\n<main id=\"authMain\">\n<div class=\"wrapper\">\n  <form action='/api/sessions/login' ng-submit =\"$ctrl.current.user\" class=\"form-signin\" method = 'POST'>\n    <h2 class=\"form-signin-heading\">Please login</h2>\n        <input type=\"text\" class=\"form-control\" name=\"email\" placeholder=\"Email Address\" required=\"\" autofocus=\"\" />\n        <input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Password\" required=\"\"/>\n        <button class=\"btn btn-lg btn-warning btn-block\" type=\"submit\">Login</button>\n    </form>\n</div>\n</main>\n";
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 module.exports = "\n<main class= \"newBeerForm\" style=\"height: 800px; width: 1200px;\">\n  <h1>Create A Beer</h1>\n    <link href=\"https://fonts.googleapis.com/css?family=Alice\" rel=\"stylesheet\">\n      <br>\n  <div class=\"newBeer\">\n    <form ng-submit = \"$ctrl.addBeer()\">\n      <div>\n        <label>Name</label>\n        <br>\n        <input type = \"text\" name= \"name\" ng-model= \"$ctrl.newBeer.name\" >\n        <br>\n        <label>Type</label>\n        <br>\n        <input type=\"text\" name=\"type\"  ng-model= \"$ctrl.newBeer.type\" >\n        <br>\n        <label>Brewery</label>\n        <br>\n        <input type=\"text\" name=\"brewery\" ng-model= \"$ctrl.newBeer.brewery\" >\n        <br>\n        <label>Alcohol % </label>\n        <br>\n        <input type=\"number\" name=\"alcohol\" ng-model= \"$ctrl.newBeer.alcoholPer\" >\n        <br>\n        <label>Image</label>\n        <br>\n        <input img=\"text\" name=\"image\" ng-model= \"$ctrl.newBeer.imageUrl\">\n        <input type=\"submit\" name=\"create account\">\n    </div>\n </div>\n</main>\n\n";
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"beerShow\">\n  <img ng-src=\"{{$ctrl.current.imageUrl}}\">\n  <br>\n  Name: {{$ctrl.current.name}}\n  <br>\n  Type: {{$ctrl.current.type}}\n  <br>\n  Brewery:{{$ctrl.current.brewery}}\n  <br>\n  Alcohol:{{$ctrl.current.alcoholPer}}\n  <br>\n  <div ng-repeat=\"average in $ctrl.currentAverages\">\n    {{average.type}}: {{average.average}}\n  </div>\n  <h2>Reviews</h2>\n  <div ng-repeat=\"review in $ctrl.current.reviews\">\n    <div>{{review.username}}</div>\n    <div>Language: {{review.pairing}}</div>\n    <div>{{review.rating}}/5</div>\n    <div>{{review.content}}</div>\n  </div>\n</div>\n<h2>New Review</h2>\n<review-new></review-new>\n\n";
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<main id=\"beerMain\">\n  <div id =\"beer\" style=\"height: 500px; width: 200px;\">...</div>\n      <div class=\"container1\">\n        <div class =\"beer\">\n        <li ng-show=\"$ctrl.loading\">\n            <strong>Loading...</strong>\n        </li>\n        <div class =\"pairing\" ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest)</h3>\n        <nav >\n        <div>\n          <a class=\"iconNav\" ng-click=\"\"><img ng-src=\"/image/js.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Javascript\"></a>\n          <a class=\"iconNav\" ng-click=\"\"><img ng-src=\"/image/java.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Java\"></a>\n          <a class=\"iconNav\" ng-click=\"\"><img ng-src=\"/image/C.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"C\"></a>\n          <a class=\"iconNav\" ng-click=\"\"><img ng-src=\"/image/python.png\" style=\"height:30px; width:40px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Python\" \"></a>\n          <a class=\"iconNav\" ng-click=\"\"><img ng-src=\"/image/ruby.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ruby\"></a>\n          <a class=\"iconNav\" ng-click=\"\"><img ng-src=\"/image/HTML.png\" style=\"height:25px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"HTML\"></a>\n          <a class=\"iconNav\" ng-click=\"\"><img ng-src=\"/image/css.png\" style=\"height:25px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"CSS\"></a>\n        </div>\n        </nav>\n        <ul>\n          <li ng-repeat=\"beer in $ctrl.beer\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n          <button class=\"beerColor\"><a class=\"beerColor1\" ui-sref=\"beerNew\">Add Beer</button>\n        </ul>\n      </div>\n    </div>\n  </div>\n<main>\n\n";
+module.exports = "<main id=\"beerMain\">\n  <div id =\"beer\" style=\"height: 500px; width: 200px;\">...</div>\n      <div class=\"container1\">\n        <div class =\"beer\">\n        <li ng-show=\"$ctrl.loading\">\n            <strong>Loading...</strong>\n        </li>\n        <div class =\"pairing\" ng-hide=\"$ctrl.loading\">\n        <h3>Sort By Pairing Rating (Highest To Lowest)</h3>\n        <nav >\n        <div>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Javascript')\"><img ng-src=\"/image/js.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Javascript\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Java')\"><img ng-src=\"/image/java.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Java\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('C')\"><img ng-src=\"/image/C.png\" style=\"height:30px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"C\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Python')\"><img ng-src=\"/image/python.png\" style=\"height:30px; width:40px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Python\" \"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('Ruby')\"><img ng-src=\"/image/ruby.png\" style=\"height:20px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ruby\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('HTML')\"><img ng-src=\"/image/HTML.png\" style=\"height:25px; width:30px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"HTML\"></a>\n          <a class=\"iconNav\" ng-click=\"$ctrl.changeOrder('CSS')\"><img ng-src=\"/image/css.png\" style=\"height:25px; width:20px;\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"CSS\"></a>\n        </div>\n        </nav>\n        <ul>\n          <li ng-repeat=\"beer in $ctrl.beer\" ng-hide=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <li ng-repeat=\"beer in $ctrl.beer | orderBy : $ctrl.orderBy : reverse = true\" ng-show=\"$ctrl.orderBy\"><a class=\"beerColor2\" ui-sref =\"beerShow({beerId: beer._id})\">{{beer.name}}</a></li>\n\n          <button class=\"beerColor\"><a class=\"beerColor1\" ui-sref=\"beerNew\">Add Beer</button>\n        </ul>\n      </div>\n    </div>\n  </div>\n<main>\n\n";
 
 /***/ }),
-<<<<<<< HEAD
-/* 30 */
-=======
 /* 31 */
 /***/ (function(module, exports) {
 
@@ -38982,67 +38850,34 @@ module.exports = "<div class=\"jumbotron\" style=\"height: 340px;\">...\n\n</div
 
 /***/ }),
 /* 33 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"reviewEdit\">\n\t<form ng-submit=\"$ctrl.updateReview()\">\n\t\t<div>\n\t\t\t<label for=\"rating\">Rating:</label>\n\t\t\t<select name=\"rating\" ng-model=\"$ctrl.current.rating\">\n\t\t\t  <option value=\"1\">1</option>\n\t\t\t  <option value=\"2\">2</option>\n\t\t\t  <option value=\"3\">3</option>\n\t\t\t  <option value=\"4\">4</option>\n\t\t\t  <option value=\"5\">5</option>\n\t\t\t</select>\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"pairing\">Pairing</label>\n\t\t\t  <select name=\"pairing\" ng-model=\"$ctrl.current.pairing\">\n\t\t\t    <option value =\"Javascript\">Javascript</option>\n\t\t\t    <option value =\"HTML\">HTML</option>\n\t\t\t    <option value =\"CSS\">CSS</option>\n\t\t\t    <option value =\"Ruby\">Ruby</option>\n\t\t\t    <option value =\"Python\">Python</option>\n\t\t\t    <option value =\"Java\">Java</option>\n\t\t\t    <option value =\"C\">C</option>\n\t\t\t    <option value =\"PHP\">PHP</option>\n\t\t\t </select>\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"content\">Review:</label>\n\t\t\t<input type=\"text\" name=\"content\" ng-model=\"$ctrl.current.content\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Review\">\n\t\t</div>\n\t</form>\n</div>";
 
 /***/ }),
-<<<<<<< HEAD
-/* 31 */
-=======
 /* 34 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"reviewNew\">\n  <form ng-submit = \"$ctrl.addReview()\" id=\"newReviewForm\">\n    <div>\n      <label>Content</label>\n      <input type = \"text\" name= \"conent\" ng-model=\"$ctrl.newReview.content\">\n      <br>\n      <label>Pairing</label>\n      <select name=\"pairing\" ng-model=\"$ctrl.newReview.pairing\">\n        <option value =\"Javascript\">Javascript</option>\n        <option value =\"HTML\">HTML</option>\n        <option value =\"CSS\">CSS</option>\n        <option value =\"Ruby\">Ruby</option>\n        <option value =\"Python\">Python</option>\n        <option value =\"Java\">Java</option>\n        <option value =\"C\">C</option>\n        <option value =\"PHP\">PHP</option>\n      </select>\n      <br>\n      <label for=\"rating\">Rating</label>\n      <select name=\"rating\" ng-model=\"$ctrl.newReview.rating\">\n        <option value=\"1\">1</option>\n        <option value=\"2\">2</option>\n        <option value=\"3\">3</option>\n        <option value=\"4\">4</option>\n        <option value=\"5\">5</option>\n      </select>\n      <input type=\"submit\" name=\"create review\">\n    </div>\n  </form>\n</div>";
 
 /***/ }),
-<<<<<<< HEAD
-/* 32 */
-=======
 /* 35 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"userEdit\">\n\t<form ng-submit=\"$ctrl.saveUser()\">\n\t\t<div>\n\t\t\t<label for=\"username\">User Name:</label>\n\t\t\t<input type=\"text\" name=\"username\" ng-model=\"$ctrl.current.username\">\n\t\t</div>\n\t\t<div>\n\t\t\t<label for=\"email\">Email:</label>\n\t\t\t<input type=\"text\" name=\"email\" ng-model=\"$ctrl.current.email\">\n\t\t</div>\n\t\t<div>\n\t\t\t<input type=\"submit\" value=\"Save Account\">\n\t\t</div>\n\t</form>\n\t<button ng-click=\"$ctrl.deleteUser()\">Delete Account</button>\n</div>";
 
 /***/ }),
-<<<<<<< HEAD
-/* 33 */
-=======
 /* 36 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports) {
 
 module.exports = "<h1>{{$ctrl.currentUser.username}}</h1>\n<h3>Email: {{$ctrl.currentUser.email}}</h3>\n<p><a ui-sref=\"userEdit\">Edit Account</a></p>\n<div ng-repeat=\"review in $ctrl.currentUserReviews\">\n\t<div>\n\t\t{{review.rating}}/5\n\t</div>\n\t<div>\n\t\t{{review.pairing}}\n\t</div>\n\t<div>\n\t\t{{review.content}}\n\t</div>\n\t<div>\n\t\t<a ui-sref=\"reviewEdit({reviewId: review._id})\">Edit Review</a>\n\t</div>\n</div>\n";
 
 /***/ }),
-<<<<<<< HEAD
-/* 34 */
-=======
 /* 37 */
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(9);
 __webpack_require__(10);
-<<<<<<< HEAD
-__webpack_require__(0);
-__webpack_require__(11);
-__webpack_require__(1);
-__webpack_require__(12);
-__webpack_require__(2);
-__webpack_require__(13);
-__webpack_require__(3);
-__webpack_require__(14);
-__webpack_require__(4);
-__webpack_require__(15);
-__webpack_require__(5);
-__webpack_require__(16);
-__webpack_require__(6);
-__webpack_require__(17);
-=======
 __webpack_require__(11);
 __webpack_require__(0);
 __webpack_require__(12);
@@ -39058,19 +38893,13 @@ __webpack_require__(5);
 __webpack_require__(17);
 __webpack_require__(6);
 __webpack_require__(18);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 __webpack_require__(7);
-__webpack_require__(18);
 __webpack_require__(19);
 __webpack_require__(8);
 __webpack_require__(20);
-<<<<<<< HEAD
-module.exports = __webpack_require__(21);
-=======
 __webpack_require__(21);
 __webpack_require__(22);
 module.exports = __webpack_require__(23);
->>>>>>> a26db6e654fc232cf9f95bf8cb89aa04d97379c3
 
 
 /***/ })
