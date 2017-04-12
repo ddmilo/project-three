@@ -115,6 +115,7 @@ nav {
   padding-right: 12%;
   font-family: 'Crimson Text', serif;
   font-style: bold;
+  height: 100vh;
 }
 
 li {
@@ -179,9 +180,15 @@ footer p {
 
 @media screen and (min-width: 758px) {
   .empty {
-    padding-top: 260px;
+    padding-top: 360px;
   }
 }
+
+/*@media screen and (min-width: 414px){
+  .newUser {
+    padding-ri: 800px;
+  }
+}*/
 
 .newBeer {
   width: 45%;
@@ -202,12 +209,12 @@ footer p {
 .newBeerForm {
   padding-top: 110px;
   display: block;
-  margin: auto;
-  width: 40em;
   background-image: url('http://i.imgur.com/gacq4zy.jpg');
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
+  height: 100vh;
 }
+
 
 h1 {
  color: white;
@@ -275,4 +282,8 @@ h1 {
 
 .average {
 border: 1px solid black;
+}
+
+body {
+
 }

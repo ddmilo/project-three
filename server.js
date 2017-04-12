@@ -13,8 +13,8 @@ var methodOverride = require('method-override');
 //MONGO STUFF
 var mongoose = require('mongoose');
 var db = mongoose.connection;
-mongoose.connect(process.env.MONGODB_URI);
-// mongoose.connect('mongodb://localhost/devhops');
+// mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect('mongodb://localhost/devhops');
 db.on('error', function(err){
  console.log(err);
 });
@@ -62,7 +62,7 @@ app.use(function(err, req, res, next) {
 });
 
 //LISTEN
-// app.listen(3000 | console.log('mic check'));
+app.listen(3000 | console.log('mic check'));
 
 //EXPORTS
 module.exports = app;
