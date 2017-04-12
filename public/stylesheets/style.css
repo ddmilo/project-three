@@ -287,4 +287,7 @@ border: 1px solid black;
 
 .beerImageWrapper {
 background-color:  #fbf7e9;
+display: flex;
+align-items: center;
+justify-content: center;
 }
