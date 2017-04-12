@@ -14,7 +14,7 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 mongoose.connect(process.env.MONGODB_URI);
-mongoose.connect('mongodb://localhost/devhops');
+// mongoose.connect('mongodb://localhost/devhops');
 db.on('error', function(err){
  console.log(err);
 });
