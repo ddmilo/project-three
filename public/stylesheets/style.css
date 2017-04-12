@@ -270,6 +270,11 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  background-image: url(http://pubfrato.com/wp-content/uploads/2013/09/1.jpg);
+  background-size: cover;
+  color: white;
+  /*background-color: rgba(0, 0, 0, 0.8);*/
+  /*opacity: 100;*/
 }
 
 #reviewHeader {
@@ -286,8 +291,21 @@ border: 1px solid black;
 }
 
 .beerImageWrapper {
-background-color:  #fbf7e9;
+/*background-color:  #fbf7e9;*/
 display: flex;
 align-items: center;
 justify-content: center;
+
+}
+
+/*.container, .table, .reviewContent, #reviewHeader, .language, .rating-review, .review-user, #reviewIsNewForm {
+  background-color: rgba(0, 0, 0, 0.9);
+}*/
+
+.beerShowContainer {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

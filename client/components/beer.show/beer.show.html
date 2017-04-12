@@ -1,7 +1,9 @@
-<div class="beerImageWrapper">
- <img class="beerShowImage" ng-src="{{$ctrl.current.imageUrl}}">
-</div>
+
 <div class="beerShow">
+  <div class="beerImageWrapper">
+   <img class="beerShowImage" ng-src="{{$ctrl.current.imageUrl}}">
+  </div>
+<div class ='beerShowContainer'>
 <div class="container">
  <h2 style="text-align: center;"><u>{{$ctrl.current.name}}</u></h2>
  <h4>Rating Averages</h4>
@@ -30,9 +32,10 @@
 <h2 id="reviewHeader">Reviews</h2>
  <div class="repeat" ng-repeat="review in $ctrl.current.reviews">
    <div class="reviewHeader">
-     <span>{{review.username}}</span>
-     <span>Language: {{review.pairing}}</span>
-     <span>{{review.rating}}/5</span>
+     <span class = 'review-user'>Reviewed By: {{review.username}} | <br></span>
+
+     <span class = 'language'> Language: {{review.pairing}} | <br> </span>
+     <span class = 'rating-review'>{{review.rating}}/5</span>
    </div>
    <div class="reviewContent">
      {{review.content}}
@@ -42,4 +45,5 @@
    <h4>New Review</h4>
    <review-new></review-new>
    </div>
+</div>
 </div>
