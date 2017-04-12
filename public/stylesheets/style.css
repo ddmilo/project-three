@@ -127,7 +127,7 @@ li {
   padding-left: 20px;
 }
 
-#authMain, .beerShow, .userEdit, .userInfo {
+#authMain, .beerShow, .userEdit, .userInfo, .reviewEdit {
   background-color: #fbf7e9;
   height: 100vh;
   overflow: auto;
