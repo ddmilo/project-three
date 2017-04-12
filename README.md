@@ -13,9 +13,9 @@ Atom Text Editor, Sublime Text Editor
 
 Contributors:
 
-Dan Milo
-Liam Robinson
-Magdalena kinney
+Dan Milo,
+Liam Robinson,
+Magdalena kinney,
 Michael Torres
 
 
@@ -25,6 +25,9 @@ Deployment Site:
 
 
 Stretch Goals:
+Attach google maps so that users are able to track and see where they can get their favorite beer.
+
+Set Landing page so that you can access page unless 21 or over. 
 
 
 
