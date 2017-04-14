@@ -24,6 +24,12 @@ Trello: https://trello.com/b/wmUcMghZ/project-3
 Deployment Site: https://peaceful-retreat-73199.herokuapp.com/#!/
 
 
+
+Wireframe: https://www.draw.io/#Hddmilo%2Fproject-three%2Fmaster%2FUntitled%20Diagram.xml
+
+ERD: https://www.draw.io/#Hddmilo%2Fproject-three%2Fmaster%2FERD.xml
+
+
 Stretch Goals:
 Attach google maps so that users are able to track and see where they can get their favorite beer.
 
