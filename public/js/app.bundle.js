@@ -549,7 +549,7 @@ const component = {
   template: template
 };
 
-angular.module('DevHops').component('beerShow', component);
+angular.module('DevHops').component('beer', component);
 
 /***/ }),
 /* 14 */
