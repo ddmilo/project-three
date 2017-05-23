@@ -8,4 +8,4 @@ const component = {
 
 angular
   .module('DevHops')
-  .component('beer', component);
+  .component('beerShow', component);
