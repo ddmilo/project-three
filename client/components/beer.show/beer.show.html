@@ -1,49 +1,85 @@
 
 <div class="beerShow">
-  <div class="beerImageWrapper">
-   <img class="beerShowImage" ng-src="{{$ctrl.current.imageUrl}}">
-  </div>
-<div class ='beerShowContainer'>
 <div class="container">
- <h2 style="text-align: center;"><u>{{$ctrl.current.name}}</u></h2>
- <h4>Rating Averages</h4>
-   <div style="width: 80vw">
-   <span class="average" ng-repeat="average in $ctrl.currentAverages">{{average.type}}: {{average.average}}</span>
+<div class="card hovercard">
+   <img src="/image/card.tif.jpg" alt=""/>
+   <div class="avatar">
+      <img class=class="img-responsive img-rounded hidden-xs" ng-src="{{$ctrl.current.imageUrl}}" alt=""/>
    </div>
- </div>
- <div class="table-responsive">
- <table class="table">
-   <thead>
-     <tr>
-       <th>Type</th>
-       <th>Brewery</th>
-       <th>Alcohol</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr>
-       <td>{{$ctrl.current.type}}</td>
-       <td>{{$ctrl.current.brewery}}</td>
-       <td>{{$ctrl.current.alcoholPer}}</td>
-     </tr>
-   </tbody>
- </table>
- </div>
-<h2 id="reviewHeader">Reviews</h2>
- <div class="repeat" ng-repeat="review in $ctrl.current.reviews">
-   <div class="reviewHeader">
-     <span class = 'review-user'>Reviewed By: {{review.username}} | <br></span>
+   <div class="info">
+      <div class="title">
+        {{$ctrl.current.name}}
+      </div>
+      <div class="desc"></div>
+      <div class="desc">{{$ctrl.current.type}}</div>
+      <div class="desc">{{$ctrl.current.brewery}}</div>
+      <div class="desc">Alchohol % :{{$ctrl.current.alcoholPer}}</div>
+   </div>
+   <div class="bottom" >
+<!--       <button class="btn btn-default">Button</button> -->
 
-     <span class = 'language'> Language: {{review.pairing}} | <br> </span>
-     <span class = 'rating-review'>{{review.rating}}/5</span>
-   </div>
-   <div class="reviewContent">
-     {{review.content}}
-   </div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="address">
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ordine">Add Review</button>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
 </div>
-<div id="reviewIsNewForm">
-   <h4>New Review</h4>
+
+<!-- Modal -->
+<div id="ordine" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h4 class="modal-title">Create a New Review for {{$ctrl.current.name}}</h4>
+      </div>
+      <div class="modal-body">
+     <div id="reviewIsNewForm">
    <review-new></review-new>
    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 </div>
+</div>
+</div>
+
+<!-- starting table  -->
+<div class="page">
+ <h1 class="reviewh1">Reviews</h1>
+<table class="layout display responsive-table">
+    <thead>
+        <tr >
+            <th>Username</th>
+             <th>Language</th>
+            <th colspan="2">{{$ctrl.current.name}}'s Reviews</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr ng-repeat="review in $ctrl.current.reviews">
+            <td class="organisationnumber">{{review.username}}</td>
+            <td class="organisationname">{{review.pairing}}</td>
+            <td class="actions">{{review.content}} </td>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+ <h1 class="reviewh1">Rating Averages</h1>
+   <div style="width: 45vw">
+   <span class="average" ng-repeat="average in $ctrl.currentAverages">{{average.type}}: {{average.average}}</span>
+   </div>
+</div>
+</div>
+

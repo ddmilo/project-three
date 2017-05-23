@@ -1,16 +1,19 @@
 <div class="userEdit">
+<h1>Edit User Account</h1>
 	<form ng-submit="$ctrl.saveUser()">
 		<div>
 			<label for="username">User Name:</label>
 			<input type="text" name="username" ng-model="$ctrl.current.username">
 		</div>
+		<br>
 		<div>
 			<label for="email">Email:</label>
 			<input type="text" name="email" ng-model="$ctrl.current.email">
 		</div>
 		<div>
-			<input type="submit" value="Save Account">
+			<input type="submit" value="Save Account" class="submit">
 		</div>
+		<br>
 	</form>
-	<button ng-click="$ctrl.deleteUser()">Delete Account</button>
+	<button ng-click="$ctrl.deleteUser()" class="btn btn-danger">Delete Account</button>
 </div>
