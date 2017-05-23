@@ -15,7 +15,7 @@ function NewReviewController($state, $stateParams,ReviewService) {
       .addReview(vm.newReview , $stateParams.beerId);
     vm.newReview = {};
     $state
-      .go('beer');
+      .go('beerShow');
    }
 }
 

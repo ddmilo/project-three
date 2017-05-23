@@ -1,11 +1,13 @@
+
 <main id="beerMain">
+<br>
   <div id ="beer" style="height: 500px; width: 200px;">...</div>
       <div class="container1">
         <div class ="beer">
         <li ng-show="$ctrl.loading">
             <strong>Loading...</strong>
         </li>
-        <div class ="pairing" ng-hide="$ctrl.loading">
+        <div class ="pairing" active ng-hide="$ctrl.loading">
         <h3>Sort By Pairing Rating (Highest To Lowest)</h3>
         <nav >
         <div>
@@ -23,11 +25,10 @@
           <li ng-repeat="beer in $ctrl.beer" ng-hide="$ctrl.orderBy"><a class="beerColor2" ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
 
           <li ng-repeat="beer in $ctrl.beer | orderBy : $ctrl.orderBy : reverse = true" ng-show="$ctrl.orderBy"><a class="beerColor2" ui-sref ="beerShow({beerId: beer._id})">{{beer.name}}</a></li>
-
-          <button ng-if="$ctrl.currentUser" class="beerColor"><a class="beerColor1" ui-sref="beerNew">Add Beer</button>
         </ul>
       </div>
     </div>
+    <button ng-if="$ctrl.currentUser" class="beerColor"><a class="beerColor1" ui-sref="beerNew">Add Beer</button>
+
   </div>
 <main>
-
